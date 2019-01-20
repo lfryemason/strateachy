@@ -17,3 +17,5 @@ class Firebase
 }
 
 export default Firebase;
+
+export { FirebaseContext };
