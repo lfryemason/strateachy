@@ -5,6 +5,7 @@ import { BrowserRouter as Router,
 
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
+import SignUpPage from '../SignUp'
 
 import * as ROUTES from '../../constants/routes';
 
@@ -14,6 +15,7 @@ const App = () => (
             <Navigation />
 
             <Route exact path={ROUTES.LANDING} component={LandingPage} />
+            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
         </div>
     </Router>
 );
