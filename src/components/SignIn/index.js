@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 
 import { SignUpLink } from '../SignUp';
@@ -82,8 +82,15 @@ class SignInFormBase extends Component
     }
 }
 
+const SignInLink = () => (
+    <p>
+        Already have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    </p>
+);
+
+
 const SignInForm = withRouter(withFirebase(SignInFormBase));
 
 export default SignInPage;
 
-export { SignInForm };
+export { SignInForm, SignInLink };
