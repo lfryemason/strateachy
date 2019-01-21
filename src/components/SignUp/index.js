@@ -10,7 +10,6 @@ const SignUpPage = () => (
     <div>
         <h1>SignUp</h1>
         <SignUpForm />
-        <SignInLink />
     </div>
 );
 
@@ -86,6 +85,7 @@ class SignUpFormBase extends Component
                 type="password"
                 placeholder="Confirm Password"
             />
+            <SignInLink />
             <button disabled={isInvalid} type="submit">Sign Up</button>
 
             {error && <p>{error.message}</p>}
