@@ -15,7 +15,7 @@ const SignInPage = () => (
 const INITIAL_STATE =
 {
     email: '',
-    pswd: '',
+    password: '',
     error: null,
 }
 
@@ -30,9 +30,9 @@ class SignInFormBase extends Component
 
     onSubmit = event =>
     {
-        const { email, pswd } = this.state;
+        const { email, password } = this.state;
         this.props.firebase
-            .doSignInWithEmailAndPassword(email, pswd)
+            .doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ ...INITIAL_STATE})
                 this.props.history.push(ROUTES.HOME);
@@ -51,9 +51,9 @@ class SignInFormBase extends Component
 
     render()
     {
-        const { email, pswd, error } = this.state;
+        const { email, password, error } = this.state;
     
-        const isInvalid = pswd === '' || email === '';
+        const isInvalid = password === '' || email === '';
     
         return (
             <form onSubmit={this.onSubmit}>
@@ -65,8 +65,8 @@ class SignInFormBase extends Component
                     placeholder="Email Address"
                 />
                 <input
-                    name="pswd"
-                    value={pswd}
+                    name="password"
+                    value={password}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
