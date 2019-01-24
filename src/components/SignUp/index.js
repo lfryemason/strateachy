@@ -16,8 +16,8 @@ const SignUpPage = () => (
 const INITIAL_STATE = 
 {
     email: '',
-    pswdA: '',
-    pswdB: '',
+    passwordA: '',
+    passwordB: '',
     error: null,
 }
 
@@ -30,10 +30,10 @@ class SignUpFormBase extends Component
     }
 
     onSubmit = event => {
-        const { email, pswdA } = this.state;
+        const { email, passwordA } = this.state;
 
         this.props.firebase
-            .doCreateUserWithEmailAndPassword(email, pswdA)
+            .doCreateUserWithEmailAndPassword(email, passwordA)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.HOME);
@@ -52,14 +52,14 @@ class SignUpFormBase extends Component
     render() {
         const {
             email,
-            pswdA,
-            pswdB,
+            passwordA,
+            passwordB,
             error
         } = this.state;
 
         const isInvalid = 
-            pswdA !== pswdB ||
-            pswdA === '' ||
+            passwordA !== passwordB ||
+            passwordA === '' ||
             email === '';
 
         return (
@@ -72,15 +72,15 @@ class SignUpFormBase extends Component
                 placeholder="Email Address"
             />
             <input
-                name="pswdA"
-                value={pswdA}
+                name="passwordA"
+                value={passwordA}
                 onChange={this.onChange}
                 type="password"
                 placeholder="Password"
             />
             <input
-                name="pswdB"
-                value={pswdB}
+                name="passwordB"
+                value={passwordB}
                 onChange={this.onChange}
                 type="password"
                 placeholder="Confirm Password"
