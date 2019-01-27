@@ -9,6 +9,7 @@ import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import { withAuthentication } from '../Session';
 import AccountPage from '../Account';
+import HomePage from '../Home';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -23,6 +24,7 @@ const App = () => (
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+      <Route path={ROUTES.HOME} component={HomePage} />
     </div>
   </Router>
 );
