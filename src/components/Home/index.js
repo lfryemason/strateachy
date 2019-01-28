@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { withAuthorization, AuthCondition } from '../Session';
+import { withAuthorization, authCondition } from '../Session';
 
 const HomePage = () => (
   <div>
@@ -8,4 +8,4 @@ const HomePage = () => (
   </div>
 );
 
-export default withAuthorization(AuthCondition)(HomePage);
+export default withAuthorization(authCondition)(HomePage);
