@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../../Firebase';
 
 import { SignUpLink } from '../SignUp';
+import { PasswordForgetLink } from '../PasswordForget';
 import * as ROUTES from '../../constants/routes';
 
 const SignInPage = () => (
@@ -71,6 +72,7 @@ class SignInFormBase extends Component
                     type="password"
                     placeholder="Password"
                 />
+                <PasswordForgetLink />
                 <SignUpLink />
                 <button disabled={isInvalid} type="submit">
                     Sign In

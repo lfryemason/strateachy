@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 import SignOutButton from '../SignOut';
-import { SignInForm } from '../SignIn';
 
-const Navigation = ({ authUser} ) => (
-        <div>{authUser ? <NavigationAuth /> : <br />}</div>
+import { AuthUserContext } from '../Session';
+
+const Navigation = () => (
+        <div>
+            <AuthUserContext.Consumer >
+                {authUser => authUser ? <NavigationAuth /> : <br />}
+            </ AuthUserContext.Consumer>
+        </div>
 );
 
 const NavigationAuth = () => (
@@ -15,11 +20,11 @@ const NavigationAuth = () => (
         <h2>Navigation</h2>
         <ul>
             <li>
-                <Link to={ROUTES.ACCOUNT}>Account</Link>
-            </li>
-            <li>
                 <Link to={ROUTES.HOME}>Home</Link>
             </li>
+            <li>
+                <Link to={ROUTES.ACCOUNT}>Account</Link>
+            </li>   
             <li>
                 <SignOutButton />
             </li>
