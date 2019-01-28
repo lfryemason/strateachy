@@ -34,8 +34,6 @@ const withAuthorization = condition => Component => {
   return withRouter(withFirebase(WithAuthorization));
 };
 
-const authCondition = authUser => !!authUser;
-
 export default withAuthorization;
 
-export { authCondition };
+export const authCondition = authUser => !!authUser;
