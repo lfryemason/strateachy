@@ -1,5 +1,5 @@
 import app from 'firebase/app';
-import 'firebase/auth'
+import 'firebase/auth';
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -10,27 +10,23 @@ const config = {
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID
 }
 
-class Firebase
-{
-    constructor()
-    {
-        app.initializeApp(config);
+app.initializeApp(config);
 
-        this.auth = app.auth();
-    }
 
-    doCreateUserWithEmailAndPassword = (email, password) =>
-        this.auth.createUserWithEmailAndPassword(email, password);
+/**
+ * Auth
+ */
+export const auth = app.auth();
 
-    doSignInWithEmailAndPassword = (email, password) =>
-        this.auth.signInWithEmailAndPassword(email, password);
+export const doCreateUserWithEmailAndPassword = (email, password) =>
+        auth.createUserWithEmailAndPassword(email, password);
 
-    doSignOut = () => this.auth.signOut();
+export const doSignInWithEmailAndPassword = (email, password) =>
+        auth.signInWithEmailAndPassword(email, password);
 
-    doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+export const doSignOut = () => auth.signOut();
+
+export const doPasswordReset = email => auth.sendPasswordResetEmail(email);
   
-    doPasswordUpdate = password =>
-        this.auth.currentUser.updatePassword(password);
-    }
-
-export default Firebase;
+export const doPasswordUpdate = password =>
+        auth.currentUser.updatePassword(password);
