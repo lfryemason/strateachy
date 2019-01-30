@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { withStore } from '../../../Store';
+import { FirestoreCollection } from 'react-firestore';
 
-const LessonPlanList = ({store}) =>
+class LessonPlanList extends Component
 {
-  return (
-    <div>
-      <ul>
-      {store.lessonPlans.map(lessonPlan => 
-        <li>
-          {lessonPlan.name + ' - ' + lessonPlan.date}
-        </li>
-      )}
-      </ul>
-    </div>
-  );
+  render()
+  {
+    return (
+      <FirestoreCollection
+        path="lessonPlans"
+        sort="date"
+        render={({ isLoading, data }) => {
+          return isLoading ? (
+            <h3>Loading...</h3>
+          ) : (
+            <div>
+              <ul>
+              {data.map(lessonPlan => (
+                <li key={lessonPlan.id}>
+                  {lessonPlan.name + ' - ' + lessonPlan.date}
+                </li>
+              ))}
+              </ul>
+            </div>
+          );
+        }}
+      />
+    );
+  }
 }
 
 export default withStore(LessonPlanList);
