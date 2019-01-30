@@ -7,7 +7,7 @@ const LessonPlanList = ({store}) =>
   return (
     <div>
       <ul>
-      {store.state.lessonPlans.map(lessonPlan => 
+      {store.lessonPlans.map(lessonPlan => 
         <li>
           {lessonPlan.name + ' - ' + lessonPlan.date}
         </li>

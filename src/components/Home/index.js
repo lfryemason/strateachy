@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { FirestoreProvider } from 'react-firestore';
 
 import { withAuthorization, authCondition } from '../Session';
-
-import Store, { StoreContext } from '../../Store';
+import { withFirebase } from '../../Firebase';
+import Store from '../../Store';
 
 import LessonPlanList from './LessonPlanList';
 
-const HomePage = () => (
-  <div>
-    <StoreContext.Provider value={new Store()}>
-      <h1>Home</h1>
-      <LessonPlanList />
-    </StoreContext.Provider>
-  </div>
-);
+class HomePage extends Component
+{
+  render()
+  {
+    return(
+      <div>
+        <FirestoreProvider firebase={this.props.firebase}>
+          <Store>
+            <h1>Home</h1>
+            <LessonPlanList />
+          </Store>
+        </FirestoreProvider>
+      </div>
+    );
+  }
+}
 
-export default withAuthorization(authCondition)(HomePage);
+export default withFirebase(withAuthorization(authCondition)(HomePage));

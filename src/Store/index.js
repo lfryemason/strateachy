@@ -8,9 +8,8 @@ class Store extends Component
   {
     super(props);
 
-    console.log("here");
     this.state = {
-      lessonPlans: [{name:"testname", date:"1/29/2019"},{name:"testname1", date:"1/30/2019"}],
+      lessonPlans: [],
       activities: []
     };
   }
