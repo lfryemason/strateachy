@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { withStore } from '../../../Store';
+import { withStore } from '../../Store';
 import { FirestoreCollection } from 'react-firestore';
 
 class LessonPlanList extends Component

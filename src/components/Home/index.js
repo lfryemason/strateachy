@@ -5,7 +5,7 @@ import { withAuthorization, authCondition } from '../Session';
 import { withFirebase } from '../../Firebase';
 import Store from '../../Store';
 
-import LessonPlanList from './LessonPlanList';
+import LessonPlanList from '../LessonPlanList';
 
 class HomePage extends Component
 {
