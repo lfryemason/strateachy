@@ -7,7 +7,7 @@ import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
-import { withAuthentication } from '../Session';
+import { withAuthenticationProvider } from '../Session';
 import AccountPage from '../Account';
 import HomePage from '../Home';
 
@@ -31,4 +31,4 @@ const App = () => (
   </Router>
 );
 
-export default withAuthentication(App);
+export default withAuthenticationProvider(App);
