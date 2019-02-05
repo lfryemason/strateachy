@@ -6,6 +6,7 @@ import { withFirebase } from '../../Firebase';
 import Store from '../../Store';
 
 import LessonPlanList from '../LessonPlanList';
+import LessonPlanExpand from '../LessonPlanExpand';
 
 class HomePage extends Component
 {
@@ -15,8 +16,12 @@ class HomePage extends Component
       <div>
         <FirestoreProvider firebase={this.props.firebase}>
           <Store>
-            <h1>Home</h1>
-            <LessonPlanList />
+            <div className="lesson_plan_sidebar">
+              <LessonPlanList />
+            </div>
+            <div className="main_lesson_plan">
+              <LessonPlanExpand />
+            </div>
           </Store>
         </FirestoreProvider>
       </div>

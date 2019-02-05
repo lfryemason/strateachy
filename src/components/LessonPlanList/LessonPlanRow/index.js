@@ -6,13 +6,13 @@ class LessonPlanRow extends Component
   {
     return (
       <div>
-        <div class="name">
+        <div className="name">
         {this.props.lessonPlan.name}
         </div>
-        <div class="date">
+        <div className="date">
           {this.props.lessonPlan.date}
         </div>
-        <p class="desc">
+        <p className="desc">
           {this.props.lessonPlan.description}
         </p>
       </div>

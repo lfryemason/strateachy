@@ -10,24 +10,23 @@ class Store extends Component
 
     this.state = {
       lessonPlans: [],
-      activities: []
+      activities: [],
+      currentLessonPlan: {id: " ", name: "test", date: "test"}
     };
   }
 
-  lessonPlan =
-  {
-    //lessonplan functions go here
-  }
-
-  activity =
-  {
-    //activity functions go here
-  }
+  //Sets a flag to update the currentLessonPlan with any new values that are passed in.
+  updateCurrentLessonPlan = newLessonPlan => 
+    this.setState( {currentLessonPlan: {...this.state.currentLessonPlan, ...newLessonPlan}} )
 
   render()
   {
     return (
-      <StoreContext.Provider value={{...this.state, lessonPlan:this.lessonPlan, activity:this.activity}}>
+      <StoreContext.Provider value={
+        {...this.state,
+         updateCurrentLessonPlan:this.updateCurrentLessonPlan
+        }
+      }>
         {this.props.children}
       </StoreContext.Provider>
     );

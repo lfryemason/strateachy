@@ -7,6 +7,12 @@ import LessonPlanRow from './LessonPlanRow';
 
 class LessonPlanList extends Component
 {
+
+  onClick = event =>
+  {
+
+  };
+
   render()
   {
     return (
