@@ -10,22 +10,16 @@ class LessonPlanExpand extends Component
   //Save the lesson plan to the database.
   onSubmit = event =>
   {
-    const { currentLessonPlan } = this.props.store;
-    this.props.store.updateCurrentLessonPlan({id: "WORDS"})
-    console.log("HERE" + this.props.store.currentLessonPlan.id)
-    if ( currentLessonPlan === false )
+    const { currentLessonPlan, updateCurrentLessonPlan } = this.props.store;
+    if ( currentLessonPlan.id )
     {
       this.props.firestore.collection("lessonPlans").doc(currentLessonPlan.id)
         .update({...currentLessonPlan})
-        .then(console.log("Succesfully updated lesson plan"))
     } else
     {
-      this.props.firestore.collection("lessonPlans").add(currentLessonPlan)
+      this.props.firestore.collection("lessonPlans").add({...currentLessonPlan})
         .then(function(docRef) {
-          console.log("Succesfully saved new lesson plan");
-          console.log(this.props.store.currentLessonPlan.id + "tests");
-          this.props.store.updateCurrentLessonPlan({id: docRef.id});
-          console.log(this.props.store.currentLessonPlan.id);
+          updateCurrentLessonPlan({id: docRef.id});
         })
     }
 
