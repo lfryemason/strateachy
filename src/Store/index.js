@@ -14,6 +14,7 @@ class Store extends Component
       currentLessonPlan: {
         name: "", 
         date: new Date(),
+        duration: 45,
         description: "",
         age: "",
         level: "",

@@ -58,6 +58,13 @@ class LessonPlanExpand extends Component
             dateFormat="MMMM d, yyyy h:mm aa"
             timeCaption="time"
           />
+            <input 
+              name="duration"
+              type="number"
+              value ={lessonPlan.duration}
+              onChange={this.onChange}
+              placeholder="lesson length"
+            /> mins.
         </div>
 
         <div>
