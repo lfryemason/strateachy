@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { withStore } from '../../Store';
 import { FirestoreCollection } from 'react-firestore';
 
+import LessonPlanRow from './LessonPlanRow';
+
 class LessonPlanList extends Component
 {
   render()
@@ -16,11 +18,10 @@ class LessonPlanList extends Component
             <h3>Loading...</h3>
           ) : (
             <div>
-              <ul>
+              <h3>Lesson Plans</h3>
+              <ul >
               {data.map(lessonPlan => (
-                <li key={lessonPlan.id}>
-                  {lessonPlan.name + ' - ' + lessonPlan.date}
-                </li>
+                <LessonPlanRow key={lessonPlan.id} lessonPlan={lessonPlan} />
               ))}
               </ul>
             </div>
