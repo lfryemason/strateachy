@@ -61,6 +61,21 @@ class LessonPlanExpand extends Component
         </div>
 
         <div>
+          <input 
+            name="age"
+            value ={lessonPlan.age}
+            onChange={this.onChange}
+            placeholder="Age group"
+          />
+          <input 
+            name="level"
+            value ={lessonPlan.level}
+            onChange={this.onChange}
+            placeholder="Skill level"
+          />
+        </div>
+
+        <div>
           <textarea
             name="description"
             value={lessonPlan.description}
@@ -69,6 +84,9 @@ class LessonPlanExpand extends Component
           />
         </div>
 
+        <div>
+          <h1>Activity list here</h1>
+        </div>
         <button type="submit">
           save
         </button>
