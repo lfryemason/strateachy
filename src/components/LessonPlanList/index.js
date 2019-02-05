@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { withStore } from '../../Store';
 import { FirestoreCollection } from 'react-firestore';
+import { withAuthentication } from '../Session';
 
 import LessonPlanRow from './LessonPlanRow';
 
@@ -15,10 +16,11 @@ class LessonPlanList extends Component
 
   render()
   {
+    const uid = this.props.authUser.uid;
     return (
       <FirestoreCollection
         path="lessonPlans"
-        sort="date"
+        filter={[['uid', '==', uid]]}
         render={({ isLoading, data }) => {
           return isLoading ? (
             <h3>Loading...</h3>
@@ -38,4 +40,4 @@ class LessonPlanList extends Component
   }
 }
 
-export default withStore(LessonPlanList);
+export default withAuthentication(withStore(LessonPlanList));

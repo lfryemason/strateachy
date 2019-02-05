@@ -6,23 +6,21 @@ import { withFirestore } from 'react-firestore';
 
 class LessonPlanExpand extends Component
 {
-
   //Save the lesson plan to the database.
   onSubmit = event =>
   {
-    const { currentLessonPlan, updateCurrentLessonPlan } = this.props.store;
-    if ( currentLessonPlan.id )
+    const { currentLessonPlan, currentLessonPlanID, updateCurrentLessonPlanID } = this.props.store;
+    if ( currentLessonPlanID !== "" )
     {
-      this.props.firestore.collection("lessonPlans").doc(currentLessonPlan.id)
+      this.props.firestore.collection("lessonPlans").doc(currentLessonPlanID)
         .update({...currentLessonPlan})
     } else
     {
       this.props.firestore.collection("lessonPlans").add({...currentLessonPlan})
         .then(function(docRef) {
-          updateCurrentLessonPlan({id: docRef.id});
+          updateCurrentLessonPlanID(docRef.id);
         })
     }
-
     event.preventDefault();
   };
   
