@@ -11,7 +11,7 @@ class Store extends Component
     super(props);
 
     this.state = {
-      currentLessonPlan: {name: "", date: "test"},
+      currentLessonPlan: {name: "", date: new Date()},
       currentLessonPlanID: ""
     };
   }

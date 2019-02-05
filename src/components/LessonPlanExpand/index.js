@@ -4,6 +4,9 @@ import { withStore } from '../../Store';
 
 import { withFirestore } from 'react-firestore';
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 class LessonPlanExpand extends Component
 {
   //Save the lesson plan to the database.
@@ -28,22 +31,43 @@ class LessonPlanExpand extends Component
     this.props.store.updateCurrentLessonPlan({ [event.target.name]: event.target.value });
   };
 
+  dateChange = date =>
+  {
+    this.props.store.updateCurrentLessonPlan({ date: date });
+  };
+
   render()
   {
     const lessonPlan = this.props.store.currentLessonPlan;
     return (
       <form onSubmit={this.onSubmit}>
-        <input 
-          name="name"
-          value ={lessonPlan.name}
-          onChange={this.onChange}
-          placeholder="Name"
-        />
+        <div>
+          <input 
+            name="name"
+            value ={lessonPlan.name}
+            onChange={this.onChange}
+            placeholder="Class name"
+          />
 
-        <h2>
-          {lessonPlan.date}
-        </h2>
-        <p>{lessonPlan.description}</p>
+          <DatePicker 
+            selected={lessonPlan.date}
+            onChange={this.dateChange}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat="MMMM d, yyyy h:mm aa"
+            timeCaption="time"
+          />
+        </div>
+
+        <div>
+          <textarea
+            name="description"
+            value={lessonPlan.description}
+            onChange={this.onChange}
+            placeholder="Enter a description for your lesson plan"
+          />
+        </div>
 
         <button type="submit">
           save

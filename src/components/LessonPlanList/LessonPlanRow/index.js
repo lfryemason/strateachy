@@ -4,17 +4,19 @@ class LessonPlanRow extends Component
 {
   render()
   {
+    const {name, date, description} = this.props.lessonPlan
     return (
       <div>
         <div className="name">
-        {this.props.lessonPlan.name}
+        {name}
         </div>
         <div className="date">
-          {this.props.lessonPlan.date}
+          {date.getFullYear()}/{date.getMonth()}/{date.getDay()}
         </div>
-        <p className="desc">
-          {this.props.lessonPlan.description}
-        </p>
+        <div className="desc">
+          {description}
+        </div>
+        <p />
       </div>
     );
   }
