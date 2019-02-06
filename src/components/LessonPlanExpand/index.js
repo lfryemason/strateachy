@@ -42,14 +42,19 @@ class LessonPlanExpand extends Component
     return (
       <form onSubmit={this.onSubmit}>
         <div>
+
+          <label for="name">Class name</label>
           <input 
             name="name"
+            id="name"
             value ={lessonPlan.name}
             onChange={this.onChange}
             placeholder="Class name"
           />
 
+          <label for="date">Date</label>
           <DatePicker 
+            id="date"
             selected={lessonPlan.date}
             onChange={this.dateChange}
             showTimeSelect
@@ -58,24 +63,32 @@ class LessonPlanExpand extends Component
             dateFormat="MMMM d, yyyy h:mm aa"
             timeCaption="time"
           />
-            <input 
-              name="duration"
-              type="number"
-              value ={lessonPlan.duration}
-              onChange={this.onChange}
-              placeholder="lesson length"
-            /> mins.
+
+          <label for="duration">Duration</label>
+          <input 
+            name="duration"
+            id="duration"
+            type="number"
+            value ={lessonPlan.duration}
+            onChange={this.onChange}
+            placeholder="lesson length"
+          /> mins.
         </div>
 
         <div>
+          <label for="age">Age group</label>
           <input 
             name="age"
+            id="age"
             value ={lessonPlan.age}
             onChange={this.onChange}
             placeholder="Age group"
           />
+
+          <label for="level">Skill level</label>
           <input 
             name="level"
+            id="level"
             value ={lessonPlan.level}
             onChange={this.onChange}
             placeholder="Skill level"
@@ -83,8 +96,10 @@ class LessonPlanExpand extends Component
         </div>
 
         <div>
+          <label for="description">Description</label>
           <textarea
             name="description"
+            id="description"
             value={lessonPlan.description}
             onChange={this.onChange}
             placeholder="Enter a description for your lesson plan"
