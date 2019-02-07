@@ -11,28 +11,35 @@ class Store extends Component
     super(props);
 
     this.state = {
-      currentLessonPlan: {
-        name: "", 
-        date: new Date(),
-        duration: 45,
-        description: "",
-        age: "",
-        level: "",
-        activityList: []
-      },
+      currentLessonPlan: {...this.blankLessonPlan},
       currentLessonPlanID: ""
     };
   }
 
   componentDidMount()
   {
-    this.setState ( {currentLessonPlan: {...this.state.currentLessonPlan, uid: this.props.authUser.uid }});
+    this.newCurrentLessonPlan();
   }
 
   //Sets a flag to update the currentLessonPlan with any new values that are passed in.
   updateCurrentLessonPlan = newLessonPlan => 
   {
     this.setState( {currentLessonPlan: {...this.state.currentLessonPlan, ...newLessonPlan}} );
+  }
+
+  blankLessonPlan = {
+    name: "", 
+    date: new Date(),
+    duration: 45,
+    description: "",
+    age: "",
+    level: "",
+    activityList: []
+  }
+
+  newCurrentLessonPlan = () =>
+  {
+    this.setState( {currentLessonPlan: {...this.blankLessonPlan, uid: this.props.authUser.uid }});
   }
 
   //Sets a flag to update the currentLessonPlan with a new ID key.
