@@ -42,6 +42,7 @@ class LessonPlanExpand extends Component
   render()
   {
     const lessonPlan = this.props.store.currentLessonPlan;
+    const isDisabled = this.props.store.isSaving || lessonPlan.name === "";
     return (
       <form onSubmit={this.onSubmit}>
         <div>
@@ -114,7 +115,7 @@ class LessonPlanExpand extends Component
         </div>
         <button 
           type="submit"
-          disabled={this.props.store.isSaving}>
+          disabled={isDisabled}>
           save
         </button>
       </form>
