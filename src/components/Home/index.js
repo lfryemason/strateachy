@@ -8,12 +8,14 @@ import Store from '../../Store';
 import LessonPlanList from '../LessonPlanList';
 import LessonPlanExpand from '../LessonPlanExpand';
 
+import './index.css';
+
 class HomePage extends Component
 {
   render()
   {
     return(
-      <div>
+      <div className="homepage">
         <FirestoreProvider firebase={this.props.firebase}>
           <Store>
             <div className="lesson_plan_sidebar">

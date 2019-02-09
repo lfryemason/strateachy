@@ -7,6 +7,8 @@ import { withFirestore } from 'react-firestore';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import "./index.css"
+
 class LessonPlanExpand extends Component
 {
   //Save the lesson plan to the database.
@@ -45,7 +47,7 @@ class LessonPlanExpand extends Component
     const isDisabled = this.props.store.isSaving || lessonPlan.name === "";
     return (
       <form onSubmit={this.onSubmit}>
-        <div>
+        <div className="lesson_plan_expand">
 
           <label for="name">Class name</label>
           <input 

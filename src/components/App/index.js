@@ -14,12 +14,12 @@ import HomePage from '../Home';
 import * as ROUTES from '../../constants/routes';
 import PasswordForgetPage from '../PasswordForget';
 
+import './index.css'
+
 const App = () => (
   <Router>
     <div>
       <Navigation />
-
-      <hr />
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />

@@ -1,0 +1,17 @@
+.homepage
+{
+  display: flex;
+  overflow: hidden;
+}
+
+.lesson_plan_sidebar
+{
+  width: 25vw;
+  height: 90vh;
+  overflow: auto;
+}
+
+.main_lesson_plan
+{
+  width: 75vw;
+}

@@ -7,6 +7,8 @@ import SignOutButton from '../SignOut';
 
 import { AuthUserContext } from '../Session';
 
+import './index.css'
+
 const Navigation = () => (
         <div>
             <AuthUserContext.Consumer >
@@ -16,19 +18,16 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-    <div>
-        <h2>Navigation</h2>
-        <ul>
-            <li>
-                <Link to={ROUTES.HOME}>Home</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.ACCOUNT}>Account</Link>
-            </li>   
-            <li>
-                <SignOutButton />
-            </li>
-        </ul>
+    <div className="navigation_bar">
+        <div>
+            <Link to={ROUTES.HOME}>Home</Link>
+        </div>
+        <div>
+            <Link to={ROUTES.ACCOUNT}>Account</Link>
+        </div>
+        <div>
+            <SignOutButton />
+        </div>
     </div>
 );
 
