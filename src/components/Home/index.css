@@ -2,16 +2,18 @@
 {
   display: flex;
   overflow: hidden;
+  width:  100vw;
+  height:  calc(100vh - 50px);
 }
 
 .lesson_plan_sidebar
 {
-  width: 25vw;
-  height: 90vh;
-  overflow: auto;
+  width: 25%;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .main_lesson_plan
 {
-  width: 75vw;
+  width: 75%;
 }
