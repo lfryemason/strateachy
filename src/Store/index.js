@@ -12,7 +12,8 @@ class Store extends Component
 
     this.state = {
       currentLessonPlan: {...this.blankLessonPlan},
-      currentLessonPlanID: ""
+      currentLessonPlanID: "",
+      isSaving: false
     };
   }
 
@@ -48,13 +49,19 @@ class Store extends Component
     this.setState( {currentLessonPlanID: newID} );
   }
 
+  saving = newVal =>
+  {
+    this.setState({ isSaving: newVal });
+  }
+
   render()
   {
     return (
       <StoreContext.Provider value={
         {...this.state,
          updateCurrentLessonPlan:this.updateCurrentLessonPlan,
-         updateCurrentLessonPlanID:this.updateCurrentLessonPlanID
+         updateCurrentLessonPlanID:this.updateCurrentLessonPlanID,
+         saving:this.saving
         }
       }>
         {this.props.children}

@@ -12,16 +12,19 @@ class LessonPlanExpand extends Component
   //Save the lesson plan to the database.
   onSubmit = event =>
   {
-    const { currentLessonPlan, currentLessonPlanID, updateCurrentLessonPlanID } = this.props.store;
+    const { currentLessonPlan, currentLessonPlanID, updateCurrentLessonPlanID, saving } = this.props.store;
+    saving(true);
     if ( currentLessonPlanID !== "" )
     {
       this.props.firestore.collection("lessonPlans").doc(currentLessonPlanID)
         .update({...currentLessonPlan})
+        .then(saving(false));
     } else
     {
       this.props.firestore.collection("lessonPlans").add({...currentLessonPlan})
         .then(function(docRef) {
           updateCurrentLessonPlanID(docRef.id);
+          saving(false);
         })
     }
     event.preventDefault();
@@ -109,7 +112,9 @@ class LessonPlanExpand extends Component
         <div>
           <h1>Activity list here</h1>
         </div>
-        <button type="submit">
+        <button 
+          type="submit"
+          disabled={this.props.store.isSaving}>
           save
         </button>
       </form>
