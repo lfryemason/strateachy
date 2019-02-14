@@ -40,7 +40,8 @@ class Store extends Component
 
   newCurrentLessonPlan = () =>
   {
-    this.setState( {currentLessonPlan: {...this.blankLessonPlan, uid: this.props.authUser.uid }});
+    this.setState( {currentLessonPlan: {...this.blankLessonPlan, uid: this.props.authUser.uid }, 
+      currentLessonPlanID: ""});
   }
 
   //Sets a flag to update the currentLessonPlan with a new ID key.
@@ -61,6 +62,7 @@ class Store extends Component
         {...this.state,
          updateCurrentLessonPlan:this.updateCurrentLessonPlan,
          updateCurrentLessonPlanID:this.updateCurrentLessonPlanID,
+         newCurrentLessonPlan:this.newCurrentLessonPlan,
          saving:this.saving
         }
       }>
