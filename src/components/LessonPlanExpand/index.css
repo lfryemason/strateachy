@@ -3,3 +3,13 @@
   display: flex;
   flex-direction: column;
 }
+
+.activity_list
+{
+  border: 2px solid black;
+  display: block;
+  border-radius: 2px;
+  height: 30vh;
+  width: calc((75vw - 4px) * .9);
+  margin: auto;
+}

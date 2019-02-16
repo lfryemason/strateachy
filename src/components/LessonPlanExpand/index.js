@@ -7,6 +7,8 @@ import { withFirestore } from 'react-firestore';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import ActivityList from '../ActivityList';
+
 import "./index.css"
 
 class LessonPlanExpand extends Component
@@ -108,13 +110,12 @@ class LessonPlanExpand extends Component
             id="description"
             value={lessonPlan.description}
             onChange={this.onChange}
-            placeholder="Enter a description htmlFor your lesson plan"
+            placeholder="Enter a description for your lesson plan"
           />
         </div>
 
-        <div>
-          <h1>Activity list here</h1>
-        </div>
+        <ActivityList activities={lessonPlan.activityList} className="activity_list"/>
+
         <button 
           type="submit"
           disabled={isDisabled}>
