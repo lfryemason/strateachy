@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 
+import { withStore } from '../../../Store';
+
 class LessonPlanRow extends Component
 {
+  onClick = event =>
+  {
+    const lessonPlan = this.props.lessonPlan;
+    const store = this.props.store;
+    store.updateCurrentLessonPlanID(lessonPlan.id);
+    delete lessonPlan.id;
+    store.updateCurrentLessonPlan(lessonPlan);
+  }
+
   render()
   {
     const {name, date, description} = this.props.lessonPlan
     return (
-      <div>
+      <div 
+        className="lesson_plan_row"
+        onClick={this.onClick}
+      >
         <div className="name">
         {name}
         </div>
@@ -22,4 +36,4 @@ class LessonPlanRow extends Component
   }
 }
 
-export default LessonPlanRow;
+export default withStore(LessonPlanRow);

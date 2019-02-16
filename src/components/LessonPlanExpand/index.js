@@ -49,7 +49,7 @@ class LessonPlanExpand extends Component
       <form onSubmit={this.onSubmit}>
         <div className="lesson_plan_expand">
 
-          <label for="name">Class name</label>
+          <label htmlFor="name">Class name</label>
           <input 
             name="name"
             id="name"
@@ -58,7 +58,7 @@ class LessonPlanExpand extends Component
             placeholder="Class name"
           />
 
-          <label for="date">Date</label>
+          <label htmlFor="date">Date</label>
           <DatePicker 
             id="date"
             selected={lessonPlan.date}
@@ -70,7 +70,7 @@ class LessonPlanExpand extends Component
             timeCaption="time"
           />
 
-          <label for="duration">Duration</label>
+          <label htmlFor="duration">Duration</label>
           <input 
             name="duration"
             id="duration"
@@ -82,7 +82,7 @@ class LessonPlanExpand extends Component
         </div>
 
         <div>
-          <label for="age">Age group</label>
+          <label htmlFor="age">Age group</label>
           <input 
             name="age"
             id="age"
@@ -91,7 +91,7 @@ class LessonPlanExpand extends Component
             placeholder="Age group"
           />
 
-          <label for="level">Skill level</label>
+          <label htmlFor="level">Skill level</label>
           <input 
             name="level"
             id="level"
@@ -102,13 +102,13 @@ class LessonPlanExpand extends Component
         </div>
 
         <div>
-          <label for="description">Description</label>
+          <label htmlFor="description">Description</label>
           <textarea
             name="description"
             id="description"
             value={lessonPlan.description}
             onChange={this.onChange}
-            placeholder="Enter a description for your lesson plan"
+            placeholder="Enter a description htmlFor your lesson plan"
           />
         </div>
 
