@@ -7,8 +7,9 @@ class LessonPlanRow extends Component
   onClick = event =>
   {
     const lessonPlan = this.props.lessonPlan;
+    const lessonPlanID = lessonPlan.id;
     const store = this.props.store;
-    store.updateCurrentLessonPlanID(lessonPlan.id);
+    store.updateCurrentLessonPlanID(lessonPlanID);
     delete lessonPlan.id;
     store.updateCurrentLessonPlan(lessonPlan);
   }
@@ -25,7 +26,7 @@ class LessonPlanRow extends Component
         {name}
         </div>
         <div className="date">
-          {date.getFullYear()}/{date.getMonth()}/{date.getDay()}
+          {date.getFullYear()}/{date.getMonth() + 1}/{date.getDate()}
         </div>
         <div className="desc">
           {description}
