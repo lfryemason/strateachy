@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -30,3 +31,13 @@ export const doPasswordReset = email => auth.sendPasswordResetEmail(email);
   
 export const doPasswordUpdate = password =>
         auth.currentUser.updatePassword(password);
+
+
+/**
+ * Database/Firestore
+ */
+export const firestore = () => app.firestore();
+
+/**
+ * LessonPlans
+ */

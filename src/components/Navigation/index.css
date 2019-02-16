@@ -1,0 +1,6 @@
+.navigation_bar
+{
+  height: 49px;
+  display: flex;
+  border-bottom: 1px solid black;
+}

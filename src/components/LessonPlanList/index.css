@@ -1,0 +1,11 @@
+.lesson_plan_list
+{
+  height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+.new_lesson_plan_button
+{
+  height: 50px;
+  width: 100%;
+}

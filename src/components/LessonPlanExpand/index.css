@@ -1,0 +1,5 @@
+.lesson_plan_expand
+{
+  display: flex;
+  flex-direction: column;
+}
