@@ -32,8 +32,8 @@ class LessonPlanList extends Component
                 <div>
                   <h3>Lesson Plans</h3>
                   <ul >
-                  {data.map(lessonPlan => (
-                    <LessonPlanRow key={lessonPlan.id} lessonPlan={lessonPlan} />
+                  {data.map((lessonPlan, index) => (
+                    <LessonPlanRow key={index} lessonPlan={lessonPlan} />
                   ))}
                   </ul>
                 </div>

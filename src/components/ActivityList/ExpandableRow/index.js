@@ -9,7 +9,7 @@ class ExpandableRow extends Component
     this.state = {open: false};
   }
 
-  onClick = event =>
+  onClick = () =>
   {
     const currentOpen = this.state.open;
     this.setState( {open: ! currentOpen })
