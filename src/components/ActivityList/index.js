@@ -47,8 +47,9 @@ class ActivityList extends Component
     Promise.all(newActivityList).then(function(activityList)
     {
       const activityListFiltered = activityList.filter(doc => doc !== null).map(
-        (activity, index) => activity = {...activity, key: index}
-      );
+        (activity, index) => activity = {...activity, ind: index}
+      ).sort( (a, b) => b.ind > a.ind );
+      console.log(activityList);
   
       setActivityList(activityListFiltered);
     });

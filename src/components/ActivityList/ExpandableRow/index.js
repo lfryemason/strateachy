@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import "./index.css";
+
 class ExpandableRow extends Component
 {
   constructor(props)
@@ -23,11 +25,13 @@ class ExpandableRow extends Component
            onClick={this.onClick}
       >
       {this.state.open ? 
-        <ExpandedRow activity={activity} />
+        <div>
+          <TitleRow activity={activity} />
+          <ExpandedRow activity={activity} />
+        </div>
       :
-        <UnexpandedRow activity={activity} />
+        <TitleRow activity={activity} />
       }
-        <hr />
       </div>
     );
   }
@@ -38,25 +42,23 @@ const ExpandedRow = props =>
   const activity = props.activity;
   return ( 
     <div>
-      <div>
-        {activity.name}
-      </div>
-      <div>
-        <h1>
-        {activity.description}
-        </h1>
-      </div>
+      <h1>
+      {activity.description}
+      </h1>
     </div>
-  );
+  ); 
 }
 
-const UnexpandedRow = props =>
+const TitleRow = props =>
 {
   const activity = props.activity;
   return ( 
-  <div>
-    <div>
+  <div className="row_title">
+    <div className="activity_name">
       {activity.name}
+    </div>
+    <div className="activity_duration">
+      {activity.duration} mins.
     </div>
   </div>
   );

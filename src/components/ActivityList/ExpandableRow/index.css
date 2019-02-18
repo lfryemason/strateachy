@@ -1,0 +1,22 @@
+.row_title
+{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
+  border-bottom: 2px solid black;
+}
+
+.activity_name
+{
+  justify-content: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity_duration
+{
+  justify-content: right;
+  white-space: nowrap;
+}
