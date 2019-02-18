@@ -19,4 +19,60 @@
 {
   justify-content: right;
   white-space: nowrap;
+}.row_title
+{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
+  border-bottom: 2px solid black;
+}
+
+.activity_name
+{
+  justify-content: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity_duration
+{
+  justify-content: right;
+  white-space: nowrap;
+}
+
+.expanded_row
+{
+  border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.expanded_buttons
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  border-top: 1px solid gray;
+}
+
+.expanded_details
+{
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 50px);
+  padding-left: 25px;
+  padding-right: 25px;
+  justify-content: space-between;
+}
+
+.expanded_age
+{
+  text-overflow: ellipsis;
+}
+
+.expanded_level
+{
+  text-overflow: ellipsis;
 }

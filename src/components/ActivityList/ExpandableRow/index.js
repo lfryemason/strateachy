@@ -27,7 +27,7 @@ class ExpandableRow extends Component
       {this.state.open ? 
         <div>
           <TitleRow activity={activity} />
-          <ExpandedRow activity={activity} />
+          <ExpandedRow activity={activity} parent={this} />
         </div>
       :
         <TitleRow activity={activity} />
@@ -37,16 +37,49 @@ class ExpandableRow extends Component
   }
 }
 
-const ExpandedRow = props =>
+class ExpandedRow extends Component
 {
-  const activity = props.activity;
-  return ( 
-    <div>
-      <h1>
-      {activity.description}
-      </h1>
-    </div>
-  ); 
+  editEvent = event =>
+  {
+    event.stopPropagation();
+  }
+
+  removeEvent = event =>
+  {
+    event.stopPropagation();
+  }
+
+  render()
+  {
+    const { activity } = this.props;
+    return ( 
+      <div className="expanded_row">
+        <div className="expanded_details">
+          <div className="expanded_age">
+            <b>Age:</b> {activity.age}
+          </div>
+          <div className="expanded_level">
+            <b>Level:</b> {activity.level}
+          </div>
+        </div>
+        <div className="expanded_description">
+          {activity.description}
+        </div>
+        <div className="expanded_buttons">
+          <button className="edit_button"
+            onClick={this.editEvent}
+          >
+            edit
+          </button>
+          <button className="remove_button"
+            onClick={this.removeEvent}
+          >
+            remove from lesson
+          </button>
+        </div>
+      </div>
+    ); 
+  }
 }
 
 const TitleRow = props =>
