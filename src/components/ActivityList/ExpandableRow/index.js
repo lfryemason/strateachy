@@ -77,6 +77,7 @@ class ExpandedRow extends Component
             remove from lesson
           </button>
         </div>
+        
       </div>
     ); 
   }

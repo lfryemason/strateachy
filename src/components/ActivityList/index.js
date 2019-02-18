@@ -49,7 +49,6 @@ class ActivityList extends Component
       const activityListFiltered = activityList.filter(doc => doc !== null).map(
         (activity, index) => activity = {...activity, ind: index}
       ).sort( (a, b) => b.ind > a.ind );
-      console.log(activityList);
   
       setActivityList(activityListFiltered);
     });
