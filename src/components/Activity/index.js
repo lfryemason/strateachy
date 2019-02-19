@@ -37,20 +37,28 @@ class Activity extends Component
     this.setState({ isModalOpen: ! isCurrentlyOpen});
   }
 
-  onSave = activity => event => 
+  onSave = (activity, event) => 
   {
     const { activityId } = this.state;
+    console.log(activity);
+
+    const setActivity = activity => this.setState({activity: activity});
+    const setActivityId = id => this.setState({activityId: id});
     if ( activityId !== "" )
     {
       this.props.firestore.collection("activities").doc(activityId)
-        .update({...activity});
+        .update({...activity})
+        .then(function()
+        {
+          setActivity(activity);
+        });
     } else
     {
       this.props.firestore.collection("activities").add({...activity})
         .then(function(docRef)
         {
-          const { activity}  = this.state;
-          this.setState({activity: {...activity, id: docRef.id}});
+          setActivity(activity);
+          setActivityId(docRef.id);
         })
     }
     this.toggleModalOpen();
@@ -75,7 +83,7 @@ class Activity extends Component
         
       <ActivityModal isOpen={isModalOpen}
         activity={activity}
-        parent={this}
+        onSave={this.onSave}
       />
       </div>
     );

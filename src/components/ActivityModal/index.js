@@ -18,7 +18,7 @@ class ActivityModal extends Component
   onSave = event =>
   {
     const { activity } = this.state;
-    this.props.parent.onSave(activity, event);
+    this.props.onSave(activity, event);
   }
 
   onChange = event =>
