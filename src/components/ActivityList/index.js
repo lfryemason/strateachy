@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ExpandableRow from './ExpandableRow';
+import Activity from '../Activity';
 
 import { withStore } from '../../Store';
 import { withFirestore } from 'react-firestore'
@@ -60,7 +60,7 @@ class ActivityList extends Component
     return (
       <div className="activity_list">
         {activities.map(act => (
-          <ExpandableRow activity={act} key={act.key}/>
+          <Activity activity={act} key={act.ind}/>
         ))}
       </div>
     );

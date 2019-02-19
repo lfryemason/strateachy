@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
 
+import ActivityModal from '../ActivityModal';
+
 import "./index.css";
 
-class ExpandableRow extends Component
+class Activity extends Component
 {
   constructor(props)
   {
     super(props);
 
-    this.state = {open: false};
+    this.state = 
+    {
+      open: false,
+      isModalOpen: false,
+    };
   }
 
   onClick = () =>
   {
-    const currentOpen = this.state.open;
-    this.setState( {open: ! currentOpen })
+    if ( ! this.state.isModalOpen )
+    {
+      const currentOpen = this.state.open;
+      this.setState( {open: ! currentOpen })
+    }
+  }
+
+  openModal = isModalOpen =>
+  {
+    this.setState({...this.state, isModalOpen: isModalOpen});
   }
 
   render()
   {
     const activity = this.props.activity;
+    const { isModalOpen } = this.state;
     return (
       <div className="activity_row"
            onClick={this.onClick}
@@ -27,7 +42,7 @@ class ExpandableRow extends Component
       {this.state.open ? 
         <div>
           <TitleRow activity={activity} />
-          <ExpandedRow activity={activity} parent={this} />
+          <ExpandedRow activity={activity} parent={this} isModalOpen={isModalOpen} openModal={this.openModal}/>
         </div>
       :
         <TitleRow activity={activity} />
@@ -41,6 +56,7 @@ class ExpandedRow extends Component
 {
   editEvent = event =>
   {
+    this.props.openModal(true);
     event.stopPropagation();
   }
 
@@ -49,9 +65,14 @@ class ExpandedRow extends Component
     event.stopPropagation();
   }
 
+  closeModal = () =>
+  {
+    this.props.openModal(false);
+  }
+
   render()
   {
-    const { activity } = this.props;
+    const { activity, isModalOpen } = this.props;
     return ( 
       <div className="expanded_row">
         <div className="expanded_details">
@@ -78,6 +99,9 @@ class ExpandedRow extends Component
           </button>
         </div>
         
+        <ActivityModal isOpen={isModalOpen}
+          onRequestClose={this.closeModal}
+        />
       </div>
     ); 
   }
@@ -98,4 +122,4 @@ const TitleRow = props =>
   );
 }
 
-export default ExpandableRow;
+export default Activity;
