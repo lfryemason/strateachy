@@ -33,7 +33,7 @@ class ActivityList extends Component
       return docRef.get().then(function(doc) {
         if (doc.exists)
         {
-          return {id: doc.id, ...doc.data() };
+          return {id: doc.id, activity: doc.data() };
         }
         else
         {
@@ -47,8 +47,8 @@ class ActivityList extends Component
     Promise.all(newActivityList).then(function(activityList)
     {
       const activityListFiltered = activityList.filter(doc => doc !== null).map(
-        (activity, index) => activity = {...activity, ind: index}
-      ).sort( (a, b) => b.ind > a.ind );
+        (data, index) => data = {id: data.id, activity: {...data.activity, ind: index}}
+      ).sort( (a, b) => a.activity.ind < b.activity.ind );
   
       setActivityList(activityListFiltered);
     });
@@ -59,8 +59,8 @@ class ActivityList extends Component
     const activities = this.state.activityList;
     return (
       <div className="activity_list">
-        {activities.map(act => (
-          <Activity activity={act} key={act.ind}/>
+        {activities.map(data => (
+          <Activity data={data} key={data.activity.ind}/>
         ))}
       </div>
     );

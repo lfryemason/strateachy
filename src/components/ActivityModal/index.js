@@ -8,16 +8,33 @@ class ActivityModal extends Component
 {
   render()
   {
-    const { isOpen, onRequestClose } = this.props;
+    const { toggleModalOpen, onChange, onSave } = this.props.parent;
+    const { isOpen, activity } = this.props;
+    const isDisabled = activity.name === "";
     return(
       <ReactModal isOpen={isOpen}
         shouldCloseOnOverlayClick={true}
         shouldCloseOnEsc={true}
-        onRequestClose={onRequestClose}
+        onRequestClose={toggleModalOpen}
       >
-        <h1>
-          MODAL DIALOG
-        </h1>
+        <form className="modal_form"
+          onSubmit={onSave}
+        >
+          <label htmlFor="name">Activity name</label>
+          <input 
+            name="name"
+            id="name"
+            value ={activity.name}
+            onChange={onChange}
+            placeholder="Activity name"
+          />
+
+          <button 
+            type="submit"
+            disabled={isDisabled}>
+            save
+          </button>
+        </form>
       </ReactModal>
     );
   }

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import ActivityModal from '../ActivityModal';
 
+import { withFirestore } from 'react-firestore';
+
 import "./index.css";
 
 class Activity extends Component
@@ -10,10 +12,13 @@ class Activity extends Component
   {
     super(props);
 
+    const { data } = this.props;
     this.state = 
     {
       open: false,
       isModalOpen: false,
+      activity: data.activity,
+      activityId: data.id
     };
   }
 
@@ -22,20 +27,45 @@ class Activity extends Component
     if ( ! this.state.isModalOpen )
     {
       const currentOpen = this.state.open;
-      this.setState( {open: ! currentOpen })
+      this.setState( {open: ! currentOpen });
     }
+  }
+
+  onChange = event =>
+  {
+    const { activity } = this.state;
+    this.setState({ activity: {...activity, [event.target.name]: event.target.value }});
   }
 
   toggleModalOpen = () =>
   {
     const isCurrentlyOpen = this.state.isModalOpen;
-    this.setState({...this.state, isModalOpen: ! isCurrentlyOpen});
+    this.setState({ isModalOpen: ! isCurrentlyOpen});
+  }
+
+  onSave = event => 
+  {
+    const { activity, activityId } = this.state;
+    if ( activityId !== "" )
+    {
+      this.props.firestore.collection("activities").doc(activityId)
+        .update({...activity});
+    } else
+    {
+      this.props.firestore.collection("activities").add({...activity})
+        .then(function(docRef)
+        {
+          const { activity}  = this.state;
+          this.setState({activity: {...activity, id: docRef.id}});
+        })
+    }
+    this.toggleModalOpen();
+    event.preventDefault();
   }
 
   render()
   {
-    const activity = this.props.activity;
-    const { isModalOpen } = this.state;
+    const { isModalOpen, activity } = this.state;
     return (
       <div className="activity_row"
            onClick={this.onClick}
@@ -50,7 +80,8 @@ class Activity extends Component
       }
         
       <ActivityModal isOpen={isModalOpen}
-        onRequestClose={this.toggleModalOpen}
+        activity={activity}
+        parent={this}
       />
       </div>
     );
@@ -118,4 +149,4 @@ const TitleRow = props =>
   );
 }
 
-export default Activity;
+export default withFirestore(Activity);
