@@ -9,7 +9,7 @@
   border: 2px solid black;
   display: block;
   border-radius: 2px;
-  height: 30vh;
-  width: calc((75vw - 4px) * .9);
+  height: 30%;
+  width: calc((75% - 4px) * .9);
   margin: auto;
 }

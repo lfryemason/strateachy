@@ -9,6 +9,7 @@ import LessonPlanList from '../LessonPlanList';
 import LessonPlanExpand from '../LessonPlanExpand';
 
 import './index.css';
+import ActivityList from '../ActivityList';
 
 class HomePage extends Component
 {
@@ -23,6 +24,9 @@ class HomePage extends Component
             </div>
             <div className="main_lesson_plan">
               <LessonPlanExpand />
+            </div>
+            <div className="activity_sidebar">
+              <ActivityList type="sidePanel"/>
             </div>
           </Store>
         </FirestoreProvider>

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ActivityModal from '../ActivityModal';
 
 import { withFirestore } from 'react-firestore';
+import { withAuthentication } from '../Session';
 
 import "./index.css";
 
@@ -12,14 +13,40 @@ class Activity extends Component
   {
     super(props);
 
-    const { data } = this.props;
     this.state = 
     {
       open: false,
       isModalOpen: false,
-      activity: data.activity,
-      activityId: data.id
+      activity: {},
+      activityId: "",
     };
+  }
+
+  blankActivity = {
+    name: "",
+    duration: 0,
+    age: "",
+    level: "",
+    description: "",
+    default: false,
+    uid: "",
+  }
+
+  componentDidMount()
+  {
+    this.newActivity(this.props.data);
+  }
+
+  newActivity(data)
+  {
+    const { activity, id } = data;
+    let activityId = id
+    if ( id === null || id === "" )
+    {
+      activityId = "";
+    }
+    const authUid = this.props.authUser.uid;
+    this.setState({activity: {...this.blankActivity, ...activity, uid: authUid}, activityId: activityId});
   }
 
   onClick = () =>
@@ -40,7 +67,6 @@ class Activity extends Component
   onSave = (activity, event) => 
   {
     const { activityId } = this.state;
-    console.log(activity);
 
     const setActivity = activity => this.setState({activity: activity});
     const setActivityId = id => this.setState({activityId: id});
@@ -151,4 +177,4 @@ const TitleRow = props =>
   );
 }
 
-export default withFirestore(Activity);
+export default withAuthentication(withFirestore(Activity));

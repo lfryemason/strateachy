@@ -1,7 +1,7 @@
 .homepage
 {
   display: flex;
-  overflow: hidden;
+  overflow: auto;
   width:  100vw;
   height:  calc(100vh - 50px);
 }
@@ -14,5 +14,11 @@
 
 .main_lesson_plan
 {
-  width: 75%;
+  width: 50%;
+}
+
+.activity_sidebar
+{
+  width: 25%;
+  height: 100%;
 }

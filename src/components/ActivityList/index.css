@@ -1,4 +1,5 @@
 .activity_list
 {
   overflow: auto;
+  height: 100%;
 }
