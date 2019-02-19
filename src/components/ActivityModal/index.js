@@ -6,26 +6,54 @@ ReactModal.setAppElement('#root');
 
 class ActivityModal extends Component
 {
+  constructor(props) {
+    super(props)
+  
+    const { activity } = this.props;
+    this.state = {
+       activity: activity
+    }
+  }
+  
+  onSave = event =>
+  {
+    const { activity } = this.state;
+    this.props.parent.onSave(activity, event);
+  }
+
+  onChange = event =>
+  {
+    const { activity } = this.state;
+    this.setState({ activity: {...activity, [event.target.name]: event.target.value }});
+  }
+
+  toggleModalOpen = () =>
+  {
+    const { activity } = this.props;
+    this.setState({activity: activity});
+    this.props.parent.toggleModalOpen();
+  }
+
   render()
   {
-    const { toggleModalOpen, onChange, onSave } = this.props.parent;
-    const { isOpen, activity } = this.props;
+    const { isOpen } = this.props;
+    const { activity } = this.state;
     const isDisabled = activity.name === "";
     return(
       <ReactModal isOpen={isOpen}
         shouldCloseOnOverlayClick={true}
         shouldCloseOnEsc={true}
-        onRequestClose={toggleModalOpen}
+        onRequestClose={this.toggleModalOpen}
       >
         <form className="modal_form"
-          onSubmit={onSave}
+          onSubmit={this.onSave}
         >
           <label htmlFor="name">Activity name</label>
           <input 
             name="name"
             id="name"
             value ={activity.name}
-            onChange={onChange}
+            onChange={this.onChange}
             placeholder="Activity name"
           />
 
@@ -33,6 +61,11 @@ class ActivityModal extends Component
             type="submit"
             disabled={isDisabled}>
             save
+          </button>
+          <button
+            onClick={this.toggleModalOpen}
+          >
+            cancel
           </button>
         </form>
       </ReactModal>

@@ -31,21 +31,15 @@ class Activity extends Component
     }
   }
 
-  onChange = event =>
-  {
-    const { activity } = this.state;
-    this.setState({ activity: {...activity, [event.target.name]: event.target.value }});
-  }
-
   toggleModalOpen = () =>
   {
     const isCurrentlyOpen = this.state.isModalOpen;
     this.setState({ isModalOpen: ! isCurrentlyOpen});
   }
 
-  onSave = event => 
+  onSave = activity => event => 
   {
-    const { activity, activityId } = this.state;
+    const { activityId } = this.state;
     if ( activityId !== "" )
     {
       this.props.firestore.collection("activities").doc(activityId)
