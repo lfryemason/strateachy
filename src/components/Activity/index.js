@@ -26,9 +26,10 @@ class Activity extends Component
     }
   }
 
-  setModalOpen = isModalOpen =>
+  toggleModalOpen = () =>
   {
-    this.setState({...this.state, isModalOpen: isModalOpen});
+    const isCurrentlyOpen = this.state.isModalOpen;
+    this.setState({...this.state, isModalOpen: ! isCurrentlyOpen});
   }
 
   render()
@@ -42,14 +43,14 @@ class Activity extends Component
       {this.state.open ? 
         <div>
           <TitleRow activity={activity} />
-          <ExpandedRow activity={activity} parent={this} isModalOpen={isModalOpen} openModal={this.setModalOpen(true)}/>
+          <ExpandedRow activity={activity} parent={this} isModalOpen={isModalOpen} openModal={this.toggleModalOpen}/>
         </div>
       :
         <TitleRow activity={activity} />
       }
         
       <ActivityModal isOpen={isModalOpen}
-        onRequestClose={this.closeModal}
+        onRequestClose={this.toggleModalOpen}
       />
       </div>
     );
