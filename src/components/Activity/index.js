@@ -26,7 +26,7 @@ class Activity extends Component
     }
   }
 
-  openModal = isModalOpen =>
+  setModalOpen = isModalOpen =>
   {
     this.setState({...this.state, isModalOpen: isModalOpen});
   }
@@ -42,11 +42,15 @@ class Activity extends Component
       {this.state.open ? 
         <div>
           <TitleRow activity={activity} />
-          <ExpandedRow activity={activity} parent={this} isModalOpen={isModalOpen} openModal={this.openModal}/>
+          <ExpandedRow activity={activity} parent={this} isModalOpen={isModalOpen} openModal={this.setModalOpen(true)}/>
         </div>
       :
         <TitleRow activity={activity} />
       }
+        
+      <ActivityModal isOpen={isModalOpen}
+        onRequestClose={this.closeModal}
+      />
       </div>
     );
   }
@@ -56,7 +60,7 @@ class ExpandedRow extends Component
 {
   editEvent = event =>
   {
-    this.props.openModal(true);
+    this.props.openModal();
     event.stopPropagation();
   }
 
@@ -65,14 +69,9 @@ class ExpandedRow extends Component
     event.stopPropagation();
   }
 
-  closeModal = () =>
-  {
-    this.props.openModal(false);
-  }
-
   render()
   {
-    const { activity, isModalOpen } = this.props;
+    const { activity } = this.props;
     return ( 
       <div className="expanded_row">
         <div className="expanded_details">
@@ -98,10 +97,6 @@ class ExpandedRow extends Component
             remove from lesson
           </button>
         </div>
-        
-        <ActivityModal isOpen={isModalOpen}
-          onRequestClose={this.closeModal}
-        />
       </div>
     ); 
   }
