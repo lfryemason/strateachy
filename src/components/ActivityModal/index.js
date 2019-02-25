@@ -95,7 +95,7 @@ class ActivityModal extends Component
           />
 
           <label htmlFor="modal_description">Description</label>
-          <input 
+          <textarea 
             name="description"
             id="modal_description"
             value ={activity.description}
