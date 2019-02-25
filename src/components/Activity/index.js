@@ -17,8 +17,6 @@ class Activity extends Component
     {
       open: false,
       isModalOpen: false,
-      activity: {},
-      activityId: "",
     };
   }
 
@@ -30,23 +28,6 @@ class Activity extends Component
     description: "",
     default: false,
     uid: "",
-  }
-
-  componentDidMount()
-  {
-    this.newActivity(this.props.data);
-  }
-
-  newActivity(data)
-  {
-    const { activity, id } = data;
-    let activityId = id
-    if ( id === null || id === "" )
-    {
-      activityId = "";
-    }
-    const authUid = this.props.authUser.uid;
-    this.setState({activity: {...this.blankActivity, ...activity, uid: authUid}, activityId: activityId});
   }
 
   onClick = () =>
@@ -72,26 +53,26 @@ class Activity extends Component
       event.preventDefault();
       return;
     }
-    const { activityId } = this.state;
+    const activityId = this.props.data.id;
 
-    const setActivity = activity => this.setState({activity: activity});
-    const setActivityId = id => this.setState({activityId: id});
+    const refresh = this.props.refresh;
     if ( activityId !== "" )
     {
       this.props.firestore.collection("activities").doc(activityId)
         .update({...activity})
         .then(function()
         {
-          setActivity(activity);
-        });
+          refresh();
+        })
+        .catch(function(e){console.log(e)});
     } else
     {
       this.props.firestore.collection("activities").add({...activity})
         .then(function(docRef)
         {
-          setActivity(activity);
-          setActivityId(docRef.id);
+          refresh();
         })
+        .catch(function(e){console.log(e)});
     }
     this.toggleModalOpen();
     event.preventDefault();
@@ -99,7 +80,9 @@ class Activity extends Component
 
   render()
   {
-    const { isModalOpen, activity } = this.state;
+    const { isModalOpen } = this.state;
+    const { type } = this.props;
+    const activity = this.props.data.activity;
     return (
       <div className="activity_row"
            onClick={this.onClick}
@@ -107,7 +90,12 @@ class Activity extends Component
       {this.state.open ? 
         <div>
           <TitleRow activity={activity} />
-          <ExpandedRow activity={activity} parent={this} isModalOpen={isModalOpen} openModal={this.toggleModalOpen}/>
+          <ExpandedRow activity={activity} 
+            type={type} 
+            parent={this} 
+            isModalOpen={isModalOpen} 
+            openModal={this.toggleModalOpen}
+          />
         </div>
       :
         <TitleRow activity={activity} />
@@ -138,7 +126,7 @@ class ExpandedRow extends Component
 
   render()
   {
-    const { activity } = this.props;
+    const { activity, type } = this.props;
     return ( 
       <div className="expanded_row">
         <div className="expanded_details">

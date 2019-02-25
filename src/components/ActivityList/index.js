@@ -55,6 +55,7 @@ class ActivityList extends Component
     });
 
     const setActivityList = activityList => this.setState({activityList: activityList})
+    const refreshDone = () => this.setState({refreshList: false});
 
     Promise.all(newActivityList).then(function(activityList)
     {
@@ -62,8 +63,8 @@ class ActivityList extends Component
         .sort( (a, b) => a.index - b.index );
       
       setActivityList(activityListFiltered);
+      refreshDone();
     });
-    this.setState({refreshList: false});
   }
 
   retrieveActivitiesFromCollection()
@@ -77,6 +78,7 @@ class ActivityList extends Component
       .get();
 
     const setActivityList = activityList => this.setState({activityList: activityList})
+    const refreshDone = () => this.setState({refreshList: false});
 
     Promise.all([userActivities, defaultActivities]).then(function(queryArray)
     {
@@ -94,8 +96,13 @@ class ActivityList extends Component
       }).filter(doc => doc !== null);
 
       setActivityList(activityListFiltered);
+      refreshDone();
     });
-    this.setState({refreshList: false});
+  }
+
+  needToRefresh = () =>
+  {
+    this.setState({refreshList: true});
   }
 
   render()
@@ -103,11 +110,22 @@ class ActivityList extends Component
     const activities = this.state.activityList;
     const key = this.state.type === "lessonPlanExpand" ?
       data => data.ind : data => data.id;
+    const type = this.props.type;
     return (
       <div className="activity_list">
-        {activities.map(data => (
-          <Activity data={data} key={key(data)}/>
-        ))}
+        {this.state.refreshList ?
+          <h1>loading...</h1>
+        : (
+          <div>
+            {activities.map(data => (
+              <Activity data={data} 
+                type={type} 
+                key={key(data)}
+                refresh={this.needToRefresh}
+            />
+            ))}
+          </div>
+        )}
       </div>
     );
   }
