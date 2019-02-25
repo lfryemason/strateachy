@@ -102,11 +102,13 @@ class ActivityList extends Component
   render()
   {
     const activities = this.state.activityList;
-    const key = this.state.type === "lessonPlanExpand" ?
-      data => data.ind : data => data.id;
+    const key = this.props.type === "lessonPlanExpand" ?
+      data => data.index : data => data.id;
     const type = this.props.type;
     const refresh = this.props.store.setRefreshActivityLists;
     const isLoading = this.props.store.refreshActivityLists > 0;
+    const remove = this.props.store.removeActivityFromLessonPlan;
+    const add = this.props.store.addActivityToLessonPlan;
     return (
       <div className="activity_list">
         {isLoading ?
@@ -116,6 +118,8 @@ class ActivityList extends Component
             {activities.map(data => (
               <Activity data={data} 
                 type={type} 
+                remove={remove}
+                add={add}
                 key={key(data)}
                 refresh={refresh}
             />

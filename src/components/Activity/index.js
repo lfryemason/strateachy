@@ -115,11 +115,15 @@ class Activity extends Component
 
   removeEvent = event =>
   {
+    const docRef = this.props.firestore.collection("activities").doc(this.props.data.id);
+    this.props.remove({docRef: docRef, index: this.props.data.index});
     event.stopPropagation();
   }
 
   addEvent = event =>
   {
+    const docRef = this.props.firestore.collection("activities").doc(this.props.data.id);
+    this.props.add({docRef: docRef, index: this.props.data.index});
     event.stopPropagation();
   }
 
@@ -130,10 +134,30 @@ class Activity extends Component
     let buttons = (<br />);
     if ( activity.default )
     {
-      buttons = (
-        <div>
-        </div>
-      )
+      if ( type === "lessonPlanExpand" )
+      { 
+        buttons = (
+          <div>
+            <button className="remove_button"
+              onClick={this.removeEvent}
+            >
+              remove from lesson
+            </button>
+          </div>
+        );
+      }
+      else if ( type === "sidePanel" )
+      {
+        buttons = (
+          <div>
+            <button className="add_button"
+              onClick={this.addEvent}
+            >
+              add to lesson
+            </button>
+          </div>
+        );
+      }
     }
     else if ( type === "lessonPlanExpand" )
     { 
@@ -150,7 +174,7 @@ class Activity extends Component
             remove from lesson
           </button>
         </div>
-      )
+      );
     }
     else if ( type === "sidePanel" )
     {
@@ -167,7 +191,7 @@ class Activity extends Component
             add to lesson
           </button>
         </div>
-      )
+      );
     }
 
     return ( 

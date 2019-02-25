@@ -56,6 +56,25 @@ class Store extends Component
     this.setState({ isSaving: newVal });
   }
 
+  removeActivityFromLessonPlan = activity =>
+  {
+    const currentLessonPlan = this.state.currentLessonPlan;
+    const currentActivityList = currentLessonPlan.activityList;
+    currentActivityList.splice(activity, 1);
+    this.setState({currentLessonPlan: {...currentLessonPlan, activityList: currentActivityList}});
+    this.refreshActivityLists(true);
+  }
+
+  addActivityToLessonPlan = activity =>
+  {
+    const currentLessonPlan = this.state.currentLessonPlan;
+    const currentActivityList = currentLessonPlan.activityList;
+    currentActivityList.push(activity);
+    currentActivityList.sort( (a, b) => a.index - b.index );
+    this.setState({currentLessonPlan: {...currentLessonPlan, activityList: currentActivityList}});
+    this.refreshActivityLists(true);
+  }
+
   refreshActivityLists = val =>
   {
     if ( val )
@@ -77,6 +96,8 @@ class Store extends Component
          newCurrentLessonPlan:this.newCurrentLessonPlan,
          saving:this.saving,
          setRefreshActivityLists: this.refreshActivityLists,
+         removeActivityFromLessonPlan: this.removeActivityFromLessonPlan,
+         addActivityToLessonPlan: this.addActivityToLessonPlan,
         }
       }>
         {this.props.children}
