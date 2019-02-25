@@ -16,8 +16,7 @@ class ActivityList extends Component
     super(props);
 
     this.state = { 
-      activityList: [],
-      refreshList: true
+      activityList: []
     }
   }
 
@@ -25,12 +24,12 @@ class ActivityList extends Component
   { 
     if ( this.props.type === "lessonPlanExpand" && 
       (prevProps.store.currentLessonPlan.activityList !== this.props.store.currentLessonPlan.activityList
-      || this.state.refreshList) )
+      || this.props.store.refreshActivityLists > 0) )
     {
       this.retrieveActivitiesFromRefList();
     }
     else if ( this.props.type === "sidePanel" &&
-      this.state.refreshList)
+      this.props.store.refreshActivityLists > 0)
     {
       this.retrieveActivitiesFromCollection();
     }
@@ -55,7 +54,7 @@ class ActivityList extends Component
     });
 
     const setActivityList = activityList => this.setState({activityList: activityList})
-    const refreshDone = () => this.setState({refreshList: false});
+    const refreshDone = () => this.props.store.setRefreshActivityLists(false);
 
     Promise.all(newActivityList).then(function(activityList)
     {
@@ -78,7 +77,7 @@ class ActivityList extends Component
       .get();
 
     const setActivityList = activityList => this.setState({activityList: activityList})
-    const refreshDone = () => this.setState({refreshList: false});
+    const refreshDone = () => this.props.store.setRefreshActivityLists(false);
 
     Promise.all([userActivities, defaultActivities]).then(function(queryArray)
     {
@@ -100,20 +99,17 @@ class ActivityList extends Component
     });
   }
 
-  needToRefresh = () =>
-  {
-    this.setState({refreshList: true});
-  }
-
   render()
   {
     const activities = this.state.activityList;
     const key = this.state.type === "lessonPlanExpand" ?
       data => data.ind : data => data.id;
     const type = this.props.type;
+    const refresh = this.props.store.setRefreshActivityLists;
+    const isLoading = this.props.store.refreshActivityLists > 0;
     return (
       <div className="activity_list">
-        {this.state.refreshList ?
+        {isLoading ?
           <h1>loading...</h1>
         : (
           <div>
@@ -121,7 +117,7 @@ class ActivityList extends Component
               <Activity data={data} 
                 type={type} 
                 key={key(data)}
-                refresh={this.needToRefresh}
+                refresh={refresh}
             />
             ))}
           </div>

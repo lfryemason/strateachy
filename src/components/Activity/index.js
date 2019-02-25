@@ -55,7 +55,7 @@ class Activity extends Component
     }
     const activityId = this.props.data.id;
 
-    const refresh = this.props.refresh;
+    const refresh = () => this.props.refresh(true);
     if ( activityId !== "" )
     {
       this.props.firestore.collection("activities").doc(activityId)
@@ -83,6 +83,7 @@ class Activity extends Component
     const { isModalOpen } = this.state;
     const { type } = this.props;
     const activity = this.props.data.activity;
+    const ExpandedRow = this.expandedRow();
     return (
       <div className="activity_row"
            onClick={this.onClick}
@@ -90,12 +91,7 @@ class Activity extends Component
       {this.state.open ? 
         <div>
           <TitleRow activity={activity} />
-          <ExpandedRow activity={activity} 
-            type={type} 
-            parent={this} 
-            isModalOpen={isModalOpen} 
-            openModal={this.toggleModalOpen}
-          />
+          {ExpandedRow}
         </div>
       :
         <TitleRow activity={activity} />
@@ -109,13 +105,11 @@ class Activity extends Component
       </div>
     );
   }
-}
 
-class ExpandedRow extends Component
-{
+  //Expanded row functions and
   editEvent = event =>
   {
-    this.props.openModal();
+    this.toggleModalOpen();
     event.stopPropagation();
   }
 
@@ -124,9 +118,58 @@ class ExpandedRow extends Component
     event.stopPropagation();
   }
 
-  render()
+  addEvent = event =>
   {
-    const { activity, type } = this.props;
+    event.stopPropagation();
+  }
+
+  expandedRow = () =>
+  {
+    const { type } = this.props;
+    const { activity } = this.props.data;
+    let buttons = (<br />);
+    if ( activity.default )
+    {
+      buttons = (
+        <div>
+        </div>
+      )
+    }
+    else if ( type === "lessonPlanExpand" )
+    { 
+      buttons = (
+        <div>
+          <button className="edit_button"
+            onClick={this.editEvent}
+          >
+            edit
+          </button>
+          <button className="remove_button"
+            onClick={this.removeEvent}
+          >
+            remove from lesson
+          </button>
+        </div>
+      )
+    }
+    else if ( type === "sidePanel" )
+    {
+      buttons = (
+        <div>
+          <button className="edit_button"
+            onClick={this.editEvent}
+          >
+            edit
+          </button>
+          <button className="add_button"
+            onClick={this.addEvent}
+          >
+            add to lesson
+          </button>
+        </div>
+      )
+    }
+
     return ( 
       <div className="expanded_row">
         <div className="expanded_details">
@@ -141,16 +184,7 @@ class ExpandedRow extends Component
           {activity.description}
         </div>
         <div className="expanded_buttons">
-          <button className="edit_button"
-            onClick={this.editEvent}
-          >
-            edit
-          </button>
-          <button className="remove_button"
-            onClick={this.removeEvent}
-          >
-            remove from lesson
-          </button>
+          {buttons}
         </div>
       </div>
     ); 

@@ -13,7 +13,8 @@ class Store extends Component
     this.state = {
       currentLessonPlan: {...this.blankLessonPlan},
       currentLessonPlanID: "",
-      isSaving: false
+      isSaving: false,
+      refreshActivityLists: 2,
     };
   }
 
@@ -55,6 +56,17 @@ class Store extends Component
     this.setState({ isSaving: newVal });
   }
 
+  refreshActivityLists = val =>
+  {
+    if ( val )
+      this.setState({refreshActivityLists: 2})
+    else
+    {
+      const currentRefresh = this.state.refreshActivityLists;
+      this.setState({refreshActivityLists: currentRefresh - 1});
+    }
+  }
+
   render()
   {
     return (
@@ -63,7 +75,8 @@ class Store extends Component
          updateCurrentLessonPlan:this.updateCurrentLessonPlan,
          updateCurrentLessonPlanID:this.updateCurrentLessonPlanID,
          newCurrentLessonPlan:this.newCurrentLessonPlan,
-         saving:this.saving
+         saving:this.saving,
+         setRefreshActivityLists: this.refreshActivityLists,
         }
       }>
         {this.props.children}
