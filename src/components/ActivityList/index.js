@@ -39,12 +39,13 @@ class ActivityList extends Component
   retrieveActivitiesFromRefList()
   {
     const activityRefList = this.props.store.currentLessonPlan.activityList;
-    const newActivityList = activityRefList.map(function(docRef) 
+    const newActivityList = activityRefList.map(function(activityRef) 
     {
+      const { index, docRef } = activityRef;
       return docRef.get().then(function(doc) {
         if (doc.exists)
         {
-          return {id: doc.id, activity: doc.data() };
+          return {id: doc.id, activity: doc.data(), index: index };
         }
         else
         {
@@ -57,9 +58,8 @@ class ActivityList extends Component
 
     Promise.all(newActivityList).then(function(activityList)
     {
-      const activityListFiltered = activityList.filter(doc => doc !== null).map(
-        (data, index) => data = {id: data.id, activity: {...data.activity, ind: index}}
-      ).sort( (a, b) => a.activity.ind < b.activity.ind );
+      const activityListFiltered = activityList.filter( doc => doc !== null && doc.activity !== null )
+        .sort( (a, b) => a.index - b.index );
       
       setActivityList(activityListFiltered);
     });
@@ -91,10 +91,7 @@ class ActivityList extends Component
         {
           return null;
         }
-      }).filter(doc => doc !== null)
-      .sort( (a, b) => a.activity.ind < b.activity.ind ).map(
-        (data, index) => data = {id: data.id, activity: {...data.activity, ind: index}}
-      );
+      }).filter(doc => doc !== null);
 
       setActivityList(activityListFiltered);
     });
@@ -104,10 +101,12 @@ class ActivityList extends Component
   render()
   {
     const activities = this.state.activityList;
+    const key = this.state.type === "lessonPlanExpand" ?
+      data => data.ind : data => data.id;
     return (
       <div className="activity_list">
         {activities.map(data => (
-          <Activity data={data} key={data.activity.ind}/>
+          <Activity data={data} key={key(data)}/>
         ))}
       </div>
     );

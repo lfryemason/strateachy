@@ -15,6 +15,15 @@ class ActivityModal extends Component
     }
   }
   
+  componentDidUpdate()
+  {
+    if ( this.state.activity !== this.props.activity && ! this.props.isOpen )
+    {
+      const { activity } = this.props;
+      this.setState({activity: activity});
+    }
+  }
+
   onSave = event =>
   {
     const { activity } = this.state;
@@ -31,7 +40,7 @@ class ActivityModal extends Component
   {
     const { activity } = this.props;
     this.setState({activity: activity});
-    this.props.parent.toggleModalOpen();
+    this.props.toggleModalOpen();
   }
 
   render()

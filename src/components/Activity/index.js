@@ -66,6 +66,12 @@ class Activity extends Component
 
   onSave = (activity, event) => 
   {
+    if ( activity.default )
+    {
+      this.toggleModalOpen();
+      event.preventDefault();
+      return;
+    }
     const { activityId } = this.state;
 
     const setActivity = activity => this.setState({activity: activity});
@@ -110,6 +116,7 @@ class Activity extends Component
       <ActivityModal isOpen={isModalOpen}
         activity={activity}
         onSave={this.onSave}
+        toggleModalOpen={this.toggleModalOpen}
       />
       </div>
     );
