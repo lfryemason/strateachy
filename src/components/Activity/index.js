@@ -81,7 +81,6 @@ class Activity extends Component
   render()
   {
     const { isModalOpen } = this.state;
-    const { type } = this.props;
     const activity = this.props.data.activity;
     const ExpandedRow = this.expandedRow();
     return (
@@ -123,7 +122,7 @@ class Activity extends Component
   addEvent = event =>
   {
     const docRef = this.props.firestore.collection("activities").doc(this.props.data.id);
-    this.props.add({docRef: docRef, index: this.props.data.index});
+    this.props.add(docRef);
     event.stopPropagation();
   }
 

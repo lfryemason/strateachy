@@ -60,16 +60,25 @@ class Store extends Component
   {
     const currentLessonPlan = this.state.currentLessonPlan;
     const currentActivityList = currentLessonPlan.activityList;
-    currentActivityList.splice(activity, 1);
-    this.setState({currentLessonPlan: {...currentLessonPlan, activityList: currentActivityList}});
+    const removed = currentActivityList.splice(activity.index, 1);
+    const index = removed[0].index;
+    const newActivityList = currentActivityList.map(doc => {
+      const ind = doc.index;
+      if ( ind > index )
+        return {docRef: doc.docRef, index: ind - 1};
+      return doc;
+      });
+
+    this.setState({currentLessonPlan: {...currentLessonPlan, activityList: newActivityList}});
     this.refreshActivityLists(true);
   }
 
-  addActivityToLessonPlan = activity =>
+  addActivityToLessonPlan = docRef =>
   {
     const currentLessonPlan = this.state.currentLessonPlan;
     const currentActivityList = currentLessonPlan.activityList;
-    currentActivityList.push(activity);
+    const newIndex = currentActivityList.length
+    currentActivityList.push({docRef: docRef, index: newIndex});
     currentActivityList.sort( (a, b) => a.index - b.index );
     this.setState({currentLessonPlan: {...currentLessonPlan, activityList: currentActivityList}});
     this.refreshActivityLists(true);
