@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Activity from '../Activity';
 
+import ActivityModal from '../ActivityModal';
+
 import { withStore } from '../../Store';
 import { withFirestore } from 'react-firestore'
 
@@ -16,7 +18,10 @@ class ActivityList extends Component
     super(props);
 
     this.state = { 
-      activityList: []
+      activityList: [],
+      isModalOpen: false,
+      modalData: {id: "", activity: this.blankActivity},
+      modalUpdate: false,
     }
   }
 
@@ -99,13 +104,70 @@ class ActivityList extends Component
     });
   }
 
+  blankActivity = {
+    name: "",
+    duration: 0,
+    age: "",
+    level: "",
+    description: "",
+    default: false,
+    uid: "",
+  }
+
+
+  toggleModalOpen = () =>
+  {
+    const isCurrentlyOpen = this.state.isModalOpen;
+    this.setState({ isModalOpen: ! isCurrentlyOpen});
+  }
+
+  onModalSave = (activity, event) => 
+  {
+    if ( activity.default )
+    {
+      this.toggleModalOpen();
+      event.preventDefault();
+      return;
+    }
+    const activityId = this.state.modalData.id;
+
+    const refresh = () => this.props.store.setRefreshActivityLists(true);
+    if ( activityId !== "" )
+    {
+      this.props.firestore.collection("activities").doc(activityId)
+        .update({...activity})
+        .then(function()
+        {
+          refresh();
+        })
+        .catch(function(e){console.log(e)});
+    } else
+    {
+      this.props.firestore.collection("activities").add({...activity})
+        .then(function(docRef)
+        {
+          refresh();
+          this.props.store.addActivityToLessonPlan(docRef);
+        })
+        .catch(function(e){console.log(e)});
+    }
+    this.toggleModalOpen();
+    event.preventDefault();
+  }
+
+  setAndOpenModalActivity = (data) => 
+  {
+    this.setState({modalData: data, modalUpdate: true});
+    this.toggleModalOpen();
+  }
+
   render()
   {
     const activities = this.state.activityList;
+    const { isModalOpen, modalData, modalUpdate } = this.state;
     const key = this.props.type === "lessonPlanExpand" ?
       data => data.index : data => data.id;
     const type = this.props.type;
-    const refresh = this.props.store.setRefreshActivityLists;
     const isLoading = this.props.store.refreshActivityLists > 0;
     const remove = this.props.store.removeActivityFromLessonPlan;
     const add = this.props.store.addActivityToLessonPlan;
@@ -121,11 +183,20 @@ class ActivityList extends Component
                 remove={remove}
                 add={add}
                 key={key(data)}
-                refresh={refresh}
+                isModalOpen={isModalOpen}
+                setAndOpenModalActivity={this.setAndOpenModalActivity}
             />
             ))}
           </div>
         )}
+        
+        <ActivityModal isOpen={isModalOpen}
+              activity={modalData.activity}
+              refresh={modalUpdate}
+              onSave={this.onModalSave}
+              toggleModalOpen={this.toggleModalOpen}
+              modalUpdated={() => this.setState({modalUpdate: false})}
+            />
       </div>
     );
   }

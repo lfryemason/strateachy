@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import ActivityModal from '../ActivityModal';
-
 import { withFirestore } from 'react-firestore';
 import { withAuthentication } from '../Session';
 
@@ -16,71 +14,20 @@ class Activity extends Component
     this.state = 
     {
       open: false,
-      isModalOpen: false,
     };
-  }
-
-  blankActivity = {
-    name: "",
-    duration: 0,
-    age: "",
-    level: "",
-    description: "",
-    default: false,
-    uid: "",
   }
 
   onClick = () =>
   {
-    if ( ! this.state.isModalOpen )
+    if ( ! this.props.isModalOpen )
     {
       const currentOpen = this.state.open;
       this.setState( {open: ! currentOpen });
     }
   }
 
-  toggleModalOpen = () =>
-  {
-    const isCurrentlyOpen = this.state.isModalOpen;
-    this.setState({ isModalOpen: ! isCurrentlyOpen});
-  }
-
-  onSave = (activity, event) => 
-  {
-    if ( activity.default )
-    {
-      this.toggleModalOpen();
-      event.preventDefault();
-      return;
-    }
-    const activityId = this.props.data.id;
-
-    const refresh = () => this.props.refresh(true);
-    if ( activityId !== "" )
-    {
-      this.props.firestore.collection("activities").doc(activityId)
-        .update({...activity})
-        .then(function()
-        {
-          refresh();
-        })
-        .catch(function(e){console.log(e)});
-    } else
-    {
-      this.props.firestore.collection("activities").add({...activity})
-        .then(function(docRef)
-        {
-          refresh();
-        })
-        .catch(function(e){console.log(e)});
-    }
-    this.toggleModalOpen();
-    event.preventDefault();
-  }
-
   render()
   {
-    const { isModalOpen } = this.state;
     const activity = this.props.data.activity;
     const ExpandedRow = this.expandedRow();
     return (
@@ -95,12 +42,6 @@ class Activity extends Component
       :
         <TitleRow activity={activity} />
       }
-        
-      <ActivityModal isOpen={isModalOpen}
-        activity={activity}
-        onSave={this.onSave}
-        toggleModalOpen={this.toggleModalOpen}
-      />
       </div>
     );
   }
@@ -108,7 +49,7 @@ class Activity extends Component
   //Expanded row functions and
   editEvent = event =>
   {
-    this.toggleModalOpen();
+    this.props.setAndOpenModalActivity(this.props.data);
     event.stopPropagation();
   }
 

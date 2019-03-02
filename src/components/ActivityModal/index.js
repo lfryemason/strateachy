@@ -17,10 +17,12 @@ class ActivityModal extends Component
   
   componentDidUpdate()
   {
-    if ( this.state.activity !== this.props.activity && ! this.props.isOpen )
+    if ( this.state.activity !== this.props.activity && 
+       (! this.props.isOpen || this.props.refresh) )
     {
       const { activity } = this.props;
       this.setState({activity: activity});
+      this.props.modalUpdated();
     }
   }
 
