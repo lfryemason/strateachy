@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import { withFirestore } from 'react-firestore';
 import { withAuthentication } from '../Session';
 
+import { withStore } from '../../Store';
+
+import DeleteModal from '../DeleteModal';
+
 import "./index.css";
 
 class Activity extends Component
@@ -14,6 +18,7 @@ class Activity extends Component
     this.state = 
     {
       open: false,
+      deleteModalOpen: false,
     };
   }
 
@@ -30,6 +35,7 @@ class Activity extends Component
   {
     const activity = this.props.data.activity;
     const ExpandedRow = this.expandedRow();
+    const { deleteModalOpen } = this.state;
     return (
       <div className="activity_row"
            onClick={this.onClick}
@@ -42,10 +48,22 @@ class Activity extends Component
       :
         <TitleRow activity={activity} />
       }
+
+      <DeleteModal 
+        isOpen={deleteModalOpen}
+        toggleModal={this.toggleDeleteModalOpen}
+        onDelete={this.deleteEvent}
+      />
+
       </div>
     );
   }
 
+  toggleDeleteModalOpen = () => 
+  {
+    const { deleteModalOpen } = this.state; 
+    this.setState({deleteModalOpen: ! deleteModalOpen});
+  }
   //Expanded row functions and
   editEvent = event =>
   {
@@ -56,14 +74,21 @@ class Activity extends Component
   removeEvent = event =>
   {
     const docRef = this.props.firestore.collection("activities").doc(this.props.data.id);
-    this.props.remove({docRef: docRef, index: this.props.data.index});
+    this.props.store.addActivityToLessonPlan({docRef: docRef, index: this.props.data.index});
     event.stopPropagation();
   }
 
   addEvent = event =>
   {
     const docRef = this.props.firestore.collection("activities").doc(this.props.data.id);
-    this.props.add(docRef);
+    this.props.store.addActivityToLessonPlan(docRef);
+    event.stopPropagation();
+  }
+
+  deleteEvent = event =>
+  {
+    this.props.firestore.collection("activities").doc(this.props.data.id).delete();
+    this.props.store.setRefreshActivityLists(true);
     event.stopPropagation();
   }
 
@@ -113,6 +138,12 @@ class Activity extends Component
           >
             remove from lesson
           </button>
+
+          <button className="delete_button"
+            onClick={this.toggleDeleteModalOpen}
+          >
+            Delete
+          </button>
         </div>
       );
     }
@@ -129,6 +160,13 @@ class Activity extends Component
             onClick={this.addEvent}
           >
             add to lesson
+          </button>
+          
+
+          <button className="delete_button"
+            onClick={this.toggleDeleteModalOpen}
+          >
+            Delete
           </button>
         </div>
       );
@@ -170,4 +208,4 @@ const TitleRow = props =>
   );
 }
 
-export default withAuthentication(withFirestore(Activity));
+export default withStore(withAuthentication(withFirestore(Activity)));

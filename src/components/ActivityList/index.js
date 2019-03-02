@@ -129,7 +129,9 @@ class ActivityList extends Component
       event.preventDefault();
       return;
     }
+    activity = {...activity, uid: this.props.authUser.uid};
     const activityId = this.state.modalData.id;
+    const add = this.props.store.addActivityToLessonPlan;
 
     const refresh = () => this.props.store.setRefreshActivityLists(true);
     if ( activityId !== "" )
@@ -147,7 +149,7 @@ class ActivityList extends Component
         .then(function(docRef)
         {
           refresh();
-          this.props.store.addActivityToLessonPlan(docRef);
+          add(docRef);
         })
         .catch(function(e){console.log(e)});
     }
@@ -161,6 +163,12 @@ class ActivityList extends Component
     this.toggleModalOpen();
   }
 
+  newActivity = event =>
+  {
+    this.setState({modalData: {id: "", activity: this.blankActivity}, modalUpdate: true});
+    this.toggleModalOpen();
+  }
+
   render()
   {
     const activities = this.state.activityList;
@@ -169,8 +177,6 @@ class ActivityList extends Component
       data => data.index : data => data.id;
     const type = this.props.type;
     const isLoading = this.props.store.refreshActivityLists > 0;
-    const remove = this.props.store.removeActivityFromLessonPlan;
-    const add = this.props.store.addActivityToLessonPlan;
     return (
       <div className="activity_list">
         {isLoading ?
@@ -180,8 +186,6 @@ class ActivityList extends Component
             {activities.map(data => (
               <Activity data={data} 
                 type={type} 
-                remove={remove}
-                add={add}
                 key={key(data)}
                 isModalOpen={isModalOpen}
                 setAndOpenModalActivity={this.setAndOpenModalActivity}
@@ -189,6 +193,13 @@ class ActivityList extends Component
             ))}
           </div>
         )}
+
+
+        <button type="button" 
+            className="new_activity_button"
+            onClick={this.newActivity}>
+          New Activity
+        </button>
         
         <ActivityModal isOpen={isModalOpen}
               activity={modalData.activity}
