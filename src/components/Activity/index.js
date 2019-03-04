@@ -74,7 +74,7 @@ class Activity extends Component
   removeEvent = event =>
   {
     const docRef = this.props.firestore.collection("activities").doc(this.props.data.id);
-    this.props.store.addActivityToLessonPlan({docRef: docRef, index: this.props.data.index});
+    this.props.store.removeActivityFromLessonPlan({docRef: docRef, index: this.props.data.index});
     event.stopPropagation();
   }
 

@@ -60,15 +60,8 @@ class Store extends Component
   {
     const currentLessonPlan = this.state.currentLessonPlan;
     const currentActivityList = currentLessonPlan.activityList;
-    const removed = currentActivityList.splice(activity.index, 1);
-    const index = removed[0].index;
-    const newActivityList = currentActivityList.map(doc => {
-      const ind = doc.index;
-      if ( ind > index )
-        return {docRef: doc.docRef, index: ind - 1};
-      return doc;
-      });
-
+    currentActivityList.splice(activity.index, 1);
+    const newActivityList = currentActivityList.map((doc, index) => ({...doc, index}));
     this.setState({currentLessonPlan: {...currentLessonPlan, activityList: newActivityList}});
     this.refreshActivityLists(true);
   }

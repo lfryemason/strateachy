@@ -57,7 +57,6 @@ class LessonPlanExpand extends Component
 
   toggleDeleteModalOpen = () => 
   {
-    console.log("open modal")
     const { isDeleteModalOpen } = this.state; 
     this.setState({isDeleteModalOpen: ! isDeleteModalOpen});
   }
