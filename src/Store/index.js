@@ -88,7 +88,6 @@ class Store extends Component
   moveActivity = (goingUp, activity) =>
   {
     const {activityList} = this.state.currentLessonPlan;
-    console.log(activityList, "before")
     if (activityList[activity.index].index !== activity.index)
     {
       console.error("Indexes are wrong", activity, activityList[activity.index]);
@@ -112,7 +111,6 @@ class Store extends Component
       activityList[activity.index + 1] = R.assocPath(["index"], activity.index + 1, activity);
     }
 
-    console.log(activityList, "after");
     this.setState(R.assocPath(["currentLessonPlan", "activityList"], activityList, this.state));
     this.refreshActivityLists(true);
   }
