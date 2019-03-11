@@ -70,6 +70,8 @@ class Activity extends Component
 
   swapEvent = (isUp, event) =>
   {
+    const docRef = this.props.firestore.collection("activities").doc(this.props.data.id);
+    this.props.store.moveActivity(isUp, {docRef, index: this.props.data.index});
     event.stopPropagation();
   }
   //Expanded row functions and

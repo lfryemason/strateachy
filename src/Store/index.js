@@ -85,6 +85,38 @@ class Store extends Component
     this.refreshActivityLists(true);
   }
 
+  moveActivity = (goingUp, activity) =>
+  {
+    const {activityList} = this.state.currentLessonPlan;
+    console.log(activityList, "before")
+    if (activityList[activity.index].index !== activity.index)
+    {
+      console.error("Indexes are wrong", activity, activityList[activity.index]);
+      return;
+    }
+
+    if ( (activity.index === 0 && goingUp) ||
+         (activity.index === (activityList.length - 1) && ! goingUp ) )
+    {
+      return;
+    }
+
+    if ( goingUp )
+    {
+      activityList[activity.index] = R.assocPath(["index"], activity.index, activityList[activity.index - 1]);
+      activityList[activity.index - 1] = R.assocPath(["index"], activity.index - 1, activity);
+    }
+    else
+    {
+      activityList[activity.index] = R.assocPath(["index"], activity.index, activityList[activity.index + 1]);
+      activityList[activity.index + 1] = R.assocPath(["index"], activity.index + 1, activity);
+    }
+
+    console.log(activityList, "after");
+    this.setState(R.assocPath(["currentLessonPlan", "activityList"], activityList, this.state));
+    this.refreshActivityLists(true);
+  }
+
   refreshActivityLists = val =>
   {
     if ( val )
@@ -109,6 +141,7 @@ class Store extends Component
          removeActivityFromLessonPlan: this.removeActivityFromLessonPlan,
          addActivityToLessonPlan: this.addActivityToLessonPlan,
          setActivityList: this.setActivityList,
+         moveActivity: this.moveActivity,
         }
       }>
         {this.props.children}
