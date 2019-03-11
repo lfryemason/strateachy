@@ -46,7 +46,10 @@ class Activity extends Component
           {ExpandedRow}
         </div>
       :
-        <TitleRow activity={activity} />
+        <TitleRow activity={activity} 
+          type={this.props.type}
+          swapEvent={this.swapEvent}
+        />
       }
 
       <DeleteModal 
@@ -63,6 +66,11 @@ class Activity extends Component
   {
     const { deleteModalOpen } = this.state; 
     this.setState({deleteModalOpen: ! deleteModalOpen});
+  }
+
+  swapEvent = (isUp, event) =>
+  {
+    event.stopPropagation();
   }
   //Expanded row functions and
   editEvent = event =>
@@ -195,7 +203,7 @@ class Activity extends Component
 
 const TitleRow = props =>
 {
-  const activity = props.activity;
+  const { activity, type, swapEvent} = props;
   return ( 
   <div className="row_title">
     <div className="activity_name">
@@ -204,6 +212,26 @@ const TitleRow = props =>
     <div className="activity_duration">
       {activity.duration} mins.
     </div>
+    
+    { type === "lessonPlanExpand" ?
+      <div>
+        <button
+          type="button"
+          onClick={event => swapEvent(true, event)}
+        >
+          ^
+        </button>
+        <button
+          type="button"
+          onClick={event => swapEvent(false, event)}
+        >
+          v
+        </button>
+
+      </div>
+    :
+      <div />
+    }
   </div>
   );
 }
