@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import * as R from 'ramda';
+
 import { withAuthentication } from '../components/Session';
 
 export const StoreContext = React.createContext(null);
@@ -66,6 +68,12 @@ class Store extends Component
     this.refreshActivityLists(true);
   }
 
+  setActivityList = (activityList) =>
+  {
+    this.setState(R.assocPath(["currentLessonPlan", "activityList"], activityList, this.state));
+    this.refreshActivityLists(true);
+  }
+
   addActivityToLessonPlan = docRef =>
   {
     const currentLessonPlan = this.state.currentLessonPlan;
@@ -100,6 +108,7 @@ class Store extends Component
          setRefreshActivityLists: this.refreshActivityLists,
          removeActivityFromLessonPlan: this.removeActivityFromLessonPlan,
          addActivityToLessonPlan: this.addActivityToLessonPlan,
+         setActivityList: this.setActivityList,
         }
       }>
         {this.props.children}

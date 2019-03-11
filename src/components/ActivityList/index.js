@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Activity from '../Activity';
 
+import * as R from 'ramda';
+
 import ActivityModal from '../ActivityModal';
 
 import { withStore } from '../../Store';
@@ -26,7 +28,7 @@ class ActivityList extends Component
   }
 
   componentDidUpdate(prevProps)
-  { 
+  {
     if ( this.props.type === "lessonPlanExpand" && 
       (prevProps.store.currentLessonPlan.activityList !== this.props.store.currentLessonPlan.activityList
       || this.props.store.refreshActivityLists > 0) )
@@ -49,7 +51,7 @@ class ActivityList extends Component
       return docRef.get().then(function(doc) {
         if (doc.exists)
         {
-          return {id: doc.id, activity: doc.data(), index: index };
+          return {id: doc.id, activity: doc.data(), index, docRef };
         }
         else
         {
@@ -59,12 +61,19 @@ class ActivityList extends Component
     });
 
     const setActivityList = activityList => this.setState({activityList: activityList})
+    const setActivityRefList = this.props.store.setActivityList;
     const refreshDone = () => this.props.store.setRefreshActivityLists(false);
 
     Promise.all(newActivityList).then(function(activityList)
     {
       const activityListFiltered = activityList.filter( doc => doc !== null && doc.activity !== null )
-        .sort( (a, b) => a.index - b.index );
+        .sort( (a, b) => a.index - b.index ).map( (doc, index) => R.assocPath(["index"], index, doc) );
+      
+      if ( activityListFiltered.length !== activityList.length )
+      {
+        setActivityRefList( activityListFiltered.map(activity => ({docRef: activity.docRef, index: activity.index})) );
+        return;
+      }
       
       setActivityList(activityListFiltered);
       refreshDone();
@@ -155,6 +164,11 @@ class ActivityList extends Component
     }
     this.toggleModalOpen();
     event.preventDefault();
+  }
+
+  swapActivities = (index, isUp) =>
+  {
+    const activityList = this.state.activityList;
   }
 
   setAndOpenModalActivity = (data) => 

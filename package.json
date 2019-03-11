@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "firebase": "^5.8.2",
+    "ramda": "^0.26.1",
     "react": "^16.7.0",
     "react-datepicker": "^2.1.0",
     "react-dom": "^16.7.0",
