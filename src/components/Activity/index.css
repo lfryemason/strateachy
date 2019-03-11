@@ -19,17 +19,27 @@
 {
   justify-content: right;
   white-space: nowrap;
-}.row_title
+}
+
+.row_title
 {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  display:flex;
   flex-direction: row;
+  width: 100%;
   border-bottom: 2px solid black;
+}
+
+.title_right
+{
+  width:50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .activity_name
 {
+  width: 50%;
   justify-content: left;
   overflow: hidden;
   text-overflow: ellipsis;
