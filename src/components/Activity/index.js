@@ -42,7 +42,10 @@ class Activity extends Component
       >
       {this.state.open ? 
         <div>
-          <TitleRow activity={activity} />
+          <TitleRow activity={activity} 
+            type={this.props.type}
+            swapEvent={this.swapEvent}
+          />
           {ExpandedRow}
         </div>
       :

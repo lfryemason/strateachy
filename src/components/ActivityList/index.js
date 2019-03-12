@@ -193,20 +193,27 @@ class ActivityList extends Component
     const isLoading = this.props.store.refreshActivityLists > 0;
     return (
       <div className="activity_list">
-        {isLoading ?
-          <h1>loading...</h1>
-        : (
-          <div>
-            {activities.map(data => (
-              <Activity data={data} 
-                type={type} 
-                key={key(data)}
-                isModalOpen={isModalOpen}
-                setAndOpenModalActivity={this.setAndOpenModalActivity}
-            />
-            ))}
+
+        <div className="activities">
+
+          <div className="activity_list_title">
+            Activities
           </div>
-        )}
+          {isLoading ?
+            <h1>loading...</h1>
+          : (
+            <div>
+              {activities.map(data => (
+                <Activity data={data} 
+                  type={type} 
+                  key={key(data)}
+                  isModalOpen={isModalOpen}
+                  setAndOpenModalActivity={this.setAndOpenModalActivity}
+              />
+              ))}
+            </div>
+          )}
+        </div>
 
 
         <button type="button" 

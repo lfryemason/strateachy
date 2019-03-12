@@ -4,12 +4,14 @@
   flex-direction: column;
 }
 
-.activity_list
+.activity_list_lesson_plan
 {
   border: 2px solid black;
   display: block;
   border-radius: 2px;
-  height: 30%;
-  width: calc((75% - 4px) * .9);
+  height: 30vh;
+  width: calc((90% - 4px));
   margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

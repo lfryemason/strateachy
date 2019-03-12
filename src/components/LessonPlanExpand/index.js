@@ -140,7 +140,9 @@ class LessonPlanExpand extends Component
             />
           </div>
 
-          <ActivityList type="lessonPlanExpand" className="activity_list"/>
+          <div className="activity_list_lesson_plan">
+            <ActivityList type="lessonPlanExpand"/>
+          </div>
 
           <button 
             type="button"
