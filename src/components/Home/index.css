@@ -1,25 +1,31 @@
-.homepage
-{
-  display: flex;
-  overflow: auto;
-  width:  100vw;
-  height:  calc(100vh - 50px);
-}
-
 .lesson_plan_sidebar
 {
-  width: 25%;
+  width: 25vw;
   height: 100%;
 }
 
 .main_lesson_plan
 {
-  width: 50%;
+  width: 75vw;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.toggle_sidepanels
+{
+  width: 25px;
+  text-align: center;
+}
+
+.lesson_plan_home
+{
+  min-width: calc(100% - 30px);
 }
 
 .activity_sidebar
 {
-  width: 25%;
+  width: calc(25vw - 1px);
   border-left: 1px gray solid;
   height: 100%;
 }
