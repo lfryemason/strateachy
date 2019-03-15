@@ -1,0 +1,34 @@
+.lesson_plan_row
+{
+  width: 100%;
+  flex-direction: row;
+  border-bottom: 1px solid black;
+  background: lightgray;
+}
+
+.lesson_row_top
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.lesson_row_name
+{
+  width: 50%;
+  margin: 5px;
+}
+
+.lesson_row_date
+{
+  width: 50%;
+  text-align: right;
+  margin: 5px;
+}
+
+.lesson_row_desc
+{
+  margin: 5px;
+
+}

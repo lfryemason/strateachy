@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { withStore } from '../../../Store';
 
+import './index.css'
+
 class LessonPlanRow extends Component
 {
   onClick = event =>
@@ -22,13 +24,15 @@ class LessonPlanRow extends Component
         className="lesson_plan_row"
         onClick={this.onClick}
       >
-        <div className="name">
-        {name}
+        <div className="lesson_row_top">
+          <div className="lesson_row_name">
+          {name}
+          </div>
+          <div className="lesson_row_date">
+            {date.getFullYear()}/{date.getMonth() + 1}/{date.getDate()}
+          </div>
         </div>
-        <div className="date">
-          {date.getFullYear()}/{date.getMonth() + 1}/{date.getDate()}
-        </div>
-        <div className="desc">
+        <div className="lesson_row_desc">
           {description}
         </div>
         <p />

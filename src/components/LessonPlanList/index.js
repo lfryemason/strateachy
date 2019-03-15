@@ -30,12 +30,10 @@ class LessonPlanList extends Component
                 <h3>Loading...</h3>
               ) : (
                 <div>
-                  <h3>Lesson Plans</h3>
-                  <ul >
+                  <div className="lesson_list_title">Lesson Plans</div>
                   {data.map((lessonPlan, index) => (
                     <LessonPlanRow key={index} lessonPlan={lessonPlan} />
                   ))}
-                  </ul>
                 </div>
               );
             }}

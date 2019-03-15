@@ -4,6 +4,15 @@
   flex-direction: column;
 }
 
+.lesson_list_title
+{
+  font-size: 18px;
+  font-style: bold;
+  text-align: center;
+  background-color: lightblue;
+  border-bottom: 1px black solid;
+}
+
 .activity_list_lesson_plan
 {
   border: 2px solid black;
