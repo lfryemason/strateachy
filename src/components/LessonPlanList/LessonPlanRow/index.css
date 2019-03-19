@@ -1,34 +1,48 @@
 .lesson_plan_row
 {
-  width: 100%;
-  flex-direction: row;
-  border-bottom: 1px solid black;
-  background: lightgray;
-}
-
-.lesson_row_top
-{
+  width: calc(100% - 40px);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  background-color: white;
+  margin: auto;
+  align-items: center;
+  height: 68px;
+  border-radius: 5px;
+  box-shadow: 3px 6px 6px 0px rgba(0,0,0,0.25);
+}
+.lesson_row_divider
+{
+  height: 16px;
+  background: inherit;
+}
+
+.lesson_row_left
+{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
 
 .lesson_row_name
 {
-  width: 50%;
-  margin: 5px;
+  margin-left: 16px;
 }
 
 .lesson_row_date
 {
-  width: 50%;
-  text-align: right;
-  margin: 5px;
+  margin-left: 16px;
+  color: #747474;
 }
 
-.lesson_row_desc
+.lesson_row_duration
 {
-  margin: 5px;
-
+  margin-right: 16px;
+  background-color: #CFCFCF;
+  justify-self: center;
+  text-align: center;
+  height: 26px;
+  vertical-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 50px;
 }

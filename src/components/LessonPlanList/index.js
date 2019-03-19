@@ -21,6 +21,17 @@ class LessonPlanList extends Component
     const uid = this.props.authUser.uid;
     return (
       <div>
+        <div className="lesson_list_title">
+          <div className="lesson_list_title_text">
+            Lesson Plans
+          </div>
+
+          <button type="button" 
+              className="new_lesson_plan_button"
+              onClick={this.onClick}>
+            +
+          </button>
+        </div>
         <div className="lesson_plan_list">
           <FirestoreCollection
             path="lessonPlans"
@@ -30,7 +41,6 @@ class LessonPlanList extends Component
                 <h3>Loading...</h3>
               ) : (
                 <div>
-                  <div className="lesson_list_title">Lesson Plans</div>
                   {data.map((lessonPlan, index) => (
                     <LessonPlanRow key={index} lessonPlan={lessonPlan} />
                   ))}
@@ -39,12 +49,6 @@ class LessonPlanList extends Component
             }}
           />
         </div>
-
-        <button type="button" 
-            className="new_lesson_plan_button"
-            onClick={this.onClick}>
-          New lesson plan
-        </button>
       </div>
     );
   }
