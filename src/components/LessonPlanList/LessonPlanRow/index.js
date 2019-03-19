@@ -31,7 +31,7 @@ class LessonPlanRow extends Component
             {name}
             </div>
             <div className="lesson_row_date">
-              {date.getFullYear()}/{date.getMonth() + 1}/{date.getDate()}
+              {date.toDateString()}
             </div>
           </div>
           <div className="lesson_row_duration">

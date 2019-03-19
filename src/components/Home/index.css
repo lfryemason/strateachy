@@ -13,17 +13,6 @@
   flex-direction: row;
 }
 
-.toggle_sidepanels
-{
-  width: 25px;
-  text-align: center;
-}
-
-.lesson_plan_home
-{
-  min-width: calc(100% - 30px);
-}
-
 .activity_sidebar
 {
   width: calc(25vw - 1px);

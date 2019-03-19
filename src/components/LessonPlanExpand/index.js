@@ -73,47 +73,66 @@ class LessonPlanExpand extends Component
     const isDisabled = this.props.store.isSaving || lessonPlan.name === "";
     const isDeleteDisabled = this.props.store.currentLessonPlanID === "";
     return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <div className="lesson_plan_expand">
+      <form onSubmit={this.onSubmit}
+        className="lesson_plan_expand"
+      >
+        <div className="lesson_plan_expand_center">
 
-            <label htmlFor="name">Class name</label>
+          <div className="lesson_plan_left_inputs">
+            
+            <label htmlFor="name">Name</label>
             <input 
               name="name"
               id="name"
+              className="lesson_input_field"
               value ={lessonPlan.name}
               onChange={this.onChange}
               placeholder="Class name"
             />
 
-            <label htmlFor="date">Date</label>
-            <DatePicker 
-              id="date"
-              selected={lessonPlan.date}
-              onChange={this.dateChange}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              dateFormat="MMMM d, yyyy h:mm aa"
-              timeCaption="time"
-            />
+            <div className="lesson_plan_date_duration">
+              <div className="lesson_plan_duration">
 
-            <label htmlFor="duration">Duration</label>
-            <input 
-              name="duration"
-              id="duration"
-              type="number"
-              value ={lessonPlan.duration}
-              onChange={this.onChange}
-              placeholder="lesson length"
-            /> mins.
-          </div>
+                <label htmlFor="duration">Duration</label>
+                <div className="lesson_plan_duration">
+                  <div className="lesson_plan_duration_mins">
+                    <input 
+                      name="duration"
+                      id="duration"
+                      type="number"
+                      className="lesson_input_field duration_input_field"
+                      value ={lessonPlan.duration}
+                      onChange={this.onChange}
+                      placeholder="lesson length"
+                    />mins.
+                  </div>
+                </div>
 
-          <div>
+              </div>
+
+              <div className="lesson_plan_date">
+
+                <label htmlFor="date">Date</label>
+                <DatePicker 
+                  id="date"
+                  className="lesson_input_field"
+                  selected={lessonPlan.date}
+                  onChange={this.dateChange}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  dateFormat="mm/dd/yy h:mm aa"
+                  timeCaption="time"
+                />
+
+              </div>
+            </div>
+
             <label htmlFor="age">Age group</label>
             <input 
               name="age"
               id="age"
+              className="lesson_input_field"
               value ={lessonPlan.age}
               onChange={this.onChange}
               placeholder="Age group"
@@ -123,17 +142,17 @@ class LessonPlanExpand extends Component
             <input 
               name="level"
               id="level"
+              className="lesson_input_field"
               value ={lessonPlan.level}
               onChange={this.onChange}
               placeholder="Skill level"
             />
-          </div>
 
-          <div>
             <label htmlFor="description">Description</label>
             <textarea
               name="description"
               id="description"
+              className="description_input_field lesson_input_field"
               value={lessonPlan.description}
               onChange={this.onChange}
               placeholder="Enter a description for your lesson plan"
@@ -143,28 +162,32 @@ class LessonPlanExpand extends Component
           <div className="activity_list_lesson_plan">
             <ActivityList type="lessonPlanExpand"/>
           </div>
+        </div>
 
+        <div className="lesson_plan_button_bar">
           <button 
             type="button"
+            className="lesson_plan_delete_button"
             disabled={isDeleteDisabled}
             onClick={this.toggleDeleteModalOpen}
           >
-            delete
+            Delete
           </button>
 
           <button 
-            type="submit"
+            type="submit"lesson_plan_save_button
+            className="lesson_plan_save_button"
             disabled={isDisabled}>
-            save
-          </button>
-        </form>
-
-        <DeleteModal 
-          isOpen={isDeleteModalOpen}
-          toggleModal={this.toggleDeleteModalOpen}
-          onDelete={this.deleteEvent}
-        />
-      </div>
+            Save
+          </button> 
+        </div>
+        
+      <DeleteModal 
+        isOpen={isDeleteModalOpen}
+        toggleModal={this.toggleDeleteModalOpen}
+        onDelete={this.deleteEvent}
+      />
+      </form>
     );
 
   }

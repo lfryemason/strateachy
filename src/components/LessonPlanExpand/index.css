@@ -2,6 +2,7 @@
 {
   display: flex;
   flex-direction: column;
+  width: inherit;
 }
 
 .activity_list_lesson_plan
@@ -9,9 +10,117 @@
   border: 2px solid black;
   display: block;
   border-radius: 2px;
-  height: 30vh;
-  width: calc((90% - 4px));
+  height: 100%;
+  width: 100%;
   margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+}
+
+.lesson_plan_expand_center
+{
+  margin-top: 32px;
+  height: calc(100% - 80px);
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+}
+
+.lesson_plan_left_inputs
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: 32px;
+  margin-right: 32px;
+  width: 40%;
+}
+
+.lesson_plan_button_bar
+{
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  width: 100%;
+  border-top: #ACACAC solid 1px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: black 1px solid;
+}
+
+.lesson_plan_save_button
+{
+  float: right;
+  height: 45px;
+  width: 100px;
+  color: white;
+  background-color: #3059FF;
+  border: 0px;
+  border-radius: 5px;
+  margin-right: 32px;
+}
+
+.lesson_plan_delete_button
+{
+  height: 45px;
+  width: 100px;
+  color: #FF3030;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #FF3030;
+  margin-left: 32px;
+  float: left;
+}
+
+.lesson_plan_date_duration
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.lesson_plan_date
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson_plan_duration
+{
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+.lesson_plan_duration_mins
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.lesson_input_field
+{
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px #707070 solid;
+  padding-left: 8px;
+  margin-bottom: 12px;
+  margin-top: 8px;
+  flex: 0 1 auto;
+}
+
+.duration_input_field
+{
+  width: 64px;
+  display: flex;
+  flex-direction: row;
+  margin-right: 5px;
+}
+
+.description_input_field
+{
+  padding-top: 8px;
+  flex: 1 1 auto;
+  margin-bottom: 0px;
 }

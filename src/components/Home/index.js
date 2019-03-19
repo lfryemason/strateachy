@@ -52,30 +52,7 @@ class HomePage extends Component
 
             <div>
                 <div className="main_lesson_plan">
-                  {! lessonPlanSidePanelOpen ? 
-                    <button className="toggle_sidepanels"
-                      onClick={this.toggleSidebars}
-                    >
-                    &lt;
-                  </button>
-
-                  :
-                    <div />
-                  }
-                  
-                  <div className="lesson_plan_home">
                     <LessonPlanExpand />
-                  </div>
-                  
-                  {lessonPlanSidePanelOpen ?
-                    <button className="toggle_sidepanels"
-                      onClick={this.toggleSidebars}
-                    >
-                      &gt;
-                    </button>
-                  :
-                    <div />
-                  }
                 </div>
               }
             </div>

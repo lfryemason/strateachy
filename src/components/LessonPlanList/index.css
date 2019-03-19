@@ -8,7 +8,7 @@
 
 .lesson_list_title
 {
-  height: 76px;
+  height: 64px;
   display: flex;
   flex-direction: row;
 }
