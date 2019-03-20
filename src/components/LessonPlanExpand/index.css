@@ -57,6 +57,7 @@
   border: 0px;
   border-radius: 5px;
   margin-right: 32px;
+  cursor: pointer;
 }
 
 .lesson_plan_delete_button
@@ -69,6 +70,7 @@
   border: 1px solid #FF3030;
   margin-left: 32px;
   float: left;
+  cursor: pointer;
 }
 
 .lesson_plan_date_duration
@@ -123,4 +125,5 @@
   padding-top: 8px;
   flex: 1 1 auto;
   margin-bottom: 0px;
+  resize: none;
 }

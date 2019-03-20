@@ -99,7 +99,6 @@ class LessonPlanExpand extends Component
                     <input 
                       name="duration"
                       id="duration"
-                      type="number"
                       className="lesson_input_field duration_input_field"
                       value ={lessonPlan.duration}
                       onChange={this.onChange}
@@ -121,7 +120,7 @@ class LessonPlanExpand extends Component
                   showTimeSelect
                   timeFormat="HH:mm"
                   timeIntervals={15}
-                  dateFormat="mm/dd/yy h:mm aa"
+                  dateFormat="MM/dd/yy h:mm aa"
                   timeCaption="time"
                 />
 
