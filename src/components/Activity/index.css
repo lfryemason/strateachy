@@ -1,10 +1,10 @@
 .row_title
 {
   display: flex;
-  height: 68px;
+  height: 46px;
   flex-direction: row;
   margin-right: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   align-items: center;
 }
 
