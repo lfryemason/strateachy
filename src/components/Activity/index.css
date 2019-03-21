@@ -1,10 +1,14 @@
+.activity_row
+{
+  margin-right: 32px;
+  margin-top: 8px;
+}
+
 .row_title
 {
   display: flex;
   height: 46px;
   flex-direction: row;
-  margin-right: 16px;
-  margin-bottom: 8px;
   align-items: center;
 }
 
@@ -20,6 +24,10 @@
   padding-left: 16px;
 }
 
+.title_text[expanded="expanded"]
+{
+  border-radius: 5px 5px 0px 0px;
+}
 
 .activity_name
 {
@@ -66,10 +74,15 @@
 
 .expanded_row
 {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid #707070;
+  border-left: 1px solid #707070;
+  border-right: 1px solid #707070;
+  margin-left: 28px;
   display: flex;
   flex-direction: column;
   background-color: lightgray;
+  border-radius: 0px 0px 5px 5px;
+  background-color: #E6E6E6;
 }
 
 .expanded_buttons

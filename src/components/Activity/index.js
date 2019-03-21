@@ -38,16 +38,17 @@ class Activity extends Component
   {
     const activity = this.props.data.activity;
     const ExpandedRow = this.expandedRow();
-    const { deleteModalOpen } = this.state;
+    const { deleteModalOpen, open } = this.state;
     return (
       <div className="activity_row"
            onClick={this.onClick}
       >
-      {this.state.open ? 
+      {open ? 
         <div>
           <TitleRow activity={activity} 
             type={this.props.type}
             swapEvent={this.swapEvent}
+            expanded={open}
           />
           {ExpandedRow}
         </div>
@@ -55,6 +56,7 @@ class Activity extends Component
         <TitleRow activity={activity} 
           type={this.props.type}
           swapEvent={this.swapEvent}
+          expanded={open}
         />
       }
 
@@ -212,6 +214,7 @@ class Activity extends Component
 const TitleRow = props =>
 {
   const { activity, type, swapEvent} = props;
+  const expanded = props.expanded ? "expanded" : "none";
   return ( 
   <div className="row_title">
     { type === "lessonPlanExpand" ?
@@ -235,7 +238,7 @@ const TitleRow = props =>
       <div />
     }
 
-    <div className="title_text">
+    <div className="title_text" expanded={expanded}>
       <div className="activity_name">
         {activity.name}
       </div>
