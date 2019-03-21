@@ -7,6 +7,9 @@ import { withStore } from '../../Store';
 
 import DeleteModal from '../DeleteModal';
 
+import up_arrow from '../../res/activity_up_arrow.png';
+import down_arrow from '../../res/activity_down_arrow.png';
+
 import "./index.css";
 
 class Activity extends Component
@@ -213,20 +216,19 @@ const TitleRow = props =>
   <div className="row_title">
     { type === "lessonPlanExpand" ?
       <div className="title_buttons">
-        <button
-          type="button"
+        <img
+          src={up_arrow}
+          alt="^"
           className="swapUpButton"
           onClick={event => swapEvent(true, event)}
-        >
-          ^
-        </button>
-        <button
+        />
+        <img
+          src={down_arrow}
+          alt="v"
           type="button"
           className="swapDownButton"
           onClick={event => swapEvent(false, event)}
-        >
-          v
-        </button>
+        />
 
       </div>
     :

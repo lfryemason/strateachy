@@ -3,38 +3,51 @@
   display: flex;
   height: 68px;
   flex-direction: row;
-  border-radius: 5px;
-  align-items: center;
-  cursor: pointer;
-  border: 1px solid #707070;
-  margin: auto;
-  margin-left: 16px;
   margin-right: 16px;
   margin-bottom: 16px;
+  align-items: center;
 }
 
-.title_left
+.title_text
 {
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #707070;
+  width: 100%;
+  height: calc(100% - 2px);
+  padding-left: 16px;
 }
+
 
 .activity_name
 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-top: auto;
 }
 
 .activity_duration
 {
   white-space: nowrap;
+  margin-bottom: auto;
+  color: #747474;
 }
 
 .title_buttons
 {
   display: flex;
   flex-direction: column;
+  margin-left: 2px;
+  margin-right: 2px;
+  cursor: pointer;
+}
+
+.swapDownButton
+{
+  margin-top: 2px;
 }
 
 .activity_name
