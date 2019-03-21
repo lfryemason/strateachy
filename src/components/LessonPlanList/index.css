@@ -3,7 +3,8 @@
   height: calc(100vh - 100px);
   background-color: #E6E6E6;
   align-content: center; 
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .lesson_list_title

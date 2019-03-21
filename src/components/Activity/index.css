@@ -12,22 +12,86 @@
   align-items: center;
 }
 
-.title_text
+.title_bordered
 {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #707070;
   width: 100%;
+  max-width: 100%;
   height: calc(100% - 2px);
   padding-left: 16px;
+  padding-right: 16px;
+  justify-content: space-between;
 }
 
-.title_text[expanded="expanded"]
+.title_text
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.title_bordered[expanded="expanded"]
 {
   border-radius: 5px 5px 0px 0px;
 }
+
+.hover_buttons
+{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.remove_hover
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #FF3030;
+  font-size: 14px;
+}
+
+.add_hover
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #3059FF;
+  font-size: 14px;
+
+}
+
+.add_activity_button
+{
+  color: white;
+  background-color: #3059FF;
+  border: 0px;
+  line-height: 25px;
+  font-size: 25px;
+}
+
+.remove_activity_button
+{
+  color: #FF3030;
+  font-size: 15px;
+  border: 1px #FF3030 solid;
+  line-height: 25px;
+}
+
+.activity_circle_button
+{
+  align-self: center;
+  display: block;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
 
 .activity_name
 {

@@ -21,7 +21,7 @@ class Activity extends Component
     this.state = 
     {
       open: false,
-      deleteModalOpen: false,
+      deleteModalOpen: false
     };
   }
 
@@ -39,6 +39,8 @@ class Activity extends Component
     const activity = this.props.data.activity;
     const ExpandedRow = this.expandedRow();
     const { deleteModalOpen, open } = this.state;
+    const { type } = this.props;
+    const hoverDiv = type === "lessonPlanExpand" ? this.removeActivityButton() : this.addActivityButton();
     return (
       <div className="activity_row"
            onClick={this.onClick}
@@ -49,6 +51,7 @@ class Activity extends Component
             type={this.props.type}
             swapEvent={this.swapEvent}
             expanded={open}
+            hoverDiv={hoverDiv}
           />
           {ExpandedRow}
         </div>
@@ -57,6 +60,7 @@ class Activity extends Component
           type={this.props.type}
           swapEvent={this.swapEvent}
           expanded={open}
+          hoverDiv={hoverDiv}
         />
       }
 
@@ -110,86 +114,37 @@ class Activity extends Component
     event.stopPropagation();
   }
 
+  removeActivityButton = () => (
+    <div className="remove_hover">
+      Remove from lesson plan
+      <button className="remove_activity_button activity_circle_button"
+        onClick={this.removeEvent}
+      >
+        X
+      </button>
+    </div>
+  );
+
+  addActivityButton = () => (
+    <div className="add_hover">
+      Add to lesson
+      <button className="activity_circle_button add_activity_button "
+        onClick={this.addEvent}
+      >
+        +
+      </button>
+    </div>
+  );
+
   expandedRow = () =>
   {
-    const { type } = this.props;
     const { activity } = this.props.data;
-    let buttons = (<br />);
-    if ( activity.default )
-    {
-      if ( type === "lessonPlanExpand" )
-      { 
-        buttons = (
-          <div>
-            <button className="remove_button"
-              onClick={this.removeEvent}
-            >
-              remove from lesson
-            </button>
-          </div>
-        );
-      }
-      else if ( type === "sidePanel" )
-      {
-        buttons = (
-          <div>
-            <button className="add_button"
-              onClick={this.addEvent}
-            >
-              add to lesson
-            </button>
-          </div>
-        );
-      }
-    }
-    else if ( type === "lessonPlanExpand" )
-    { 
-      buttons = (
-        <div>
-          <button className="edit_button"
-            onClick={this.editEvent}
-          >
-            edit
-          </button>
-          <button className="remove_button"
-            onClick={this.removeEvent}
-          >
-            remove from lesson
-          </button>
-
-          <button className="delete_button"
-            onClick={this.toggleDeleteModalOpen}
-          >
-            Delete
-          </button>
-        </div>
-      );
-    }
-    else if ( type === "sidePanel" )
-    {
-      buttons = (
-        <div>
-          <button className="edit_button"
-            onClick={this.editEvent}
-          >
-            edit
-          </button>
-          <button className="add_button"
-            onClick={this.addEvent}
-          >
-            add to lesson
-          </button>
-          
-
-          <button className="delete_button"
-            onClick={this.toggleDeleteModalOpen}
-          >
-            Delete
-          </button>
-        </div>
-      );
-    }
-
+    
+    /**<button className="delete_button"
+      onClick={this.toggleDeleteModalOpen}
+    >
+      Delete
+    </button>**/
     return ( 
       <div className="expanded_row">
         <div className="expanded_details">
@@ -204,51 +159,80 @@ class Activity extends Component
           {activity.description}
         </div>
         <div className="expanded_buttons">
-          {buttons}
+          <button className="edit_button"
+            onClick={this.editEvent}
+          >
+            edit
+          </button>
         </div>
       </div>
     ); 
   }
 }
 
-const TitleRow = props =>
+class TitleRow extends Component
 {
-  const { activity, type, swapEvent} = props;
-  const expanded = props.expanded ? "expanded" : "none";
-  return ( 
-  <div className="row_title">
-    { type === "lessonPlanExpand" ?
-      <div className="title_buttons">
-        <img
-          src={up_arrow}
-          alt="^"
-          className="swapUpButton"
-          onClick={event => swapEvent(true, event)}
-        />
-        <img
-          src={down_arrow}
-          alt="v"
-          type="button"
-          className="swapDownButton"
-          onClick={event => swapEvent(false, event)}
-        />
+  state = 
+  {
+    hover: false,
+  }
+  render()
+  {
+    const { activity, type, swapEvent} = this.props;
+    const expanded = this.props.expanded ? "expanded" : "none";
+    const { hoverDiv } = this.props;
+    const { hover } = this.state;
+    return (
+      <div className="row_title">
+        { type === "lessonPlanExpand" ?
+          <div className="title_buttons">
+            <img
+              src={up_arrow}
+              alt="^"
+              className="swapUpButton"
+              onClick={event => swapEvent(true, event)}
+            />
+            <img
+              src={down_arrow}
+              alt="v"
+              type="button"
+              className="swapDownButton"
+              onClick={event => swapEvent(false, event)}
+            />
+
+          </div>
+        :
+          <div />
+        }
+
+        <div className="title_bordered" 
+          expanded={expanded}
+          onMouseEnter={() => this.setState({hover: true})}
+          onMouseLeave={() => this.setState({hover: false})}
+        >
+          <div className="title_text">
+            <div className="activity_name">
+              {activity.name}
+            </div>
+            <div className="activity_duration">
+              {activity.duration} mins.
+            </div>
+          </div>
+          
+          <div className="hover_buttons">
+            {hover ? 
+              <div>
+              {hoverDiv}
+              </div>
+            :
+              <div />
+            }
+          </div>
+        </div>
 
       </div>
-    :
-      <div />
-    }
-
-    <div className="title_text" expanded={expanded}>
-      <div className="activity_name">
-        {activity.name}
-      </div>
-      <div className="activity_duration">
-        {activity.duration} mins.
-      </div>
-    </div>
-    
-  </div>
-  );
+    );
+  }
 }
 
 export default withStore(withAuthentication(withFirestore(Activity)));
