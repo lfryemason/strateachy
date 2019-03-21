@@ -2,9 +2,8 @@
 {
   overflow: hidden;
   margin-right: 32px;
-  border: 1px black solid;
   overflow: auto;
-
+  height: inherit;
 }
 
 .activity_expanded_title

@@ -9,8 +9,8 @@
 .lesson_plan_expand_center
 {
   margin-top: 32px;
-  height: calc(100% - 80px);
-  max-height: calc(100% - 144px);
+  height: calc(100% - 145px);
+  max-height: calc(100% - 145px);
   margin-bottom: 32px;
   display: flex;
   flex-direction: row;
@@ -19,7 +19,7 @@
 .activity_list_lesson_plan
 {
   width: 70%;
-  height: inherit;
+  height: 100%;
 }
 
 .lesson_plan_left_inputs
@@ -40,7 +40,6 @@
   border-top: #ACACAC solid 1px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: black 1px solid;
 }
 
 .lesson_plan_save_button

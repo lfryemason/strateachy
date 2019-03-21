@@ -211,36 +211,37 @@ const TitleRow = props =>
   const { activity, type, swapEvent} = props;
   return ( 
   <div className="row_title">
-    <div className="activity_name">
-      {activity.name}
-    </div>
-    <div className="title_right">
+    { type === "lessonPlanExpand" ?
+      <div className="title_buttons">
+        <button
+          type="button"
+          className="swapUpButton"
+          onClick={event => swapEvent(true, event)}
+        >
+          ^
+        </button>
+        <button
+          type="button"
+          className="swapDownButton"
+          onClick={event => swapEvent(false, event)}
+        >
+          v
+        </button>
+
+      </div>
+    :
+      <div />
+    }
+
+    <div className="title_text">
+      <div className="activity_name">
+        {activity.name}
+      </div>
       <div className="activity_duration">
         {activity.duration} mins.
       </div>
-      
-      { type === "lessonPlanExpand" ?
-        <div>
-          <button
-            type="button"
-            className="swapUpButton"
-            onClick={event => swapEvent(true, event)}
-          >
-            ^
-          </button>
-          <button
-            type="button"
-            className="swapDownButton"
-            onClick={event => swapEvent(false, event)}
-          >
-            v
-          </button>
-
-        </div>
-      :
-        <div />
-      }
     </div>
+    
   </div>
   );
 }

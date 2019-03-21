@@ -1,8 +1,6 @@
 .row_title
 {
   display: flex;
-  justify-content: space-between;
-  width: 90%;
   height: 68px;
   flex-direction: row;
   border-radius: 5px;
@@ -10,11 +8,19 @@
   cursor: pointer;
   border: 1px solid #707070;
   margin: auto;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.title_left
+{
+  display: flex;
+  flex-direction: column;
 }
 
 .activity_name
 {
-  justify-content: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -22,21 +28,17 @@
 
 .activity_duration
 {
-  justify-content: right;
   white-space: nowrap;
 }
 
-.title_right
+.title_buttons
 {
-  width:50%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .activity_name
 {
-  width: 50%;
   justify-content: left;
   overflow: hidden;
   text-overflow: ellipsis;

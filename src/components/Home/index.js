@@ -50,11 +50,8 @@ class HomePage extends Component
               <LessonPlanList />
             </div>
 
-            <div>
-                <div className="main_lesson_plan">
-                    <LessonPlanExpand />
-                </div>
-              }
+            <div className="main_lesson_plan">
+              <LessonPlanExpand />
             </div>
 
             <div className="activity_sidebar">
