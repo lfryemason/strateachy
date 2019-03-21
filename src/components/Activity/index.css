@@ -2,9 +2,14 @@
 {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 90%;
+  height: 68px;
   flex-direction: row;
-  border-bottom: 1px solid black;
+  border-radius: 5px;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #707070;
+  margin: auto;
 }
 
 .activity_name

@@ -3,27 +3,23 @@
   display: flex;
   flex-direction: column;
   width: inherit;
-}
-
-.activity_list_lesson_plan
-{
-  border: 2px solid black;
-  display: block;
-  border-radius: 2px;
-  height: 100%;
-  width: 100%;
-  margin: auto;
-  margin-bottom: 32px;
-  margin-right: 32px;
+  height: inherit;
 }
 
 .lesson_plan_expand_center
 {
   margin-top: 32px;
   height: calc(100% - 80px);
+  max-height: calc(100% - 144px);
   margin-bottom: 32px;
   display: flex;
   flex-direction: row;
+}
+
+.activity_list_lesson_plan
+{
+  width: 70%;
+  height: inherit;
 }
 
 .lesson_plan_left_inputs
@@ -32,7 +28,7 @@
   flex-direction: column;
   margin-left: 32px;
   margin-right: 32px;
-  width: 40%;
+  width: 30%;
 }
 
 .lesson_plan_button_bar

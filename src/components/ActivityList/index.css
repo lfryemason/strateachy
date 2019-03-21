@@ -1,22 +1,21 @@
 .activity_list
 {
   overflow: hidden;
-  height: 100%;
+  margin-right: 32px;
+  border: 1px black solid;
+  overflow: auto;
+
 }
 
-.activity_list_title
+.activity_expanded_title
 {
-  font-size: 18px;
-  font-style: bold;
-  text-align: center;
-  background-color: lightblue;
-  border-bottom: 1px black solid;
+  margin-bottom: 8px;
 }
 
 .activities
 {
   overflow: auto;
-  height: calc(100% - 25px);
+  justify-content: center;
 }
 
 .new_activity_button

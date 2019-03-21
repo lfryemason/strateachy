@@ -166,11 +166,6 @@ class ActivityList extends Component
     event.preventDefault();
   }
 
-  swapActivities = (index, isUp) =>
-  {
-    const activityList = this.state.activityList;
-  }
-
   setAndOpenModalActivity = (data) => 
   {
     this.setState({modalData: data, modalUpdate: true});
@@ -194,11 +189,25 @@ class ActivityList extends Component
     return (
       <div className="activity_list">
 
-        <div className="activities">
 
-          <div className="activity_list_title">
+        { type === "sidePanel" ?
+          <div className="activity_sidepanel_title">
+            <div className="activity_list_title">
+              Activities
+            </div>
+            <button type="button" 
+                className="new_activity_button"
+                onClick={this.newActivity}>
+              New Activity
+            </button>
+          </div>
+        :
+          <div className="activity_expanded_title">
             Activities
           </div>
+        }
+
+        <div className="activities">
           {isLoading ?
             <h1>loading...</h1>
           : (
@@ -214,13 +223,6 @@ class ActivityList extends Component
             </div>
           )}
         </div>
-
-
-        <button type="button" 
-            className="new_activity_button"
-            onClick={this.newActivity}>
-          New Activity
-        </button>
         
         <ActivityModal isOpen={isModalOpen}
               activity={modalData.activity}
