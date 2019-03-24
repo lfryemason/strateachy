@@ -187,7 +187,7 @@ class ActivityList extends Component
     const type = this.props.type;
     const isLoading = this.props.store.refreshActivityLists > 0;
     return (
-      <div className="activity_list">
+      <div className="activity_list" type={type}>
 
 
         { type === "sidePanel" ?
@@ -207,22 +207,20 @@ class ActivityList extends Component
           </div>
         }
 
-        <div className="activities">
-          {isLoading ?
-            <h1>loading...</h1>
-          : (
-            <div>
-              {activities.map(data => (
-                <Activity data={data} 
-                  type={type} 
-                  key={key(data)}
-                  isModalOpen={isModalOpen}
-                  setAndOpenModalActivity={this.setAndOpenModalActivity}
-              />
-              ))}
-            </div>
-          )}
-        </div>
+        {isLoading ?
+          <h1>loading...</h1>
+        : (
+          <div className="activities" type={type}>
+            {activities.map(data => (
+              <Activity data={data} 
+                type={type} 
+                key={key(data)}
+                isModalOpen={isModalOpen}
+                setAndOpenModalActivity={this.setAndOpenModalActivity}
+            />
+            ))}
+          </div>
+        )}
         
         <ActivityModal isOpen={isModalOpen}
               activity={modalData.activity}

@@ -5,6 +5,11 @@
   height: inherit;
 }
 
+.activity_list[type="sidePanel"]
+{
+  background-color: #E6E6E6;
+}
+
 .activity_expanded_title
 {
   margin-left:1px;
@@ -13,6 +18,13 @@
 .activities
 {
   justify-content: center;
+  width: calc(100% - 32px)
+}
+
+.activities[type="sidePanel"]
+{
+  justify-content: center;
+  width: calc(100% - 32px)
 }
 
 .new_activity_button

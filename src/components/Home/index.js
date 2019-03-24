@@ -30,7 +30,7 @@ const HomePageDiv = styled.div`
 class HomePage extends Component
 {
   state = {
-    lessonPlanSidePanelOpen: true,
+    lessonPlanSidePanelOpen: false,
   }
 
   toggleSidebars = () =>

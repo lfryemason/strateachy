@@ -1,15 +1,18 @@
 .activity_row
 {
-  margin-right: 32px;
   margin-top: 8px;
+  justify-content: center;
 }
 
 .row_title
 {
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   height: 46px;
   flex-direction: row;
   align-items: center;
+  max-width: 100%;
 }
 
 .title_bordered
@@ -25,12 +28,16 @@
   padding-left: 16px;
   padding-right: 16px;
   justify-content: space-between;
+  background-color: white;
 }
 
 .title_text
 {
   display: flex;
   flex-direction: column;
+  word-wrap: break-word; 
+  overflow: auto;
+  
 }
 
 .title_bordered[expanded="expanded"]
@@ -51,6 +58,7 @@
   align-items: center;
   color: #FF3030;
   font-size: 14px;
+  text-align: end;
 }
 
 .add_hover
@@ -60,6 +68,7 @@
   align-items: center;
   color: #3059FF;
   font-size: 14px;
+  text-align: end;
 
 }
 
@@ -149,6 +158,11 @@
   background-color: lightgray;
   border-radius: 0px 0px 5px 5px;
   background-color: #E6E6E6;
+}
+
+.expanded_row[type="sidePanel"]
+{
+  background-color: white;
 }
 
 .expanded_buttons

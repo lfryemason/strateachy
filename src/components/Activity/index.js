@@ -45,12 +45,12 @@ class Activity extends Component
       <div className="activity_row"
            onClick={this.onClick}
       >
-          <TitleRow activity={activity} 
-            type={this.props.type}
-            swapEvent={this.swapEvent}
-            expanded={open}
-            hoverDiv={hoverDiv}
-          />
+        <TitleRow activity={activity} 
+          type={this.props.type}
+          swapEvent={this.swapEvent}
+          expanded={open}
+          hoverDiv={hoverDiv}
+        />
       
       {open ? 
         <div>
@@ -135,14 +135,14 @@ class Activity extends Component
   expandedRow = () =>
   {
     const { activity } = this.props.data;
-    
+    const { type } = this.props;
     /**<button className="delete_button"
       onClick={this.toggleDeleteModalOpen}
     >
       Delete
     </button>**/
     return ( 
-      <div className="expanded_row">
+      <div className="expanded_row" type={type}>
         <div className="expanded_details">
           <div className="expanded_tag">
             Age
