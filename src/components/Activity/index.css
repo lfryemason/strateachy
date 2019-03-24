@@ -1,6 +1,6 @@
 .activity_row
 {
-  margin-top: 8px;
+  margin-top: 12px;
   justify-content: center;
 }
 
@@ -23,12 +23,25 @@
   cursor: pointer;
   border: 1px solid #707070;
   width: 100%;
-  max-width: calc(100% - 34px);
+  max-width: calc(100% - 32px);
   height: calc(100% - 2px);
   padding-left: 16px;
   padding-right: 16px;
   justify-content: space-between;
+}
+
+.title_bordered[type="sidePanel"]
+{
   background-color: white;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 3px 6px 6px 0px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.title_bordered[expanded="expanded"]
+{
+  border-radius: 5px 5px 0px 0px;
 }
 
 .title_text
@@ -38,11 +51,6 @@
   word-wrap: break-word; 
   text-overflow: ellipsis;
   overflow: auto;
-}
-
-.title_bordered[expanded="expanded"]
-{
-  border-radius: 5px 5px 0px 0px;
 }
 
 .hover_buttons
@@ -99,7 +107,6 @@
   cursor: pointer;
   margin-left: 5px;
 }
-
 
 .activity_name
 {
@@ -162,9 +169,10 @@
   background-color: #E6E6E6;
 }
 
-
 .expanded_row[type="sidePanel"]
 {
+  border: 0px;
+  box-shadow: 3px 6px 6px 0px rgba(0,0,0,0.2);
   background-color: white;
   margin-left: 0px;
 }
@@ -180,10 +188,9 @@
 {
   display: flex;
   flex-direction: row;
-  width: calc(100% - 50px);
   margin-top: 8px;
-  margin-bottom: 8px;
   flex-wrap: wrap;
+  white-space: nowrap;
 }
 
 .expanded_tag
@@ -191,7 +198,7 @@
   text-overflow: ellipsis;
   display: flex;
   flex-direction: row;
-  max-width: 50%;
+  margin-bottom: 8px;
 }
 
 .expanded_description

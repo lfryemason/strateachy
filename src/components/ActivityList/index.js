@@ -193,12 +193,12 @@ class ActivityList extends Component
         { type === "sidePanel" ?
           <div className="activity_sidepanel_title">
             <div className="activity_list_title">
-              Activities
+              All Activities
             </div>
             <button type="button" 
                 className="new_activity_button"
                 onClick={this.newActivity}>
-              New Activity
+              +
             </button>
           </div>
         :

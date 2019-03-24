@@ -204,7 +204,7 @@ class TitleRow extends Component
           <div />
         }
 
-        <div className="title_bordered" 
+        <div className="title_bordered" type={type}
           expanded={expanded}
           onMouseEnter={() => this.setState({hover: true})}
           onMouseLeave={() => this.setState({hover: false})}

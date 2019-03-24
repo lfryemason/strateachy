@@ -19,7 +19,7 @@
   font-size: 20px;
   width: 80%;
   align-self: center;
-  padding-left: 20px;
+  margin-left: 20px;
 }
 
 .new_lesson_plan_button
@@ -36,4 +36,5 @@
   text-align: center;
   line-height: 40px;
   cursor: pointer;
+  margin-right: 20px;
 }
