@@ -158,11 +158,15 @@ class Activity extends Component
           {activity.description}
         </div>
 
-        <button className="edit_button"
-          onClick={this.editEvent}
-        >
-          edit
-        </button>
+        { ! activity.default ?
+          <button className="edit_button"
+            onClick={this.editEvent}
+          >
+            edit
+          </button>
+        :
+          <div />
+        }
 
       </div>
     ); 
