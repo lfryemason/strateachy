@@ -23,7 +23,7 @@
   cursor: pointer;
   border: 1px solid #707070;
   width: 100%;
-  max-width: 100%;
+  max-width: calc(100% - 34px);
   height: calc(100% - 2px);
   padding-left: 16px;
   padding-right: 16px;
@@ -36,8 +36,8 @@
   display: flex;
   flex-direction: column;
   word-wrap: break-word; 
+  text-overflow: ellipsis;
   overflow: auto;
-  
 }
 
 .title_bordered[expanded="expanded"]
@@ -69,14 +69,13 @@
   color: #3059FF;
   font-size: 14px;
   text-align: end;
-
 }
 
 .add_activity_button
 {
-  color: white;
-  background-color: #3059FF;
-  border: 0px;
+  background-color: white;
+  border: 1px  solid #3059FF;
+  color: #3059FF;
   line-height: 25px;
   font-size: 25px;
 }
@@ -104,17 +103,20 @@
 
 .activity_name
 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: inherit;
+  text-overflow: inherit;
+  white-space: inherit;
   margin-top: auto;
+  word-wrap: inherit;
 }
 
 .activity_duration
 {
-  white-space: nowrap;
+  white-space: inherit;
   margin-bottom: auto;
   color: #747474;
+  word-wrap: inherit;
+  text-overflow: inherit;
 }
 
 .title_buttons
@@ -150,9 +152,9 @@
   border-bottom: 1px solid #707070;
   border-left: 1px solid #707070;
   border-right: 1px solid #707070;
-  margin-left: 28px;
   padding-left: 16px;
   padding-right: 16px;
+  margin-left: 28px;
   display: flex;
   flex-direction: column;
   background-color: lightgray;
@@ -160,9 +162,11 @@
   background-color: #E6E6E6;
 }
 
+
 .expanded_row[type="sidePanel"]
 {
   background-color: white;
+  margin-left: 0px;
 }
 
 .expanded_buttons

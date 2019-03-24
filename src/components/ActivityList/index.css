@@ -17,14 +17,16 @@
 
 .activities
 {
-  justify-content: center;
-  width: calc(100% - 32px)
+  margin-right: 32px;
 }
 
 .activities[type="sidePanel"]
 {
-  justify-content: center;
-  width: calc(100% - 32px)
+  width: calc(100% - 32px);
+  max-width: calc(100% - 32px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 8px;
 }
 
 .new_activity_button

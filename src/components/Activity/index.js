@@ -123,12 +123,9 @@ class Activity extends Component
 
   addActivityButton = () => (
     <div className="add_hover">
-      Add to lesson
-      <button className="activity_circle_button add_activity_button "
+      <button className="add_activity_button activity_circle_button"
         onClick={this.addEvent}
-      >
-        +
-      </button>
+      >+</button>
     </div>
   );
 
