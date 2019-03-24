@@ -45,23 +45,19 @@ class Activity extends Component
       <div className="activity_row"
            onClick={this.onClick}
       >
-      {open ? 
-        <div>
           <TitleRow activity={activity} 
             type={this.props.type}
             swapEvent={this.swapEvent}
             expanded={open}
             hoverDiv={hoverDiv}
           />
+      
+      {open ? 
+        <div>
           {ExpandedRow}
         </div>
       :
-        <TitleRow activity={activity} 
-          type={this.props.type}
-          swapEvent={this.swapEvent}
-          expanded={open}
-          hoverDiv={hoverDiv}
-        />
+        <div />
       }
 
       <DeleteModal 
@@ -148,23 +144,29 @@ class Activity extends Component
     return ( 
       <div className="expanded_row">
         <div className="expanded_details">
-          <div className="expanded_age">
-            <b>Age:</b> {activity.age}
+          <div className="expanded_tag">
+            Age
+            <div className="expanded_tag_value">
+              {activity.age}
+            </div>
           </div>
-          <div className="expanded_level">
-            <b>Level:</b> {activity.level}
+          <div className="expanded_tag">
+            Level 
+            <div className="expanded_tag_value">
+              {activity.level}
+            </div>
           </div>
         </div>
         <div className="expanded_description">
           {activity.description}
         </div>
-        <div className="expanded_buttons">
-          <button className="edit_button"
-            onClick={this.editEvent}
-          >
-            edit
-          </button>
-        </div>
+
+        <button className="edit_button"
+          onClick={this.editEvent}
+        >
+          edit
+        </button>
+
       </div>
     ); 
   }
