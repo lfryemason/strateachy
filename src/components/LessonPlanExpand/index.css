@@ -24,6 +24,22 @@
   flex-direction: column;
 }
 
+.open_activities
+{
+  display: flex;
+  margin-left: auto;
+  align-content: center;
+  justify-content: center;
+}
+
+.open_activities_text
+{
+  align-self: center;
+  vertical-align: center;
+  margin-right: 5px;
+
+}
+
 .open_activities_button
 {
   width: 40px;
@@ -84,6 +100,20 @@
   margin-left: 32px;
   float: left;
   cursor: pointer;
+}
+
+.open_lesson_plan_button
+{
+  float: right;
+  height: 45px;
+  width: 100px;
+  color: white;
+  background-color: #3059FF;
+  border: 0px;
+  border-radius: 5px;
+  margin-right: 32px;
+  cursor: pointer;
+  margin-left: 16px;
 }
 
 .lesson_plan_date_duration

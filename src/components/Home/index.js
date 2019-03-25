@@ -35,7 +35,7 @@ class HomePage extends Component
 
   setSidebars = (type) =>
   {
-    const res = type === "lessonPlanExpand";
+    const res = type === "lessonPlanList";
     this.setState({lessonPlanSidePanelOpen: res});
   }
 

@@ -161,25 +161,41 @@ class LessonPlanExpand extends Component
           <div className="activity_list_lesson_plan">
             <ActivityList type="lessonPlanExpand"/>
 
-            <button 
-              type="button"
-              onClick={() => this.props.setSidebars("activityList")}
-              className="open_activities_button"
-            >
-              +
-            </button>
+            <div className="open_activities">
+
+              <div className="open_activities_text">
+                Add Activities
+              </div>
+              <button 
+                type="button"
+                onClick={() => this.props.setSidebars("activityList")}
+                className="open_activities_button"
+              >
+                +
+              </button>
+            </div>
           </div>
         </div>
 
         <div className="lesson_plan_button_bar">
-          <button 
-            type="button"
-            className="lesson_plan_delete_button"
-            disabled={isDeleteDisabled}
-            onClick={this.toggleDeleteModalOpen}
-          >
-            Delete
-          </button>
+          <div>
+            <button 
+              type="button"
+              className="lesson_plan_delete_button"
+              disabled={isDeleteDisabled}
+              onClick={this.toggleDeleteModalOpen}
+            >
+              Delete
+            </button>
+
+            <button 
+              type="button"
+              className="open_lesson_plan_button"
+              onClick={() => this.props.setSidebars("lessonPlanList")}
+            >
+              Open Lesson Plan
+            </button>
+          </div>
 
           <button 
             type="submit"lesson_plan_save_button
