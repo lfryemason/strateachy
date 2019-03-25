@@ -160,6 +160,14 @@ class LessonPlanExpand extends Component
 
           <div className="activity_list_lesson_plan">
             <ActivityList type="lessonPlanExpand"/>
+
+            <button 
+              type="button"
+              onClick={() => this.props.setSidebars("activityList")}
+              className="open_activities_button"
+            >
+              +
+            </button>
           </div>
         </div>
 

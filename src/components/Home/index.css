@@ -16,6 +16,6 @@
 .activity_sidebar
 {
   width: calc(25vw - 1px);
-  border-left: 1px gray solid;
+  border-left: 1px #BEBEBE solid;
   height: 100%;
 }

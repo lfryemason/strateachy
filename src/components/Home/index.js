@@ -30,12 +30,13 @@ const HomePageDiv = styled.div`
 class HomePage extends Component
 {
   state = {
-    lessonPlanSidePanelOpen: false,
+    lessonPlanSidePanelOpen: true,
   }
 
-  toggleSidebars = () =>
+  setSidebars = (type) =>
   {
-    this.setState({lessonPlanSidePanelOpen: ! this.state.lessonPlanSidePanelOpen});
+    const res = type === "lessonPlanExpand";
+    this.setState({lessonPlanSidePanelOpen: res});
   }
 
   render()
@@ -51,7 +52,7 @@ class HomePage extends Component
             </div>
 
             <div className="main_lesson_plan">
-              <LessonPlanExpand />
+              <LessonPlanExpand setSidebars={this.setSidebars}/>
             </div>
 
             <div className="activity_sidebar">

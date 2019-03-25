@@ -84,8 +84,8 @@
   background-color: white;
   border: 1px  solid #3059FF;
   color: #3059FF;
-  line-height: 25px;
-  font-size: 25px;
+  font-size: 24px;
+  line-height: 24px;
 }
 
 .remove_activity_button
@@ -94,18 +94,20 @@
   font-size: 15px;
   border: 1px #FF3030 solid;
   line-height: 25px;
+  margin-left: 5px;
 }
 
 .activity_circle_button
 {
+  display: flex;
   align-self: center;
-  display: block;
+  align-content: center;
+  justify-content: center;
   height: 30px;
   width: 30px;
   border-radius: 100%;
   text-align: center;
   cursor: pointer;
-  margin-left: 5px;
 }
 
 .activity_name
