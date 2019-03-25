@@ -162,7 +162,7 @@ class Activity extends Component
           <button className="edit_button"
             onClick={this.editEvent}
           >
-            edit
+            Edit
           </button>
         :
           <div />
