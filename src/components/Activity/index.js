@@ -85,7 +85,7 @@ class Activity extends Component
   //Expanded row functions and
   editEvent = event =>
   {
-    this.props.setAndOpenModalActivity(this.props.data);
+    this.props.setAndOpenModalActivity(this.props.data, this.toggleDeleteModalOpen);
     event.stopPropagation();
   }
 
@@ -113,7 +113,9 @@ class Activity extends Component
   removeActivityButton = () => (
     <div className="remove_hover">
       Remove from lesson plan
-      <button className="remove_activity_button activity_circle_button"
+      <button 
+        type="button"
+        className="remove_activity_button activity_circle_button"
         onClick={this.removeEvent}
       >
         X
@@ -123,7 +125,9 @@ class Activity extends Component
 
   addActivityButton = () => (
     <div className="add_hover">
-      <button className="add_activity_button activity_circle_button"
+      <button 
+        type="button"
+        className="add_activity_button activity_circle_button"
         onClick={this.addEvent}
       >+</button>
     </div>
@@ -133,11 +137,6 @@ class Activity extends Component
   {
     const { activity } = this.props.data;
     const { type } = this.props;
-    /**<button className="delete_button"
-      onClick={this.toggleDeleteModalOpen}
-    >
-      Delete
-    </button>**/
     return ( 
       <div className="expanded_row" type={type}>
         <div className="expanded_details">
@@ -159,7 +158,9 @@ class Activity extends Component
         </div>
 
         { ! activity.default ?
-          <button className="edit_button"
+          <button 
+            type="button"
+            className="edit_button"
             onClick={this.editEvent}
           >
             Edit

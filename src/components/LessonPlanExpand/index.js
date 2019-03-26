@@ -198,7 +198,8 @@ class LessonPlanExpand extends Component
           </div>
 
           <button 
-            type="submit"lesson_plan_save_button
+            type="submit"
+            lesson_plan_save_button
             className="lesson_plan_save_button"
             disabled={isDisabled}>
             Save

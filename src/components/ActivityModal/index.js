@@ -2,7 +2,22 @@ import React, { Component } from 'react'
 
 import ReactModal from 'react-modal';
 
+import './index.css';
+
 ReactModal.setAppElement('#root');
+
+const modalStyles = {
+  content: {
+    width: '600px',
+    height: '400px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  }
+};
 
 class ActivityModal extends Component
 {
@@ -14,7 +29,7 @@ class ActivityModal extends Component
        activity: activity
     }
   }
-  
+
   componentDidUpdate()
   {
     if ( (this.state.activity !== this.props.activity && ! this.props.isOpen) 
@@ -45,6 +60,12 @@ class ActivityModal extends Component
     this.props.toggleModalOpen();
   }
 
+  toggleDeleteModalOpen = () =>
+  {
+    this.toggleModalOpen();
+    this.props.toggleDeleteModalOpen();
+  }
+
   render()
   {
     const { isOpen } = this.props;
@@ -55,6 +76,7 @@ class ActivityModal extends Component
         shouldCloseOnOverlayClick={true}
         shouldCloseOnEsc={true}
         onRequestClose={this.toggleModalOpen}
+        style={modalStyles}
       >
         <form className="modal_form"
           onSubmit={this.onSave}
@@ -104,16 +126,26 @@ class ActivityModal extends Component
             onChange={this.onChange}
             placeholder="Type an overview of the activity here"
           />
-          <button 
-            type="submit"
-            disabled={isDisabled}>
-            save
+
+
+          <button className="delete_button"
+            onClick={this.toggleDeleteModalOpen}
+          >
+            Delete
           </button>
+
           <button
             onClick={this.toggleModalOpen}
           >
             cancel
           </button>
+
+          <button 
+            type="submit"
+            disabled={isDisabled}>
+            save
+          </button>
+    
         </form>
       </ReactModal>
     );

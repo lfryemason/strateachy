@@ -166,9 +166,9 @@ class ActivityList extends Component
     event.preventDefault();
   }
 
-  setAndOpenModalActivity = (data) => 
+  setAndOpenModalActivity = (data, toggleDeleteModalOpen) => 
   {
-    this.setState({modalData: data, modalUpdate: true});
+    this.setState({modalData: data,toggleDeleteModalOpen: toggleDeleteModalOpen, modalUpdate: true});
     this.toggleModalOpen();
   }
 
@@ -181,7 +181,7 @@ class ActivityList extends Component
   render()
   {
     const activities = this.state.activityList;
-    const { isModalOpen, modalData, modalUpdate } = this.state;
+    const { isModalOpen, modalData, modalUpdate, toggleDeleteModalOpen } = this.state;
     const key = this.props.type === "lessonPlanExpand" ?
       data => data.index : data => data.id;
     const type = this.props.type;
@@ -227,6 +227,7 @@ class ActivityList extends Component
               refresh={modalUpdate}
               onSave={this.onModalSave}
               toggleModalOpen={this.toggleModalOpen}
+              toggleDeleteModalOpen={toggleDeleteModalOpen}
               modalUpdated={() => this.setState({modalUpdate: false})}
             />
       </div>
