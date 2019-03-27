@@ -1,0 +1,112 @@
+.activity_modal_div
+{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.activity_modal_title
+{
+  font-size: 18px;
+  height: 32px;
+  width: 100%;
+}
+
+.activity_modal_form
+{
+  height: calc(100% - 32px);
+}
+
+.activity_modal_center
+{
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 48px);
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.activity_modal_left
+{
+  width: calc(50% - 16px);
+  margin-right: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity_modal_right
+{
+  width: calc(50% - 16px);
+  height: 100%;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity_modal_description
+{
+  height: 100%;
+  border-radius: 5px;
+  border: 1px #707070 solid;
+  margin-bottom: 12px;
+  margin-top: 5px;
+  flex: 0 1 auto;
+  resize: none;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.activity_modal_input
+{
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px #707070 solid;
+  margin-bottom: 12px;
+  margin-top: 5px;
+  flex: 0 1 auto;
+}
+
+.activity_modal_duration
+{
+  width: 30%;
+  margin-right: 8px;
+}
+
+.activity_modal_buttons
+{
+  margin-bottom: auto;
+  height: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.activity_modal_delete
+{
+  height: 32px;
+  width: 64px;
+  border: 1px solid red;
+  color: red;
+  border-radius: 5px;
+}
+
+.activity_modal_cancel
+{
+  height: 32px;
+  width: 64px;
+  border: 1px solid #3059FF;
+  color: #3059FF;
+  border-radius: 5px;
+}
+
+.activity_modal_save
+{
+  height: 32px;
+  width: 64px;
+  border: 0px;
+  color: white;
+  background-color: #3059FF;
+  border-radius: 5px;
+  margin-left: 8px;
+}

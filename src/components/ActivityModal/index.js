@@ -78,75 +78,105 @@ class ActivityModal extends Component
         onRequestClose={this.toggleModalOpen}
         style={modalStyles}
       >
-        <form className="modal_form"
-          onSubmit={this.onSave}
-        >
-          <label htmlFor="modal_name">Activity name</label>
-          <input 
-            name="name"
-            id="modal_name"
-            value ={activity.name}
-            onChange={this.onChange}
-            placeholder="Activity name"
-          />
+        <div className="activity_modal_div">
 
-          <label htmlFor="modal_duration">Activity duration</label>
-          <input 
-            name="duration"
-            id="modal_duration"
-            value ={activity.duration}
-            onChange={this.onChange}
-            placeholder="Activity duration"
-          />
+          <div className="activity_modal_title">
+            Edit Activity
+          </div>
 
-          <label htmlFor="modal_age">Age level</label>
-          <input 
-            name="age"
-            id="modal_age"
-            value ={activity.age}
-            onChange={this.onChange}
-            placeholder="Age level"
-          />
-
-
-          <label htmlFor="modal_level">Skill level</label>
-          <input 
-            name="level"
-            id="modal_level"
-            value ={activity.level}
-            onChange={this.onChange}
-            placeholder="Skill level"
-          />
-
-          <label htmlFor="modal_description">Description</label>
-          <textarea 
-            name="description"
-            id="modal_description"
-            value ={activity.description}
-            onChange={this.onChange}
-            placeholder="Type an overview of the activity here"
-          />
-
-
-          <button className="delete_button"
-            onClick={this.toggleDeleteModalOpen}
+          <form className="activity_modal_form"
+            onSubmit={this.onSave}
           >
-            Delete
-          </button>
+            <div className="activity_modal_center">
+              <div className="activity_modal_left">
+                <label htmlFor="modal_name">Activity name</label>
+                <input 
+                  name="name"
+                  id="modal_name"
+                  value ={activity.name}
+                  onChange={this.onChange}
+                  placeholder="e.g. twinkle mashup"
+                  className="activity_modal_input"
+                />
 
-          <button
-            onClick={this.toggleModalOpen}
-          >
-            cancel
-          </button>
+                <label htmlFor="modal_duration">Activity duration</label>
+                <div className="activity_modal_duration_text">
+                  <input 
+                    name="duration"
+                    id="modal_duration"
+                    value ={activity.duration}
+                    onChange={this.onChange}
+                    placeholder="Duration of the activity"
+                    className="activity_modal_input activity_modal_duration"
+                  />
+                  minutes
+                </div>
 
-          <button 
-            type="submit"
-            disabled={isDisabled}>
-            save
-          </button>
-    
-        </form>
+                <label htmlFor="modal_age">Age</label>
+                <input 
+                  name="age"
+                  id="modal_age"
+                  value ={activity.age}
+                  onChange={this.onChange}
+                  placeholder="e.g. 5-8 or all ages"
+                  className="activity_modal_input"
+                />
+
+
+                <label htmlFor="modal_level">Level</label>
+                <input 
+                  name="level"
+                  id="modal_level"
+                  value ={activity.level}
+                  onChange={this.onChange}
+                  placeholder="e.g. early book 1 or any"
+                  className="activity_modal_input"
+                />
+              </div>
+
+              <div className="activity_modal_right">
+                <label htmlFor="activity_modal_description">Description</label>
+                <textarea 
+                  name="description"
+                  id="activity_modal_description"
+                  value ={activity.description}
+                  onChange={this.onChange}
+                  placeholder="What do you do in the activity?"
+                  className="activity_modal_description"
+                />
+              </div>
+            </div>
+
+            <div className="activity_modal_buttons">
+              <button className="delete_button" 
+                onClick={this.toggleDeleteModalOpen}
+                className="activity_modal_delete"
+                type="button"
+              >
+                Delete
+              </button>
+
+              <div className="save_cancel_activity_modal">
+                <button
+                  onClick={this.toggleModalOpen}
+                  className="activity_modal_cancel"
+                  type="button"
+                >
+                  Cancel
+                </button>
+
+                <button 
+                  type="submit"
+                  disabled={isDisabled}
+                  className="activity_modal_save"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+      
+          </form>
+        </div>
       </ReactModal>
     );
   }

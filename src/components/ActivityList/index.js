@@ -24,6 +24,7 @@ class ActivityList extends Component
       isModalOpen: false,
       modalData: {id: "", activity: this.blankActivity},
       modalUpdate: false,
+      toggleDeleteModalOpen: () => {},
     }
   }
 
@@ -168,13 +169,14 @@ class ActivityList extends Component
 
   setAndOpenModalActivity = (data, toggleDeleteModalOpen) => 
   {
-    this.setState({modalData: data,toggleDeleteModalOpen: toggleDeleteModalOpen, modalUpdate: true});
+    this.setState({modalData: data,toggleDeleteModalOpen: toggleDeleteModalOpen, modalUpdate: true},);
     this.toggleModalOpen();
   }
 
   newActivity = event =>
   {
-    this.setState({modalData: {id: "", activity: this.blankActivity}, modalUpdate: true});
+    this.setState({modalData: {id: "", activity: this.blankActivity}, modalUpdate: true,
+      toggleDeleteModalOpen: () => {}, });
     this.toggleModalOpen();
   }
 
