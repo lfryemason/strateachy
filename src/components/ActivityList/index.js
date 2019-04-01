@@ -188,6 +188,7 @@ class ActivityList extends Component
       data => data.index : data => data.id;
     const type = this.props.type;
     const isLoading = this.props.store.refreshActivityLists > 0;
+    const noActivities = activities.length === 0;
     return (
       <div className="activity_list" type={type}>
 
@@ -209,20 +210,26 @@ class ActivityList extends Component
           </div>
         }
 
-        {isLoading ?
-          <h1>loading...</h1>
-        : (
-          <div className="activities" type={type}>
-            {activities.map(data => (
-              <Activity data={data} 
-                type={type} 
-                key={key(data)}
-                isModalOpen={isModalOpen}
-                setAndOpenModalActivity={this.setAndOpenModalActivity}
-            />
-            ))}
+        {noActivities ?
+          <h2>Try adding an activity to your lesson plan</h2>
+        :
+          <div>
+            {isLoading ?
+              <h1>loading...</h1>
+            : (
+              <div className="activities" type={type}>
+                {activities.map(data => (
+                  <Activity data={data} 
+                    type={type} 
+                    key={key(data)}
+                    isModalOpen={isModalOpen}
+                    setAndOpenModalActivity={this.setAndOpenModalActivity}
+                />
+                ))}
+              </div>
+            )}
           </div>
-        )}
+        }
         
         <ActivityModal isOpen={isModalOpen}
               activity={modalData.activity}

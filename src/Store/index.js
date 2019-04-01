@@ -33,7 +33,7 @@ class Store extends Component
 
   blankLessonPlan = {
     name: "", 
-    date: new Date(),
+    date: "",
     duration: 45,
     description: "",
     age: "",

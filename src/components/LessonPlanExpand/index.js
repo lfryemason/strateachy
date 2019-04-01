@@ -72,6 +72,7 @@ class LessonPlanExpand extends Component
     const { isDeleteModalOpen } = this.state;
     const isDisabled = this.props.store.isSaving || lessonPlan.name === "";
     const isDeleteDisabled = this.props.store.currentLessonPlanID === "";
+    const { lessonPlanSidePanelOpen } = this.props;
     return (
       <form onSubmit={this.onSubmit}
         className="lesson_plan_expand"
@@ -87,7 +88,7 @@ class LessonPlanExpand extends Component
               className="lesson_input_field"
               value ={lessonPlan.name}
               onChange={this.onChange}
-              placeholder="Class name"
+              placeholder="Name of the class"
             />
 
             <div className="lesson_plan_date_duration">
@@ -115,6 +116,7 @@ class LessonPlanExpand extends Component
                 <DatePicker 
                   id="date"
                   className="lesson_input_field"
+                  placeholderText="Click to select a date"
                   selected={lessonPlan.date}
                   onChange={this.dateChange}
                   showTimeSelect
@@ -134,7 +136,7 @@ class LessonPlanExpand extends Component
               className="lesson_input_field"
               value ={lessonPlan.age}
               onChange={this.onChange}
-              placeholder="Age group"
+              placeholder="e.g. 6-8 or all ages"
             />
 
             <label htmlFor="level">Skill level</label>
@@ -144,7 +146,7 @@ class LessonPlanExpand extends Component
               className="lesson_input_field"
               value ={lessonPlan.level}
               onChange={this.onChange}
-              placeholder="Skill level"
+              placeholder="e.g. early book 1 or all levels"
             />
 
             <label htmlFor="description">Description</label>
@@ -154,7 +156,7 @@ class LessonPlanExpand extends Component
               className="description_input_field lesson_input_field"
               value={lessonPlan.description}
               onChange={this.onChange}
-              placeholder="Enter a description for your lesson plan"
+              placeholder="Notes, details and suggestions to supplement the activity list."
             />
           </div>
 
@@ -188,18 +190,22 @@ class LessonPlanExpand extends Component
               Delete
             </button>
 
-            <button 
-              type="button"
-              className="open_lesson_plan_button"
-              onClick={() => this.props.setSidebars("lessonPlanList")}
-            >
-              Open Lesson Plan
-            </button>
+            {lessonPlanSidePanelOpen ?
+              <div />
+            :
+              <button 
+                type="button"
+                className="open_lesson_plan_button"
+                onClick={() => this.props.setSidebars("lessonPlanList")}
+              >
+                Open <br />
+                Lesson Plan
+              </button>
+            }
           </div>
 
           <button 
             type="submit"
-            lesson_plan_save_button
             className="lesson_plan_save_button"
             disabled={isDisabled}>
             Save

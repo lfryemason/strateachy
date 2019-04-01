@@ -148,7 +148,7 @@ class ActivityModal extends Component
             </div>
 
             <div className="activity_modal_buttons">
-              <button className="delete_button" 
+              <button 
                 onClick={this.toggleDeleteModalOpen}
                 className="activity_modal_delete"
                 type="button"

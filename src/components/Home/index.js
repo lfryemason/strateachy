@@ -52,7 +52,7 @@ class HomePage extends Component
             </div>
 
             <div className="main_lesson_plan">
-              <LessonPlanExpand setSidebars={this.setSidebars}/>
+              <LessonPlanExpand setSidebars={this.setSidebars} lessonPlanSidePanelOpen={lessonPlanSidePanelOpen}/>
             </div>
 
             <div className="activity_sidebar">
