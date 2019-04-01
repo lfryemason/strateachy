@@ -2,7 +2,22 @@ import React, { Component } from 'react'
 
 import ReactModal from 'react-modal';
 
+import './index.css';
+
 ReactModal.setAppElement('#root');
+
+const deleteModalStyles = {
+  content: {
+    width: 300,
+    height: 100,
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  }
+}
 
 class DeleteModal extends Component
 {
@@ -10,28 +25,30 @@ class DeleteModal extends Component
   {
     const { onDelete, toggleModal, isOpen} = this.props;
     return(
-      <div className="delete_modal">
-        <ReactModal isOpen={isOpen}
-                shouldCloseOnOverlayClick={true}
-                shouldCloseOnEsc={true}
-                onRequestClose={toggleModal}
-        >
-          <p>Are you sure you want to delete this forever?<br/>
-              This action cannot be undone.</p>
+      <ReactModal isOpen={isOpen}
+        style={deleteModalStyles}
+        shouldCloseOnOverlayClick={true}
+        shouldCloseOnEsc={true}
+        onRequestClose={toggleModal}
+      >
+        <div className="delete_modal">
+          <p className="delete_modal_text">Delete forever?</p>
 
-        <button type="button" 
-            className="delete_button"
-            onClick={onDelete}>
-          Delete
-        </button>
-        
-        <button type="button" 
-            className="cancel_button"
-            onClick={toggleModal}>
-          Cancel
-        </button>
-        </ReactModal>
+        <div className="delete_modal_buttons">
+          <button type="button" 
+              className="delete_modal_cancel_button"
+              onClick={toggleModal}>
+            Cancel
+          </button>
+
+          <button type="button" 
+              className="delete_modal_delete_button"
+              onClick={onDelete}>
+            Delete
+          </button>
+        </div>
       </div>
+    </ReactModal>
     );
   }
 }
