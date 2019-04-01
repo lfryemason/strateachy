@@ -1,9 +1,15 @@
 import React from 'react';
 
-const LandingPage = () =>(
-    <div>
-        <h1>LANDING</h1>
-    </div>
-);
+import { withAuthorization, authCondition } from '../Session';
 
-export default LandingPage;
+import {withRouter} from 'react-router-dom';
+
+import * as ROUTES from '../../constants/routes';
+
+const LandingPage = props =>{
+    props.history.push(ROUTES.HOME)
+    return(<div />);
+  }
+;
+
+export default withAuthorization(authCondition)(withRouter(LandingPage));
