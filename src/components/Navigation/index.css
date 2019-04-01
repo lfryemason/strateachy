@@ -7,6 +7,12 @@
   line-height: 25px;
 }
 
+.empty_nav_bar
+{
+  height:0px;
+  margin: 0;
+}
+
 .header_logo_div
 {
   vertical-align: middle;

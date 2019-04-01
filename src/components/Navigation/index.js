@@ -12,11 +12,9 @@ import logo_text from '../../res/Strateachy_logo_text.png';
 import './index.css'
 
 const Navigation = () => (
-        <div>
-            <AuthUserContext.Consumer >
-                {authUser => authUser ? <NavigationAuth /> : <br />}
-            </ AuthUserContext.Consumer>
-        </div>
+  <AuthUserContext.Consumer >
+    {authUser => authUser ? <NavigationAuth /> : <div className="empty_nav_bar"/>}
+  </ AuthUserContext.Consumer>
 );
 
 const NavigationAuth = () => (
