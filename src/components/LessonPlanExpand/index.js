@@ -26,6 +26,11 @@ class LessonPlanExpand extends Component
   //Save the lesson plan to the database.
   onSubmit = event =>
   {
+    if ( this.props.store.lessonPlan.name === "" || this.props.store.lessonPlan.date === "")
+    {
+      event.preventDefault();
+      return;
+    }
     const { currentLessonPlan, currentLessonPlanID, updateCurrentLessonPlanID, saving } = this.props.store;
     saving(true);
     if ( currentLessonPlanID !== "" )
@@ -70,7 +75,7 @@ class LessonPlanExpand extends Component
   {
     const lessonPlan = this.props.store.currentLessonPlan;
     const { isDeleteModalOpen } = this.state;
-    const isDisabled = this.props.store.isSaving || lessonPlan.name === "";
+    const isDisabled = this.props.store.isSaving || lessonPlan.name === "" || lessonPlan.date === "";
     const isDeleteDisabled = this.props.store.currentLessonPlanID === "";
     const { lessonPlanSidePanelOpen } = this.props;
     return (

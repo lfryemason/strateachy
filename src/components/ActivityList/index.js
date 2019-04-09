@@ -165,6 +165,7 @@ class ActivityList extends Component
     }
     this.toggleModalOpen();
     event.preventDefault();
+    event.stopPropagation();
   }
 
   setAndOpenModalActivity = (data, toggleDeleteModalOpen) => 
