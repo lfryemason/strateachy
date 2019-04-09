@@ -26,7 +26,7 @@ class LessonPlanExpand extends Component
   //Save the lesson plan to the database.
   onSubmit = event =>
   {
-    if ( this.props.store.lessonPlan.name === "" || this.props.store.lessonPlan.date === "")
+    if ( this.props.store.currentLessonPlan.name === "" || this.props.store.currentLessonPlan.date === "")
     {
       event.preventDefault();
       return;
