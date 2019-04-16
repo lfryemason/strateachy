@@ -1,10 +1,32 @@
 import React from 'react';
 
+import HelpRow from './helprow';
+
+import { helpPageText } from './helppagetext'
 
 import { withAuthorization, authCondition } from '../Session';
 
 const HelpPage = () => (
-  <h1>help page</h1>
+  <div className="help_page">
+    <div
+      className="help_title"
+    >
+    Help
+    </div>
+
+    <div className="help_posts">
+      {helpPageText.map((item, ind) => 
+        <HelpRow 
+          className="help_post"
+          key={ind}
+          text={item.text}
+          title={item.title} 
+        />
+      )}
+    </div>
+  </div>
 );
+
+
 
 export default withAuthorization(authCondition)(HelpPage);
