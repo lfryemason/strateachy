@@ -2,4 +2,184 @@
 {
   display: flex;
   flex-direction: column;
+  width: inherit;
+  height: inherit;
+}
+
+.lesson_plan_expand_center
+{
+  margin-top: 32px;
+  height: calc(100% - 129px);
+  max-height: calc(100% - 129px);
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.activity_list_lesson_plan
+{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.open_activities
+{
+  display: flex;
+  margin-left: auto;
+  align-content: center;
+  justify-content: center;
+}
+
+.open_activities_text
+{
+  align-self: center;
+  vertical-align: center;
+  margin-right: 5px;
+
+}
+
+.open_activities_button
+{
+  width: 40px;
+  height: 40px;
+  justify-self: right;
+  margin-right: 32px;
+  margin-left: auto;
+  border-radius: 100%;
+  color: white;
+  font-size: 30px;
+  background-color: #3059FF;
+  border: 0px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.lesson_plan_left_inputs
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: 32px;
+  margin-right: 32px;
+  width: 30%;
+}
+
+.lesson_plan_button_bar
+{
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  width: 100%;
+  border-top: #ACACAC solid 1px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson_plan_save_button
+{
+  float: right;
+  height: 45px;
+  width: 100px;
+  color: white;
+  background-color: #3059FF;
+  border: 0px;
+  border-radius: 5px;
+  margin-right: 32px;
+  cursor: pointer;
+}
+
+.lesson_plan_save_button:disabled
+{
+  float: right;
+  height: 45px;
+  width: 100px;
+  color: white;
+  background-color: #747474;
+  border: 0px;
+  border-radius: 5px;
+  margin-right: 32px;
+  cursor: pointer;
+}
+
+.lesson_plan_delete_button
+{
+  height: 45px;
+  width: 100px;
+  color: #FF3030;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #FF3030;
+  margin-left: 32px;
+  float: left;
+  cursor: pointer;
+}
+
+.open_lesson_plan_button
+{
+  float: right;
+  height: 45px;
+  width: 100px;
+  background-color: white;
+  color: #3059FF;
+  border: 1px solid #3059FF;
+  border-radius: 5px;
+  margin-right: 32px;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+.lesson_plan_date_duration
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.lesson_plan_date
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson_plan_duration
+{
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+.lesson_plan_duration_mins
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.lesson_input_field
+{
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px #707070 solid;
+  padding-left: 8px;
+  margin-bottom: 12px;
+  margin-top: 8px;
+  flex: 0 1 auto;
+}
+
+.duration_input_field
+{
+  width: 64px;
+  display: flex;
+  flex-direction: row;
+  margin-right: 5px;
+}
+
+.description_input_field
+{
+  padding-top: 8px;
+  flex: 1 1 auto;
+  margin-bottom: 0px;
+  resize: none;
 }

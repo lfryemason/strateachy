@@ -1,0 +1,242 @@
+.activity_row
+{
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.row_title
+{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  height: 46px;
+  flex-direction: row;
+  align-items: center;
+  max-width: 100%;
+}
+
+.title_bordered
+{
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #707070;
+  width: 100%;
+  max-width: calc(100% - 32px);
+  height: calc(100% - 2px);
+  padding-left: 16px;
+  padding-right: 16px;
+  justify-content: space-between;
+}
+
+.title_bordered[type="sidePanel"]
+{
+  background-color: white;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 3px 6px 6px 0px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.title_bordered[expanded="expanded"]
+{
+  border-radius: 5px 5px 0px 0px;
+}
+
+.title_text
+{
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word; 
+  text-overflow: ellipsis;
+  overflow: auto;
+}
+
+.hover_buttons
+{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.remove_hover
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #FF3030;
+  font-size: 14px;
+  text-align: end;
+}
+
+.add_hover
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #3059FF;
+  font-size: 14px;
+  text-align: end;
+}
+
+.add_activity_button
+{
+  background-color: white;
+  border: 1px  solid #3059FF;
+  color: #3059FF;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.remove_activity_button
+{
+  color: #FF3030;
+  font-size: 15px;
+  border: 1px #FF3030 solid;
+  line-height: 25px;
+  margin-left: 5px;
+}
+
+.activity_circle_button
+{
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.activity_name
+{
+  overflow: inherit;
+  text-overflow: inherit;
+  white-space: inherit;
+  margin-top: auto;
+  word-wrap: inherit;
+}
+
+.activity_duration
+{
+  white-space: inherit;
+  margin-bottom: auto;
+  color: #747474;
+  word-wrap: inherit;
+  text-overflow: inherit;
+}
+
+.title_buttons
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: 2px;
+  margin-right: 2px;
+  cursor: pointer;
+}
+
+.swapDownButton
+{
+  margin-top: 2px;
+}
+
+.activity_name
+{
+  justify-content: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity_duration
+{
+  justify-content: right;
+  white-space: nowrap;
+}
+
+.expanded_row
+{
+  border-bottom: 1px solid #707070;
+  border-left: 1px solid #707070;
+  border-right: 1px solid #707070;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: 28px;
+  display: flex;
+  flex-direction: column;
+  background-color: lightgray;
+  border-radius: 0px 0px 5px 5px;
+  background-color: #E6E6E6;
+}
+
+.expanded_row[type="sidePanel"]
+{
+  border: 0px;
+  box-shadow: 3px 6px 6px 0px rgba(0,0,0,0.2);
+  background-color: white;
+  margin-left: 0px;
+}
+
+.expanded_buttons
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.expanded_details
+{
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  white-space: nowrap;
+}
+
+.expanded_tag
+{
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: row;
+}
+
+.expanded_description
+{
+  overflow-wrap: break-word;
+  white-space: pre-line;
+  max-width: 100%;
+  margin-bottom: 8px;
+}
+
+.expanded_tag_value
+{
+  text-overflow: ellipsis;
+  margin-left: 5px;
+  margin-right: 16px;
+  background-color: #CFCFCF;
+  justify-self: center;
+  text-align: center;
+  justify-content: center;
+  height: 26px;
+  vertical-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 50px;
+}
+
+.edit_button
+{
+  margin-bottom: 8px;
+  margin-left: auto;
+  float: right;
+  height: 32px;
+  width: 64px;
+  color: white;
+  background-color: #3059FF;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-self: end;
+}

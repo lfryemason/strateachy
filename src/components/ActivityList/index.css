@@ -1,0 +1,64 @@
+.activity_list
+{
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: inherit;
+}
+
+.activity_list[type="sidePanel"]
+{
+  background-color: #E6E6E6;
+}
+
+.activity_expanded_title
+{
+  margin-left:1px;
+}
+
+.activity_sidepanel_title{
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  background: white;
+  justify-content: space-between;
+}
+
+.activity_list_title
+{
+  font-size: 20px;
+  width: 80%;
+  align-self: center;
+}
+
+.new_activity_button
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  height: 40px;
+  width: 40px;
+  color: white;
+  border-radius: 100%;
+  background-color: #3059FF;
+  border: 0px;
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.activities
+{
+  margin-right: 32px;
+}
+
+.activities[type="sidePanel"]
+{
+  width: calc(100% - 32px);
+  max-width: calc(100% - 32px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 8px;
+}

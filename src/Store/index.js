@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import * as R from 'ramda';
+
 import { withAuthentication } from '../components/Session';
 
 export const StoreContext = React.createContext(null);
@@ -13,7 +15,8 @@ class Store extends Component
     this.state = {
       currentLessonPlan: {...this.blankLessonPlan},
       currentLessonPlanID: "",
-      isSaving: false
+      isSaving: false,
+      refreshActivityLists: 2,
     };
   }
 
@@ -30,7 +33,7 @@ class Store extends Component
 
   blankLessonPlan = {
     name: "", 
-    date: new Date(),
+    date: "",
     duration: 45,
     description: "",
     age: "",
@@ -55,6 +58,74 @@ class Store extends Component
     this.setState({ isSaving: newVal });
   }
 
+  removeActivityFromLessonPlan = activity =>
+  {
+    const currentLessonPlan = this.state.currentLessonPlan;
+    const currentActivityList = currentLessonPlan.activityList;
+    currentActivityList.splice(activity.index, 1);
+    const newActivityList = currentActivityList.map((doc, index) => ({...doc, index}));
+    this.setState({currentLessonPlan: {...currentLessonPlan, activityList: newActivityList}});
+    this.refreshActivityLists(true);
+  }
+
+  setActivityList = (activityList) =>
+  {
+    this.setState(R.assocPath(["currentLessonPlan", "activityList"], activityList, this.state));
+    this.refreshActivityLists(true);
+  }
+
+  addActivityToLessonPlan = docRef =>
+  {
+    const currentLessonPlan = this.state.currentLessonPlan;
+    const currentActivityList = currentLessonPlan.activityList;
+    const newIndex = currentActivityList.length
+    currentActivityList.push({docRef: docRef, index: newIndex});
+    currentActivityList.sort( (a, b) => a.index - b.index );
+    this.setState({currentLessonPlan: {...currentLessonPlan, activityList: currentActivityList}});
+    this.refreshActivityLists(true);
+  }
+
+  moveActivity = (goingUp, activity) =>
+  {
+    const {activityList} = this.state.currentLessonPlan;
+    if (activityList[activity.index].index !== activity.index)
+    {
+      console.error("Indexes are wrong", activity, activityList[activity.index]);
+      return;
+    }
+
+    if ( (activity.index === 0 && goingUp) ||
+         (activity.index === (activityList.length - 1) && ! goingUp ) )
+    {
+      return;
+    }
+
+    if ( goingUp )
+    {
+      activityList[activity.index] = R.assocPath(["index"], activity.index, activityList[activity.index - 1]);
+      activityList[activity.index - 1] = R.assocPath(["index"], activity.index - 1, activity);
+    }
+    else
+    {
+      activityList[activity.index] = R.assocPath(["index"], activity.index, activityList[activity.index + 1]);
+      activityList[activity.index + 1] = R.assocPath(["index"], activity.index + 1, activity);
+    }
+
+    this.setState(R.assocPath(["currentLessonPlan", "activityList"], activityList, this.state));
+    this.refreshActivityLists(true);
+  }
+
+  refreshActivityLists = val =>
+  {
+    if ( val )
+      this.setState({refreshActivityLists: 2})
+    else
+    {
+      const currentRefresh = this.state.refreshActivityLists;
+      this.setState({refreshActivityLists: currentRefresh - 1});
+    }
+  }
+
   render()
   {
     return (
@@ -63,7 +134,12 @@ class Store extends Component
          updateCurrentLessonPlan:this.updateCurrentLessonPlan,
          updateCurrentLessonPlanID:this.updateCurrentLessonPlanID,
          newCurrentLessonPlan:this.newCurrentLessonPlan,
-         saving:this.saving
+         saving:this.saving,
+         setRefreshActivityLists: this.refreshActivityLists,
+         removeActivityFromLessonPlan: this.removeActivityFromLessonPlan,
+         addActivityToLessonPlan: this.addActivityToLessonPlan,
+         setActivityList: this.setActivityList,
+         moveActivity: this.moveActivity,
         }
       }>
         {this.props.children}
