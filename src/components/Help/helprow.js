@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import './helprow.css';
 
 class HelpRow extends Component
 {

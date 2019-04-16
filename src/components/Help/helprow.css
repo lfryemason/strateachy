@@ -1,0 +1,21 @@
+.help_row
+{
+  margin-top: 16px;
+  width: 100%;
+}
+
+.help_row_title
+{
+  border-bottom: #ACACAC solid 1px;
+  width: 100%;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.help_row_text
+{
+  cursor: default;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  margin-left: 16px;
+}

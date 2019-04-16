@@ -1,0 +1,15 @@
+.help_page
+{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+}
+
+.help_title
+{
+  font-size: 26px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

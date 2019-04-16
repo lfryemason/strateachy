@@ -6,12 +6,14 @@ import { helpPageText } from './helppagetext'
 
 import { withAuthorization, authCondition } from '../Session';
 
+import './index.css';
+
 const HelpPage = () => (
   <div className="help_page">
     <div
       className="help_title"
     >
-    Help
+    Frequently Asked Questions (FAQ)
     </div>
 
     <div className="help_posts">
