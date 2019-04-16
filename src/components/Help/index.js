@@ -21,8 +21,7 @@ const HelpPage = () => (
         <HelpRow 
           className="help_post"
           key={ind}
-          text={item.text}
-          title={item.title} 
+          data={item}
         />
       )}
     </div>

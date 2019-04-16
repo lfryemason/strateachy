@@ -21,13 +21,13 @@ class HelpRow extends Component
         <div className="help_row_title"
             onClick={() => this.setState({open: ! open})}
         >
-          {this.props.title}
+          {this.props.data.title}
         </div>
 
 
         {open ?
           <div className="help_row_text">
-            {this.props.text}
+            {this.props.data.text}
           </div>
         :
           <div />

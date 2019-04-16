@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const helpPageText = [
   {
     title: "What is Strateachy?", 
@@ -6,7 +8,17 @@ export const helpPageText = [
 
   {
     title: "How do I add activities?",
-    text: "press the buttons. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text. need more text"
+    text: (
+      <div>
+        "Press the "Add Activities" button on your homescreen. This will open a side panel to the right. 
+        
+        <br />
+        From this panel you can either hover over an activity and click the "+" button, which will add that activity to the lesson plan, or click the "+" button at the top in order to create a new activity."
+      </div>)
+  },
+  {
+    title: "I am not using the default activities, can I get rid of them?",
+    text: "Not currently."
   },
 
 ];
