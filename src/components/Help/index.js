@@ -25,6 +25,10 @@ const HelpPage = () => (
         />
       )}
     </div>
+
+    <div className="contact_info">
+      Any other questions or comments, contact Liam Frye-Mason at lfryemason@unm.edu
+    </div>
   </div>
 );
 

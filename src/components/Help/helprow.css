@@ -2,6 +2,7 @@
 {
   margin-top: 16px;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .help_row_title
