@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import ReactModal from 'react-modal';
 
-import { withStore } from '../../Store';
-import { withFirestore } from 'react-firestore'
 import './index.css';
 
 
@@ -21,13 +19,6 @@ const modalStyles = {
 };
 
 class ExportModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {  }
-  }
-
-
-
   render() { 
     const { isOpen, closeModal, data } = this.props;
     return ( 
@@ -37,7 +28,6 @@ class ExportModal extends Component {
         onRequestClose={closeModal}
         style={modalStyles}
       >
-
         <textarea 
           name="exported_lesson"
           id="exported_lesson"

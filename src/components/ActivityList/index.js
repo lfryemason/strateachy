@@ -184,9 +184,35 @@ class ActivityList extends Component
     this.toggleModalOpen();
   }
 
+  activityToString = activity =>
+  (
+    activity.activity.name + "\n  " +
+    activity.activity.duration + " minutes\n\n" +
+    activity.activity.description + "\n\n-----------------\n"
+  );
+
   openExport = event =>
   {
-    this.setState({exportModalOpen: true, exportModalData: ""});
+    const { currentLessonPlan } = this.props.store;
+    const { date } = currentLessonPlan;
+    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    const dateStr = (date.getMonth() + 1) + "/" + 
+      date.getDate() + "/" + 
+      date.getFullYear() + " " + 
+      date.getHours() + ":" + 
+      minutes;
+    const header = currentLessonPlan.name + "\n" + 
+      dateStr + "\n" + 
+      currentLessonPlan.duration + " minutes\n" +
+      "Age level: " + currentLessonPlan.age + "\n" +
+      "Skill level: " + currentLessonPlan.level + "\n\n" +
+      currentLessonPlan.description + "\n\n" +
+      "---ACTIVITIES------------------------\n";
+
+    const activities = this.state.activityList;
+    const exportData = R.reduce((data, activity) => data + this.activityToString(activity), header, activities);
+
+    this.setState({exportModalOpen: true, exportModalData: exportData});
     event.preventDefault();
   }
 
