@@ -195,12 +195,12 @@ class ActivityList extends Component
   {
     const { currentLessonPlan } = this.props.store;
     const { date } = currentLessonPlan;
-    const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-    const dateStr = (date.getMonth() + 1) + "/" + 
+    const dateStr = (date === "") ? "" : ((date.getMonth() + 1) + "/" + 
       date.getDate() + "/" + 
       date.getFullYear() + " " + 
       date.getHours() + ":" + 
-      minutes;
+      (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()));
+
     const header = currentLessonPlan.name + "\n" + 
       dateStr + "\n" + 
       currentLessonPlan.duration + " minutes\n" +
