@@ -13,6 +13,23 @@
 .activity_expanded_title
 {
   margin-left:1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.export_button
+{
+  margin-right: 32px;
+  float: right;
+  height: 32px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  color: #3059FF;
+  border: 1px solid #3059FF;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .activity_sidepanel_title{

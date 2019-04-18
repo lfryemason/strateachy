@@ -12,6 +12,7 @@ import { withFirestore } from 'react-firestore'
 import { withAuthentication } from '../Session';
 
 import './index.css'
+import ExportModal from '../Export';
 
 class ActivityList extends Component
 {
@@ -24,6 +25,8 @@ class ActivityList extends Component
       isModalOpen: false,
       modalData: {id: "", activity: this.blankActivity},
       modalUpdate: false,
+      exportModalOpen: false,
+      exportModalData: "",
       toggleDeleteModalOpen: () => {},
     }
   }
@@ -181,10 +184,17 @@ class ActivityList extends Component
     this.toggleModalOpen();
   }
 
+  openExport = event =>
+  {
+    this.setState({exportModalOpen: true, exportModalData: ""});
+    event.preventDefault();
+  }
+
   render()
   {
     const activities = this.state.activityList;
     const { isModalOpen, modalData, modalUpdate, toggleDeleteModalOpen } = this.state;
+    const { exportModalOpen, exportModalData } = this.state;
     const key = this.props.type === "lessonPlanExpand" ?
       data => data.index : data => data.id;
     const type = this.props.type;
@@ -207,7 +217,14 @@ class ActivityList extends Component
           </div>
         :
           <div className="activity_expanded_title">
-            Activities
+            <div className="expanded_list_title">
+              Activities
+            </div>
+            <button type="button" 
+                className="export_button"
+                onClick={this.openExport}>
+              Export
+            </button>
           </div>
         }
 
@@ -240,9 +257,15 @@ class ActivityList extends Component
               toggleDeleteModalOpen={toggleDeleteModalOpen}
               modalUpdated={() => this.setState({modalUpdate: false})}
             />
+        <ExportModal isOpen={exportModalOpen}
+              closeModal={() => this.setState({exportModalOpen: false}) }
+              data={exportModalData}
+            />
       </div>
     );
   }
 }
+
+
 
 export default withAuthentication(withFirestore(withStore(ActivityList)));

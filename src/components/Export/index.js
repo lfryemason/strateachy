@@ -29,20 +29,19 @@ class ExportModal extends Component {
 
 
   render() { 
-    const { isOpen, toggleModalOpen } = this.props;
-    const exportedLessonText = "";
+    const { isOpen, closeModal, data } = this.props;
     return ( 
       <ReactModal isOpen={isOpen}
         shouldCloseOnOverlayClick={true}
         shouldCloseOnEsc={true}
-        onRequestClose={toggleModalOpen}
+        onRequestClose={closeModal}
         style={modalStyles}
       >
 
         <textarea 
           name="exported_lesson"
           id="exported_lesson"
-          value={exportedLessonText}
+          value={data}
           onChange={() => {}}
           className="exported_lesson_textarea"
         />
