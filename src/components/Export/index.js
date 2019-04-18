@@ -19,6 +19,18 @@ const modalStyles = {
 };
 
 class ExportModal extends Component {
+
+  copyAll = event =>
+  {
+    var copyText = document.getElementById("exported_lesson");
+  
+    copyText.select();
+
+    document.execCommand("copy");
+
+    event.preventDefault();
+  }
+
   render() { 
     const { isOpen, closeModal, data } = this.props;
     return ( 
@@ -40,7 +52,7 @@ class ExportModal extends Component {
 
           <div className="export_button_bar">
             <button
-              onClick={() => {}}
+              onClick={this.copyAll}
               className="export_modal_copy"
               type="button"
             >
