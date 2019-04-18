@@ -28,13 +28,34 @@ class ExportModal extends Component {
         onRequestClose={closeModal}
         style={modalStyles}
       >
-        <textarea 
-          name="exported_lesson"
-          id="exported_lesson"
-          value={data}
-          onChange={() => {}}
-          className="exported_lesson_textarea"
-        />
+        <div className="export_modal_center">
+          <textarea 
+            name="exported_lesson"
+            id="exported_lesson"
+            value={data}
+            onChange={() => {}}
+            className="exported_lesson_textarea"
+          />
+
+
+          <div className="export_button_bar">
+            <button
+              onClick={() => {}}
+              className="export_modal_copy"
+              type="button"
+            >
+              Copy to clipboard
+            </button>
+
+            <button
+              onClick={closeModal}
+              className="export_modal_close"
+              type="button"
+            >
+              Close
+            </button>
+          </div>
+        </div>
         
       </ReactModal>
     );
