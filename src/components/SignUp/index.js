@@ -77,8 +77,9 @@ class SignUpFormBase extends Component
         className="sign_up_form"
       >
 
-        <label for="sign_up_email">Email</label>
+        <label htmlFor="sign_up_email">Email</label>
         <input
+          name="email"
           className="sign_up_email sign_up_input"
           value={email}
           onChange={this.onChange}
@@ -86,8 +87,9 @@ class SignUpFormBase extends Component
           placeholder="Email Address"
         />
         
-        <label for="sign_up_password">Password</label>
+        <label htmlFor="sign_up_password">Password</label>
         <input
+          name="passwordA"
           className="sign_up_password sign_up_input"
           value={passwordA}
           onChange={this.onChange}
@@ -95,8 +97,9 @@ class SignUpFormBase extends Component
           placeholder="Password"
         />
 
-        <label for="sign_up_password_reenter">Re-enter Password</label>
+        <label htmlFor="sign_up_password_reenter">Re-enter Password</label>
         <input
+          name="passwordB"
           className="sign_up_password_reenter sign_up_input"
           value={passwordB}
           onChange={this.onChange}
