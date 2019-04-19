@@ -210,7 +210,7 @@ class ActivityList extends Component
       "---ACTIVITIES------------------------\n";
 
     const activities = this.state.activityList;
-    const exportData = R.reduce((data, activity) => data + this.activityToString(activity), header, activities);
+    const exportData = R.reduce((data, activity) => data + this.activityToString(activity), header, activities) + "Made by Strateachy (strateachy.com)";
 
     this.setState({exportModalOpen: true, exportModalData: exportData});
     event.preventDefault();
