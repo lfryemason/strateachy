@@ -74,8 +74,9 @@ class LessonPlanExpand extends Component
   render()
   {
     const lessonPlan = this.props.store.currentLessonPlan;
+    const { lessonPlanModified } = this.props.store;
     const { isDeleteModalOpen } = this.state;
-    const isDisabled = this.props.store.isSaving || lessonPlan.name === "" || lessonPlan.date === "";
+    const isDisabled = this.props.store.isSaving || lessonPlan.name === "" || lessonPlan.date === "" || (! lessonPlanModified );
     const isDeleteDisabled = this.props.store.currentLessonPlanID === "";
     const { lessonPlanSidePanelOpen } = this.props;
     return (
@@ -209,12 +210,21 @@ class LessonPlanExpand extends Component
             }
           </div>
 
-          <button 
-            type="submit"
-            className="lesson_plan_save_button"
-            disabled={isDisabled}>
-            Save
-          </button> 
+          <div className="lesson_plan_button_right">
+            { lessonPlanModified ?
+              <div className="save_reminder">
+                Don't forget to save!
+              </div>
+            :
+              <div/>
+            }
+            <button 
+              type="submit"
+              className="lesson_plan_save_button"
+              disabled={isDisabled}>
+              Save
+            </button> 
+          </div>
         </div>
         
       <DeleteModal 

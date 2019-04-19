@@ -11,9 +11,9 @@ class LessonPlanRow extends Component
     const lessonPlan = this.props.lessonPlan;
     const lessonPlanID = lessonPlan.id;
     const store = this.props.store;
+    store.updateCurrentLessonPlan(lessonPlan);
     store.updateCurrentLessonPlanID(lessonPlanID);
     delete lessonPlan.id;
-    store.updateCurrentLessonPlan(lessonPlan);
   }
 
   render()

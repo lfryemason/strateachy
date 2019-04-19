@@ -15,6 +15,7 @@ class Store extends Component
     this.state = {
       currentLessonPlan: {...this.blankLessonPlan},
       currentLessonPlanID: "",
+      lessonPlanModified: false,
       isSaving: false,
       refreshActivityLists: 2,
     };
@@ -25,10 +26,11 @@ class Store extends Component
     this.newCurrentLessonPlan();
   }
 
-  //Sets a flag to update the currentLessonPlan with any new values that are passed in.
+  // Updates the currentLessonPlan with any new values that are passed in.
   updateCurrentLessonPlan = newLessonPlan => 
   {
     this.setState( {currentLessonPlan: {...this.state.currentLessonPlan, ...newLessonPlan}} );
+    this.setState({lessonPlanModified: true});
   }
 
   blankLessonPlan = {
@@ -45,17 +47,22 @@ class Store extends Component
   {
     this.setState( {currentLessonPlan: {...this.blankLessonPlan, uid: this.props.authUser.uid }, 
       currentLessonPlanID: ""});
+    this.setState({lessonPlanModified: false});
   }
 
   //Sets a flag to update the currentLessonPlan with a new ID key.
   updateCurrentLessonPlanID = newID => 
   {
+      this.setState({lessonPlanModified: false});
+
     this.setState( {currentLessonPlanID: newID} );
   }
 
   saving = newVal =>
   {
     this.setState({ isSaving: newVal });
+    if ( newVal )
+      this.setState({lessonPlanModified: false});
   }
 
   removeActivityFromLessonPlan = activity =>
@@ -65,12 +72,14 @@ class Store extends Component
     currentActivityList.splice(activity.index, 1);
     const newActivityList = currentActivityList.map((doc, index) => ({...doc, index}));
     this.setState({currentLessonPlan: {...currentLessonPlan, activityList: newActivityList}});
+    this.setState({lessonPlanModified: true});
     this.refreshActivityLists(true);
   }
 
   setActivityList = (activityList) =>
   {
     this.setState(R.assocPath(["currentLessonPlan", "activityList"], activityList, this.state));
+    this.setState({lessonPlanModified: true});
     this.refreshActivityLists(true);
   }
 
@@ -82,6 +91,7 @@ class Store extends Component
     currentActivityList.push({docRef: docRef, index: newIndex});
     currentActivityList.sort( (a, b) => a.index - b.index );
     this.setState({currentLessonPlan: {...currentLessonPlan, activityList: currentActivityList}});
+    this.setState({lessonPlanModified: true});
     this.refreshActivityLists(true);
   }
 
@@ -112,6 +122,7 @@ class Store extends Component
     }
 
     this.setState(R.assocPath(["currentLessonPlan", "activityList"], activityList, this.state));
+    this.setState({lessonPlanModified: true});
     this.refreshActivityLists(true);
   }
 

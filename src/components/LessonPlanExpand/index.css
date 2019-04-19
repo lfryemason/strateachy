@@ -183,3 +183,20 @@
   margin-bottom: 0px;
   resize: none;
 }
+
+.lesson_plan_button_right
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.save_reminder
+{
+  text-align: center;
+  vertical-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 16px;
+  color: #404040;
+}
