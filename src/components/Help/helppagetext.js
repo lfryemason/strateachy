@@ -16,7 +16,7 @@ export const helpPageText = [
     title: "How do I add activities?",
     text: (
       <div>
-        "Press the "Add Activities" button on your homescreen. This will open a side panel to the right. 
+        Press the "Add Activities" button on your homescreen. This will open a side panel to the right. 
         <img className="help_addact_img"
           rel="addAct"
           src={add_act}

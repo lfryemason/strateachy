@@ -17,10 +17,10 @@ const HelpPage = () => (
     </div>
 
     <div className="help_posts">
-      {helpPageText.map((item, ind) => 
+      {helpPageText.map((item, index) => 
         <HelpRow 
           className="help_post"
-          key={ind}
+          key={index}
           data={item}
         />
       )}
