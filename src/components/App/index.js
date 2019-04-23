@@ -7,6 +7,7 @@ import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
+import HelpPage from '../Help';
 import { withAuthenticationProvider } from '../Session';
 import AccountPage from '../Account';
 import HomePage from '../Home';
@@ -26,6 +27,7 @@ const App = () => (
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.HOME} component={HomePage} />
+      <Route path={ROUTES.HELP} component={HelpPage} />
       <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
     </div>
   </Router>

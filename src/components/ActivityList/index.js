@@ -211,26 +211,22 @@ class ActivityList extends Component
           </div>
         }
 
-        {noActivities ?
-          <h2>Try adding an activity to your lesson plan</h2>
-        :
-          <div>
-            {isLoading ?
-              <h1>loading...</h1>
-            : (
-              <div className="activities" type={type}>
-                {activities.map(data => (
-                  <Activity data={data} 
-                    type={type} 
-                    key={key(data)}
-                    isModalOpen={isModalOpen}
-                    setAndOpenModalActivity={this.setAndOpenModalActivity}
-                />
-                ))}
-              </div>
-            )}
-          </div>
-        }
+        <div>
+          {isLoading ?
+            <h1>loading...</h1>
+          : (
+            <div className="activities" type={type}>
+              {activities.map(data => (
+                <Activity data={data} 
+                  type={type} 
+                  key={key(data)}
+                  isModalOpen={isModalOpen}
+                  setAndOpenModalActivity={this.setAndOpenModalActivity}
+              />
+              ))}
+            </div>
+          )}
+        </div>
         
         <ActivityModal isOpen={isModalOpen}
               activity={modalData.activity}

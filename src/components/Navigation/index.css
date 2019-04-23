@@ -26,18 +26,26 @@
   height: 45px;
 }
 
+.navigation_help
+{
+  vertical-align: middle;
+  margin-right: 32px;
+  color: white;
+  text-decoration: initial;
+}
+
 .navigation_account
 {
   vertical-align: middle;
-  width: 100px;
+  margin-right: 32px;
   color: white;
   text-decoration: initial;
 }
 
 .navigation_sign_out
 {
-  width: 100px;
   color: white;
+  margin-right: 32px;
   cursor: pointer;
 }
 

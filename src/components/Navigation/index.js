@@ -31,6 +31,10 @@ const NavigationAuth = () => (
     </Link>
 
     <div className="navigation_links">
+      <Link to={ROUTES.HELP}
+        className="navigation_help">
+        Help
+      </Link>
       <Link to={ROUTES.ACCOUNT} 
         className="navigation_account">Account</Link>
 
