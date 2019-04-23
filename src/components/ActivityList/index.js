@@ -12,6 +12,7 @@ import { withFirestore } from 'react-firestore'
 import { withAuthentication } from '../Session';
 
 import './index.css'
+import ExportModal from '../Export';
 
 class ActivityList extends Component
 {
@@ -24,6 +25,8 @@ class ActivityList extends Component
       isModalOpen: false,
       modalData: {id: "", activity: this.blankActivity},
       modalUpdate: false,
+      exportModalOpen: false,
+      exportModalData: "",
       toggleDeleteModalOpen: () => {},
     }
   }
@@ -181,10 +184,43 @@ class ActivityList extends Component
     this.toggleModalOpen();
   }
 
+  activityToString = activity =>
+  (
+    activity.activity.name + "\n  " +
+    activity.activity.duration + " minutes\n\n" +
+    activity.activity.description + "\n\n-----------------\n"
+  );
+
+  openExport = event =>
+  {
+    const { currentLessonPlan } = this.props.store;
+    const { date } = currentLessonPlan;
+    const dateStr = (date === "") ? "" : ((date.getMonth() + 1) + "/" + 
+      date.getDate() + "/" + 
+      date.getFullYear() + " " + 
+      date.getHours() + ":" + 
+      (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()));
+
+    const header = currentLessonPlan.name + "\n" + 
+      dateStr + "\n" + 
+      currentLessonPlan.duration + " minutes\n" +
+      "Age level: " + currentLessonPlan.age + "\n" +
+      "Skill level: " + currentLessonPlan.level + "\n\n" +
+      currentLessonPlan.description + "\n\n" +
+      "---ACTIVITIES------------------------\n";
+
+    const activities = this.state.activityList;
+    const exportData = R.reduce((data, activity) => data + this.activityToString(activity), header, activities) + "Made by Strateachy (strateachy.com)";
+
+    this.setState({exportModalOpen: true, exportModalData: exportData});
+    event.preventDefault();
+  }
+
   render()
   {
     const activities = this.state.activityList;
     const { isModalOpen, modalData, modalUpdate, toggleDeleteModalOpen } = this.state;
+    const { exportModalOpen, exportModalData } = this.state;
     const key = this.props.type === "lessonPlanExpand" ?
       data => data.index : data => data.id;
     const type = this.props.type;
@@ -207,7 +243,14 @@ class ActivityList extends Component
           </div>
         :
           <div className="activity_expanded_title">
-            Activities
+            <div className="expanded_list_title">
+              Activities
+            </div>
+            <button type="button" 
+                className="export_button"
+                onClick={this.openExport}>
+              Export
+            </button>
           </div>
         }
 
@@ -236,9 +279,15 @@ class ActivityList extends Component
               toggleDeleteModalOpen={toggleDeleteModalOpen}
               modalUpdated={() => this.setState({modalUpdate: false})}
             />
+        <ExportModal isOpen={exportModalOpen}
+              closeModal={() => this.setState({exportModalOpen: false}) }
+              data={exportModalData}
+            />
       </div>
     );
   }
 }
+
+
 
 export default withAuthentication(withFirestore(withStore(ActivityList)));
