@@ -28,6 +28,7 @@ class ActivityList extends Component
       exportModalOpen: false,
       exportModalData: "",
       toggleDeleteModalOpen: () => {},
+      sortText: "",
     }
   }
 
@@ -94,7 +95,7 @@ class ActivityList extends Component
     const defaultActivities = db.collection("activities").where("default", "==", true)
       .get();
 
-    const setActivityList = activityList => this.setState({activityList: activityList})
+    const setActivityList = activityList => this.setState({activityList: activityList, sortText: ""})
     const refreshDone = () => this.props.store.setRefreshActivityLists(false);
 
     Promise.all([userActivities, defaultActivities]).then(function(queryArray)
@@ -218,28 +219,36 @@ class ActivityList extends Component
 
   render()
   {
-    const activities = this.state.activityList;
+    const filterFunc = (activity => R.includes(this.state.sortText.toLowerCase(), activity.activity.name.toLowerCase()));
+    const activities = R.filter(filterFunc, this.state.activityList);
+
     const { isModalOpen, modalData, modalUpdate, toggleDeleteModalOpen } = this.state;
     const { exportModalOpen, exportModalData } = this.state;
     const key = this.props.type === "lessonPlanExpand" ?
       data => data.index : data => data.id;
     const type = this.props.type;
     const isLoading = this.props.store.refreshActivityLists > 0;
-    const noActivities = activities.length === 0;
     return (
       <div className="activity_list" type={type}>
 
 
         { type === "sidePanel" ?
-          <div className="activity_sidepanel_title">
-            <div className="activity_list_title">
-              All Activities
+          <div className="activity_sidepanel_header">
+            <div className="activity_sidepanel_title">
+              <div className="activity_list_title">
+                All Activities
+              </div>
+              <button type="button" 
+                  className="new_activity_button"
+                  onClick={this.newActivity}>
+                +
+              </button>
             </div>
-            <button type="button" 
-                className="new_activity_button"
-                onClick={this.newActivity}>
-              +
-            </button>
+            <input className="sort_activities"
+              onChange={event => this.setState({sortText: event.target.value})}
+              placeholder="Search activities"
+            >
+            </input>
           </div>
         :
           <div className="activity_expanded_title">

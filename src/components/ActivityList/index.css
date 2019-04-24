@@ -10,6 +10,22 @@
   background-color: #E6E6E6;
 }
 
+.sort_activities
+{
+  height: 30px;
+  width: calc(100% - 2px);
+  margin-top: 4px;
+  border: 0px;
+  border-top: #ACACAC solid 1px;
+  border-bottom: #ACACAC solid 1px;
+}
+
+.activity_sidepanel_header
+{
+  background: white;
+  width: 100%;
+}
+
 .activity_expanded_title
 {
   margin-left:1px;
