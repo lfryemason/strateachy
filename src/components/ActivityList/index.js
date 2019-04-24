@@ -243,7 +243,7 @@ class ActivityList extends Component
 
 
         { type === "sidePanel" ?
-          <div>
+          <div className="activity_sidepanel_header">
             <div className="activity_sidepanel_title">
               <div className="activity_list_title">
                 All Activities
@@ -256,6 +256,7 @@ class ActivityList extends Component
             </div>
             <input className="sort_activities"
               onChange={this.sortActivities}
+              placeholder="Search activities"
             >
             </input>
           </div>
