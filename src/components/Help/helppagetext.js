@@ -11,6 +11,10 @@ export const helpPageText = [
     title: "What is Strateachy?", 
     text: "Strateachy is a free website that offers simple, ad-free, and easy lesson planning. Developed as a student project, Strateachy is built to allow lessons to be described through a name, date and list of activities. The website specializes in using activities and ideas from previously created lesson plans. The website makes it easy to reuse, modify and explore past lesson plans while also giving easy templates to create brand new ideas."
   },
+  {
+    title: "My save button is greyed out and I can't save my lesson plan!",
+    text: "Each lesson plan must have a title and a date. Fill those fields out and try saving again. If that does not work, contact Liam at lfryemason@unm.edu"
+  },
 
   {
     title: "How do I add activities?",
