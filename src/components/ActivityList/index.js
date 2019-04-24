@@ -28,6 +28,8 @@ class ActivityList extends Component
       exportModalOpen: false,
       exportModalData: "",
       toggleDeleteModalOpen: () => {},
+      sortText: "",
+      sortedList: [],
     }
   }
 
@@ -94,7 +96,7 @@ class ActivityList extends Component
     const defaultActivities = db.collection("activities").where("default", "==", true)
       .get();
 
-    const setActivityList = activityList => this.setState({activityList: activityList})
+    const setActivityList = activityList => this.setState({activityList: activityList, sortText: ""})
     const refreshDone = () => this.props.store.setRefreshActivityLists(false);
 
     Promise.all([userActivities, defaultActivities]).then(function(queryArray)
@@ -216,30 +218,46 @@ class ActivityList extends Component
     event.preventDefault();
   }
 
+  sortActivities = event =>
+  {
+    const sortText = event.target.value;
+    this.setState({sortText: sortText});
+
+    console.log(this.state.activityList)
+    const filterFunc = (activity => R.includes(sortText.toLowerCase(), activity.activity.name.toLowerCase()));
+    const sortedList = R.filter(filterFunc, this.state.activityList);
+    this.setState({sortedList: sortedList});
+  }
+
   render()
   {
-    const activities = this.state.activityList;
+    const activities = (this.state.sortText === "") ? this.state.activityList : this.state.sortedList;
     const { isModalOpen, modalData, modalUpdate, toggleDeleteModalOpen } = this.state;
     const { exportModalOpen, exportModalData } = this.state;
     const key = this.props.type === "lessonPlanExpand" ?
       data => data.index : data => data.id;
     const type = this.props.type;
     const isLoading = this.props.store.refreshActivityLists > 0;
-    const noActivities = activities.length === 0;
     return (
       <div className="activity_list" type={type}>
 
 
         { type === "sidePanel" ?
-          <div className="activity_sidepanel_title">
-            <div className="activity_list_title">
-              All Activities
+          <div>
+            <div className="activity_sidepanel_title">
+              <div className="activity_list_title">
+                All Activities
+              </div>
+              <button type="button" 
+                  className="new_activity_button"
+                  onClick={this.newActivity}>
+                +
+              </button>
             </div>
-            <button type="button" 
-                className="new_activity_button"
-                onClick={this.newActivity}>
-              +
-            </button>
+            <input className="sort_activities"
+              onChange={this.sortActivities}
+            >
+            </input>
           </div>
         :
           <div className="activity_expanded_title">
