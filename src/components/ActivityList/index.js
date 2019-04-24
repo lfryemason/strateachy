@@ -29,7 +29,6 @@ class ActivityList extends Component
       exportModalData: "",
       toggleDeleteModalOpen: () => {},
       sortText: "",
-      sortedList: [],
     }
   }
 
@@ -218,20 +217,11 @@ class ActivityList extends Component
     event.preventDefault();
   }
 
-  sortActivities = event =>
-  {
-    const sortText = event.target.value;
-    this.setState({sortText: sortText});
-
-    console.log(this.state.activityList)
-    const filterFunc = (activity => R.includes(sortText.toLowerCase(), activity.activity.name.toLowerCase()));
-    const sortedList = R.filter(filterFunc, this.state.activityList);
-    this.setState({sortedList: sortedList});
-  }
-
   render()
   {
-    const activities = (this.state.sortText === "") ? this.state.activityList : this.state.sortedList;
+    const filterFunc = (activity => R.includes(this.state.sortText.toLowerCase(), activity.activity.name.toLowerCase()));
+    const activities = R.filter(filterFunc, this.state.activityList);
+
     const { isModalOpen, modalData, modalUpdate, toggleDeleteModalOpen } = this.state;
     const { exportModalOpen, exportModalData } = this.state;
     const key = this.props.type === "lessonPlanExpand" ?
@@ -255,7 +245,7 @@ class ActivityList extends Component
               </button>
             </div>
             <input className="sort_activities"
-              onChange={this.sortActivities}
+              onChange={event => this.setState({sortText: event.target.value})}
               placeholder="Search activities"
             >
             </input>
