@@ -106,6 +106,7 @@ class SignUpFormBase extends Component
           type="password"
           placeholder="Confirm Password"
         />
+        <Link className="sign_up_help" to={ROUTES.HELP}>What is Strateachy?</Link>
         <SignInLink />
         <button 
           disabled={isInvalid} 

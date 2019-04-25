@@ -3,8 +3,8 @@ import React from 'react';
 import HelpRow from './helprow';
 
 import { helpPageText } from './helppagetext'
-
-import { withAuthorization, authCondition } from '../Session';
+import { Link, withRouter } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 
 import './index.css';
 
@@ -15,6 +15,8 @@ const HelpPage = () => (
     >
     Frequently Asked Questions (FAQ)
     </div>
+
+    <Link to={ROUTES.HOME} className="help_link_home">Home page</Link>
 
     <div className="help_posts">
       {helpPageText.map((item, index) => 
@@ -27,11 +29,11 @@ const HelpPage = () => (
     </div>
 
     <div className="contact_info">
-      Any other questions or comments, contact Liam Frye-Mason at lfryemason@unm.edu
+      Contact Liam Frye-Mason at lfryemason@unm.edu if you have any other questions or comments.
     </div>
   </div>
 );
 
 
 
-export default withAuthorization(authCondition)(HelpPage);
+export default withRouter(HelpPage);
