@@ -96,7 +96,7 @@ class ActivityList extends Component
     const defaultActivities = db.collection("activities").where("default", "==", true)
       .get();
 
-    const setActivityList = activityList => this.setState({activityList: activityList, sortText: ""})
+    const setActivityList = activityList => this.setState({activityList: activityList, sortTexts: {name: "", level: "", age: ""}, advancedSortOpen: false})
     const refreshDone = () => this.props.store.setRefreshActivityLists(false);
 
     Promise.all([userActivities, defaultActivities]).then(function(queryArray)
@@ -230,6 +230,7 @@ class ActivityList extends Component
         <div className="sort_simple">
           <input className="sort_activities"
             onChange={event => this.setState(R.assocPath(['sortTexts', 'name'], event.target.value))}
+            value={this.state.sortTexts.name}
             placeholder="Search activities"
           />
           <button className="advanced_sort_button"
@@ -244,14 +245,17 @@ class ActivityList extends Component
         <div className="sort_advanced">
           <input className="sort_activities_advanced"
             onChange={event => this.setState(R.assocPath(['sortTexts', 'name'], event.target.value))}
+            value={this.state.sortTexts.name}
             placeholder="Name"
           />
           <input className="sort_activities_advanced sort_activities_name"
             onChange={event => this.setState(R.assocPath(['sortTexts', 'age'], event.target.value))}
+            value={this.state.sortTexts.age}
             placeholder="Age level"
           />
           <input className="sort_activities_advanced sort_activities_skill"
             onChange={event => this.setState(R.assocPath(['sortTexts', 'level'], event.target.value))}
+            value={this.state.sortTexts.level}
             placeholder="Skill level"
           />
         </div>
