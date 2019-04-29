@@ -28,7 +28,8 @@ class ActivityList extends Component
       exportModalOpen: false,
       exportModalData: "",
       toggleDeleteModalOpen: () => {},
-      sortText: "",
+      sortTexts: {name: "", age: "", level: ""},
+      advancedSortOpen: false,
     }
   }
 
@@ -217,12 +218,51 @@ class ActivityList extends Component
     event.preventDefault();
   }
 
+  advancedFilter = (activity) =>
+  {
+    const filterFunc = target => (activity => R.includes(this.state.sortTexts[target].toLowerCase(), activity.activity[target].toLowerCase()));
+    return R.allPass([filterFunc('name'), filterFunc('age'), filterFunc('level')])(activity);
+  }
+
+  filterElement = advancedSortOpen => {
+    if ( ! advancedSortOpen ) 
+      return (
+        <div className="sort_simple">
+          <input className="sort_activities"
+            onChange={event => this.setState(R.assocPath(['sortTexts', 'name'], event.target.value))}
+            placeholder="Search activities"
+          />
+          <button className="advanced_sort_button"
+            onClick={() => this.setState({advancedSortOpen: true})}
+          >
+            Advanced
+          </button>
+        </div>
+      );
+    else
+      return (
+        <div className="sort_advanced">
+          <input className="sort_activities_advanced"
+            onChange={event => this.setState(R.assocPath(['sortTexts', 'name'], event.target.value))}
+            placeholder="Name"
+          />
+          <input className="sort_activities_advanced sort_activities_name"
+            onChange={event => this.setState(R.assocPath(['sortTexts', 'age'], event.target.value))}
+            placeholder="Age level"
+          />
+          <input className="sort_activities_advanced sort_activities_skill"
+            onChange={event => this.setState(R.assocPath(['sortTexts', 'level'], event.target.value))}
+            placeholder="Skill level"
+          />
+        </div>
+      );
+  }
+
   render()
   {
-    const filterFunc = (activity => R.includes(this.state.sortText.toLowerCase(), activity.activity.name.toLowerCase()));
-    const activities = R.filter(filterFunc, this.state.activityList);
+    const activities = R.filter(activity => this.advancedFilter(activity), this.state.activityList);
 
-    const { isModalOpen, modalData, modalUpdate, toggleDeleteModalOpen } = this.state;
+    const { isModalOpen, modalData, modalUpdate, toggleDeleteModalOpen, advancedSortOpen } = this.state;
     const { exportModalOpen, exportModalData } = this.state;
     const key = this.props.type === "lessonPlanExpand" ?
       data => data.index : data => data.id;
@@ -244,11 +284,7 @@ class ActivityList extends Component
                 +
               </button>
             </div>
-            <input className="sort_activities"
-              onChange={event => this.setState({sortText: event.target.value})}
-              placeholder="Search activities"
-            >
-            </input>
+            {this.filterElement(advancedSortOpen)}
           </div>
         :
           <div className="activity_expanded_title">
