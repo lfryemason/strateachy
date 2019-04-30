@@ -96,7 +96,7 @@ class ActivityList extends Component
     const defaultActivities = db.collection("activities").where("default", "==", true)
       .get();
 
-    const setActivityList = activityList => this.setState({activityList: activityList, sortTexts: {name: "", level: "", age: ""}, advancedSortOpen: false})
+    const setActivityList = activityList => this.setState({activityList: activityList})
     const refreshDone = () => this.props.store.setRefreshActivityLists(false);
 
     Promise.all([userActivities, defaultActivities]).then(function(queryArray)
